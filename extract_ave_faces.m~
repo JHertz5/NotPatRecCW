@@ -33,4 +33,4 @@ actual_idx = sort(actual_idx); % these indices correspond to the 2 most average 
 testing = X(:,actual_idx);
 training = X;
 training(:,actual_idx)=[];
-save('Separated_Data','testing','training')
+save('
