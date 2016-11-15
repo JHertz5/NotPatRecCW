@@ -1,5 +1,6 @@
 %% run initial script
 
+showFigures = false;
 See_faces
 close all
 
