@@ -17,7 +17,6 @@ for i = 1:520
 end
 
 %% for each class find 2 indices corresponding to most average face
-% TODO do you mean indexes and not indices?
 %  most average face will have average pixel value closest to zero
 actual_idx = zeros(1,104);
 for j = 1:2
