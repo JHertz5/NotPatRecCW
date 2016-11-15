@@ -17,7 +17,7 @@ for i = 1:52
     aveFaces(:,:,i) = mean(indvFaces(:,:,(i-1)*10+1:10*i),3);
 end
 
-if showFigures == true
+if (exist('showFigures', 'var') && showFigures == true)
     figure(1)
     for j = 1:9
         subplot(3,3,j)
