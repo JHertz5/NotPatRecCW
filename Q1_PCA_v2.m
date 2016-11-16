@@ -4,7 +4,7 @@
 % clean up
 clc
 close all
-clear all
+clear variables
 
 % load partitioned data
 load Separated_Data.mat
@@ -34,7 +34,7 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
-[len, wid] = size(training_t);
+wid = size(training_t, 2);
 faceCov = (training_t*training_t')/wid;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
