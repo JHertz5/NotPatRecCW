@@ -14,20 +14,27 @@ showPlots = true;
 
 %% Normalise and plot mean face
 
+faceW = 46; faceH = 56;
+
 % subtract mean face from training faces
 mean_Face = mean(training,2);
 training_t = training - mean_Face;
 
+mean_Face_m = zeros(faceH, faceW, 'double');
+
 % plot mean face
 if showPlots == true
     figure(1)
-    for i = 1:46 %extract image one line at a time
-        mean_Face_m(1:56,i) = rot90(mean_Face((i-1)*56+1:i*56), 2);
+    for i = 1:faceW %extract image one line at a time
+        lineStart = (i-1)* faceH + 1;
+        lineEnd = i*faceH;
+        mean_Face_m(1:faceH,i,j) = rot90(mean_Face(lineStart:lineEnd,j), 2);
     end
     
     h = pcolor(mean_Face_m);
     set(h,'edgecolor','none');
     colormap gray
+    shading interp
     title('Average Face','fontsize',20)
 end
 
@@ -40,6 +47,7 @@ faceCov = (training_t*training_t')/wid;
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
 
+eigVals = zeros(1, length(D));
 % Move the diagonal onto an array
 for i = 1:length(D)
     eigVals(i) = D(i,i);
@@ -71,16 +79,19 @@ eigVecs_best = V(:,bestIdx);
 
 %% plot 10 eigenfaces
 
+eigFace = zeros(faceH, faceW, 10, 'double');
 if showPlots == true
     figure(3)
     for j = 1:10
-        for i = 1:46 %extract image one line at a time
-            eigFace(1:56,i,j) = rot90(eigVecs_best((i-1)*56+1:i*56,j), 2);
-            
+        for i = 1:faceW %extract image one line at a time
+            lineStart = (i-1)* faceH + 1;
+            lineEnd = i*faceH;
+            eigFace(1:faceH,i,j) = rot90(eigVecs_best(lineStart:lineEnd,j), 2);
         end
         subplot(2,5,j)
         h = pcolor(eigFace(:,:,j));
         set(h,'edgecolor','none');
         colormap gray
+        shading interp
     end
 end
