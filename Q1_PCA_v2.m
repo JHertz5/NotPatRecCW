@@ -9,8 +9,8 @@ clear all
 % load partitioned data
 load Separated_Data.mat
 
-% change plots to 1 to get images
-plots = 1;
+% change showPlots to 1 to get images
+showPlots = true;
 
 %% Normalise and plot mean face
 
@@ -19,13 +19,13 @@ mean_Face = mean(training,2);
 training_t = training - mean_Face;
 
 % plot mean face
-if plots == 1
+if showPlots == true
     figure(1)
     for i = 1:46 %extract image one line at a time
         mean_Face_m(1:56,i) = rot90(mean_Face((i-1)*56+1:i*56), 2);
     end
     
-    h = pcolor(mean_Face_m)
+    h = pcolor(mean_Face_m);
     set(h,'edgecolor','none');
     colormap gray
     title('Average Face','fontsize',20)
@@ -34,7 +34,7 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
-[len wid] = size(training_t);
+[len, wid] = size(training_t);
 faceCov = (training_t*training_t')/wid;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
@@ -49,7 +49,7 @@ end
 
 % Plot all eigenvalues sorted. Number of non-zero eigenvalues should be N -
 % 1, where N is number of training data (416 in this case)
-if plots == 1
+if showPlots == true
     figure(2)
     plot(sort(eigVals,'descend'),'linewidth',2)
     set(gca,'YScale','log')
@@ -71,7 +71,7 @@ eigVecs_best = V(:,bestIdx);
 
 %% plot 10 eigenfaces
 
-if plots == 1
+if showPlots == true
     figure(3)
     for j = 1:10
         for i = 1:46 %extract image one line at a time
