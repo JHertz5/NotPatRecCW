@@ -26,9 +26,9 @@ mean_Face_m = zeros(faceH, faceW, 'double');
 if showPlots == true
     figure(1)
     for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)* faceH + 1;
+        lineStart = (i-1)*faceH + 1;
         lineEnd = i*faceH;
-        mean_Face_m(1:faceH,i,j) = rot90(mean_Face(lineStart:lineEnd,j), 2);
+        mean_Face_m(1:faceH,i) = rot90(mean_Face(lineStart:lineEnd), 2);
     end
     
     h = pcolor(mean_Face_m);
