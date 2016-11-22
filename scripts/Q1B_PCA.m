@@ -1,5 +1,4 @@
 %%
-% Second Attempt at Q1 PCA
 
 % clean up
 clc
@@ -9,7 +8,7 @@ clear variables
 % load partitioned data
 load Separated_Data.mat
 
-% change showPlots to 1 to get images
+% change showPlots to true to get images
 showPlots = true;
 
 %% Normalise and plot mean face

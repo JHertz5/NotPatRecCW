@@ -24,7 +24,7 @@ for i = 1:nFaceSets
 end
 
 %% show figures
-if (exist('showFigures', 'var') && showFigures == true)
+if (exist('showPlots', 'var') && showPlots == true)
     figure(1)
     for j = 1:9
         subplot(3,3,j)

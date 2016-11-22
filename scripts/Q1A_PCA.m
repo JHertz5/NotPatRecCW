@@ -1,5 +1,4 @@
 %%
-% Second Attempt at Q1 PCA
 
 % clean up
 clc

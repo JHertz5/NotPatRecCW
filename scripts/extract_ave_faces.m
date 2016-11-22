@@ -1,7 +1,7 @@
 %% run initial script
 clear variables
 
-showFigures = false;
+showPlots = false;
 See_faces
 close all
 
@@ -41,4 +41,11 @@ actual_index = sort(actual_index); % these indices correspond to the 2 most aver
 testing = X(:,actual_index);
 training = X;
 training(:,actual_index)=[];
-save('Separated_Data','testing','training')
+
+if contains(pwd, 'NotPatRecCW')
+    path = extractBefore(pwd, 'NotPatRecCW');
+    fullPath = strcat(path, 'NotPatRecCW/data/Separated_Data');
+    save(char(fullPath),'testing','training')
+else
+    save('Separated_Data','testing','training')
+end
