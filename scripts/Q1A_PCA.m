@@ -40,8 +40,8 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
-wid = size(training_t, 2);
-faceCov = (training_t*training_t')/wid;
+N = size(training_t, 2);
+faceCov = (training_t*training_t')/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
@@ -70,11 +70,11 @@ end
 
 % technically the eigenvalues are presorted in the ascending order. But
 % just to be sure sort them again
-num_eigs = 50;
+M = 50;
 [sortedEigs,sortedIdx] = sort(eigVals,'descend');
-bestIdx = sortedIdx(1:num_eigs);
-eigVals_best = sortedEigs(1:num_eigs);
-eigVecs_best = V(:,bestIdx);
+bestIdx = sortedIdx(1:M);
+eigVals_best = sortedEigs(1:M); % extract top M eigenvalues
+eigVecs_best = V(:,bestIdx); % extract best M eigenvectors
 
 %% plot 10 eigenfaces
 
@@ -92,5 +92,6 @@ if showPlots == true
         set(h,'edgecolor','none');
         colormap gray
         shading interp
+        set(findobj(gcf, 'type','axes'), 'Visible','off')
     end
 end
