@@ -16,10 +16,10 @@ showPlots = true;
 faceW = 46; faceH = 56;
 
 % subtract mean face from training faces
-mean_Face = mean(training,2);
-training_t = training - mean_Face;
+meanFace = mean(training,2);
+trainingNorm = training - meanFace;
 
-mean_Face_m = zeros(faceH, faceW, 'double');
+meanFace_matrix = zeros(faceH, faceW, 'double');
 
 % plot mean face
 if showPlots == true
@@ -27,10 +27,10 @@ if showPlots == true
     for i = 1:faceW %extract image one line at a time
         lineStart = (i-1)*faceH + 1;
         lineEnd = i*faceH;
-        mean_Face_m(1:faceH,i) = rot90(mean_Face(lineStart:lineEnd), 2);
+        meanFace_matrix(1:faceH,i) = rot90(meanFace(lineStart:lineEnd), 2);
     end
     
-    h = pcolor(mean_Face_m);
+    h = pcolor(meanFace_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
@@ -40,17 +40,13 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
-N = size(training_t, 2);
-faceCov = (training_t'*training_t)/N;
+N = size(trainingNorm, 2);
+faceCov = (trainingNorm'*trainingNorm)/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
 
-eigVals = zeros(1, length(D));
-% Move the diagonal onto an array
-for i = 1:length(D)
-    eigVals(i) = D(i,i);
-end
+eigVals = D * ones(length(D))'; % move D into an array
 
 %% plot eig vals
 
@@ -71,19 +67,19 @@ end
 % technically the eigenvalues are presorted in the ascending order. But
 % just to be sure sort them again
 M = 50;
-[sortedEigs,sortedIdx] = sort(eigVals,'descend');
-bestIdx = sortedIdx(1:M);
+[sortedEigs,sortedIdxList] = sort(eigVals,'descend');
+bestIdxList = sortedIdxList(1:M);
 eigVals_best = sortedEigs(1:M); % extract top M eigenvalues
-eigVecs_best = V(:,bestIdx); % extract best M eigenvectors
+eigVecs_best = V(:,bestIdxList); % extract best M eigenvectors
 
 %% use A'A eigenvectors to calculate AA' eigenvectors
 % A'A and A'A have the same eigenvalues
 
-eigFaceVecs = training_t*eigVecs_best;
+eigFaces_best = trainingNorm*eigVecs_best;
 
 %normalise face vectors
 for i=1:M
-   eigFaceVecs(:,i) = eigFaceVecs(:,i) / abs(norm(eigFaceVecs(:,i)));
+   eigFaces_best(:,i) = eigFaces_best(:,i) / abs(norm(eigFaces_best(:,i)));
 end
 
 %% plot 10 eigenfaces
@@ -95,7 +91,7 @@ if showPlots == true
         for i = 1:faceW %extract image one line at a time
             lineStart = (i-1)* faceH + 1;
             lineEnd = i*faceH;
-            eigFace(1:faceH,i,j) = rot90(eigFaceVecs(lineStart:lineEnd,j), 2);
+            eigFace(1:faceH,i,j) = rot90(eigFaces_best(lineStart:lineEnd,j), 2);
         end
         subplot(2,5,j)
         h = pcolor(eigFace(:,:,j));
