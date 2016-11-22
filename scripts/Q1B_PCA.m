@@ -81,6 +81,10 @@ eigVecs_best = V(:,bestIdx); % extract best M eigenvectors
 
 eigFaceVecs = training_t*eigVecs_best;
 
+%normalise face vectors
+for i=1:M
+   eigFaceVecs(:,i) = eigFaceVecs(:,i) / abs(norm(eigFaceVecs(:,i)));
+end
 
 %% plot 10 eigenfaces
 
