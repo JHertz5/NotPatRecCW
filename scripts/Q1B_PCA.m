@@ -1,11 +1,15 @@
 %%
-
-addpath /Users/jakubszypicyn/Documents/Year_4_EEE/Pattern_Recognition/NotPatRecCW/data
-
 % clean up
 clc
-%close all
+close all
 clear all
+
+if contains(pwd, 'NotPatRecCW')
+    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+    addpath(char(dataPath));
+else
+    printf('Move to NotPatRecCW directory\n');
+end
 
 % load partitioned data
 load Separated_Data.mat
@@ -24,7 +28,7 @@ trainingNorm = training - meanFace;
 meanFace_matrix = zeros(faceH, faceW, 'double');
 
 % plot mean face
-if showPlots == true
+if (exist('showPlots', 'var') && showPlots == true)
     figure(1)
     for i = 1:faceW %extract image one line at a time
         lineStart = (i-1)*faceH + 1;
@@ -54,7 +58,7 @@ eigVals = diag(D); % move D into an array
 
 % Plot all eigenvalues sorted. Number of non-zero eigenvalues should be N -
 % 1, where N is number of training data (416 in this case)
-if showPlots == true
+if (exist('showPlots', 'var') && showPlots == true)
     figure(2)
     plot(sort(eigVals,'descend'),'linewidth',2)
     set(gca,'YScale','log')
@@ -87,7 +91,7 @@ end
 %% plot 10 eigenfaces
 
 eigFace = zeros(faceH, faceW, 10, 'double');
-if showPlots == true
+if (exist('showPlots', 'var') && showPlots == true)
     figure(3)
     for j = 1:10
         for i = 1:faceW %extract image one line at a time
@@ -104,4 +108,8 @@ if showPlots == true
     end
 end
 
-save('Q1B_Eigen','eigVals_best','eigFaces_best','eigVals','V','trainingNorm','meanFace')
+if (exist('dataPath', 'var'))
+    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigFaces_best','eigVals','V','trainingNorm','meanFace')
+else
+    save('Q1B_Eigen','eigVals_best','eigFaces_best','eigVals','V','trainingNorm','meanFace')
+end

@@ -1,12 +1,18 @@
 %%
 %Q2A Something is fucked
 
-addpath /Users/jakubszypicyn/Documents/Year_4_EEE/Pattern_Recognition/NotPatRecCW/data
-
 % clean up
 clc
 close all
 clear all
+
+if contains(pwd, 'NotPatRecCW')
+    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+    addpath(char(dataPath));
+else
+    printf('Move to NotPatRecCW directory\n');
+end
+
 load Separated_Data.mat
 load Q1A_Eigen
 V = fliplr(V);
@@ -43,7 +49,7 @@ faceW = 46; faceH = 56;
 OrigFace = zeros(faceH, faceW, 'double');
 RecoFace = zeros(faceH, faceW, 'double');
 
-if showPlots == true
+if (exist('showPlots', 'var') && showPlots == true)
     figure(1)
     for i = 1:faceW %extract image one line at a time
         lineStart = (i-1)*faceH + 1;

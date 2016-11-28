@@ -43,9 +43,8 @@ training = X;
 training(:,actual_index)=[];
 
 if contains(pwd, 'NotPatRecCW')
-    path = extractBefore(pwd, 'NotPatRecCW');
-    fullPath = strcat(path, 'NotPatRecCW/data/Separated_Data');
-    save(char(fullPath),'testing','training')
+    %dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+    save(char(strcat(dataPath, '/Separated_Data')),'testing','training') % dataPath is set in See_Faces
 else
     save('Separated_Data','testing','training')
 end
