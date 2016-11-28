@@ -1,5 +1,5 @@
 %%
-%Q2A Something is fucked here too
+%Q2A using Q1B
 
 % clean up
 clc
