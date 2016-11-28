@@ -23,8 +23,9 @@ numEigs = 100;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
+w = zeros(100, 416, 'double');
 for n = 1:size(trainingNorm,2)
-        w(:,n) = [trainingNorm(:,n)'*eigVecs_best(:,1:numEigs)]';
+        w(:,n) = (trainingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
 end
 % wn has now dimensions numEigs by size(trainigNorm,2) -> decresed
 % dimensionality to save on space, memory, computation time but to preserve
@@ -39,9 +40,9 @@ TrainFaceIdx = 1; %index of a face from training set to be reconstructed
 reconstructedFace = meanFace;
 
 for n = 1:numEigs
-     reconstructedFace = reconstructedFace + w(n,TrainFaceIdx)*eigFaces_best(:,TrainFaceIdx);
+     reconstructedFace = reconstructedFace + w(n,TrainFaceIdx)*eigFaces_best(:,n);
 end
-%reconstructedFace = 6*reconstructedFace+ meanFace;
+reconstructedFace = reconstructedFace + meanFace;
 
 %% Plot for comparison
 
