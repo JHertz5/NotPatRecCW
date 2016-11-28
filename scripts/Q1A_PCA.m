@@ -99,15 +99,6 @@ if (exist('showPlots', 'var') && showPlots == true)
     end
 end
 
-if contains(pwd, 'NotPatRecCW')
-    path = extractBefore(pwd, 'NotPatRecCW');
-    fullPath = strcat(path, 'NotPatRecCW/data/Q1A_Eigen');
-    save(char(fullPath),'eigVecs_best','V','trainingNorm','meanFace')
-else
-    save('Q1A_Eigen','eigVecs_best','V','trainingNorm','meanFace')
-end
-
-
 if (exist('dataPath', 'var'))
     save(char(strcat(dataPath, '/Q1A_Eigen')),'eigVecs_best','V','trainingNorm','meanFace')
 else
