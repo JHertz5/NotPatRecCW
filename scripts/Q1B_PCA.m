@@ -1,9 +1,11 @@
 %%
 
+addpath /Users/jakubszypicyn/Documents/Year_4_EEE/Pattern_Recognition/NotPatRecCW/data
+
 % clean up
 clc
-close all
-clear variables
+%close all
+clear all
 
 % load partitioned data
 load Separated_Data.mat
@@ -46,7 +48,7 @@ faceCov = (trainingNorm'*trainingNorm)/N;
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
 
-eigVals = D * ones(length(D))'; % move D into an array
+eigVals = diag(D); % move D into an array
 
 %% plot eig vals
 
@@ -66,7 +68,7 @@ end
 
 % technically the eigenvalues are presorted in the ascending order. But
 % just to be sure sort them again
-M = 50;
+M = 200;
 [sortedEigs,sortedIdxList] = sort(eigVals,'descend');
 bestIdxList = sortedIdxList(1:M);
 eigVals_best = sortedEigs(1:M); % extract top M eigenvalues
@@ -101,3 +103,5 @@ if showPlots == true
         set(findobj(gcf, 'type','axes'), 'Visible','off')
     end
 end
+
+save('Q1B_Eigen','eigVals_best','eigFaces_best','eigVals','V','trainingNorm','meanFace')
