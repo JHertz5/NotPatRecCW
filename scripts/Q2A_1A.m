@@ -4,7 +4,7 @@
 % clean up
 clc
 close all
-clear all
+%clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -17,15 +17,13 @@ load Separated_Data.mat
 load Q1A_Eigen
 V = fliplr(V);
 
-showPlots = true;
-
 numEigs = 200;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
-w = zeros(numEigs, 416, 'double');
+w_n = zeros(numEigs, 416, 'double');
 for n = 1:size(trainingNorm,2)
-        w(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
+        w_n(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
 end
 % wn has now dimensions numEigs by size(trainigNorm,2) -> decresed
 % dimensionality to save on space, memory, computation time but to preserve
@@ -35,12 +33,12 @@ end
 
 % Reconstruction
 
-trainFaceIdx = 1; %index of a face from training set to be reconstructed
+trainFaceIdx = 17; %index of a face from training set to be reconstructed
 
 reconstructedFace = zeros(1,2576);
 
 for n = 1:numEigs
-     reconstructedFace = reconstructedFace + w(n,trainFaceIdx)*V(:,n);
+     reconstructedFace = reconstructedFace + w_n(n,trainFaceIdx)*V(:,n);
 end
 reconstructedFace = reconstructedFace + meanFace;
 
@@ -71,5 +69,6 @@ if (exist('showPlots', 'var') && showPlots == true)
     colormap gray
     shading interp
     title(['Reconstructed Face with ' num2str(numEigs) ' eigenfaces'],'fontsize',20)
-    
+else
+    fprintf('No plots because showPlots != true\n')
 end

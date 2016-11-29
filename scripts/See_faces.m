@@ -67,4 +67,6 @@ if (exist('showPlots', 'var') && showPlots == true)
     h = pcolor(X);
     set(h,'edgecolor','none');
     colormap gray
+else
+    fprintf('No plots because showPlots != true\n')
 end

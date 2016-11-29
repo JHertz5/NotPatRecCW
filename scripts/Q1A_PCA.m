@@ -14,9 +14,6 @@ end
 % load partitioned data
 load Separated_Data.mat
 
-% change showPlots to 1 to get images
-showPlots = true;
-
 %% Normalise and plot mean face
 
 faceW = 46; faceH = 56;
@@ -97,10 +94,12 @@ if (exist('showPlots', 'var') && showPlots == true)
         shading interp
         set(findobj(gcf, 'type','axes'), 'Visible','off')
     end
+else
+    fprintf('No plots because showPlots != true\n')
 end
 
 if (exist('dataPath', 'var'))
-    save(char(strcat(dataPath, '/Q1A_Eigen')),'eigVecs_best','V','trainingNorm','meanFace')
+    save(char(strcat(dataPath, '/Q1A_Eigen')),'eigVals_best','eigVecs_best','V','trainingNorm','meanFace')
 else
-    save('Q1A_Eigen','eigVecs_best','V','trainingNorm','meanFace')
+    save('Q1A_Eigen','eigVals_best','eigVecs_best','V','trainingNorm','meanFace')
 end

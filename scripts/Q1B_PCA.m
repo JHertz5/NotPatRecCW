@@ -14,9 +14,6 @@ end
 % load partitioned data
 load Separated_Data.mat
 
-% change showPlots to true to get images
-showPlots = true;
-
 %% Normalise and plot mean face
 
 faceW = 46; faceH = 56;
@@ -76,16 +73,16 @@ M = 200;
 [sortedEigs,sortedIdxList] = sort(eigVals,'descend');
 bestIdxList = sortedIdxList(1:M);
 eigVals_best = sortedEigs(1:M); % extract top M eigenvalues
-eigVecs_best = V(:,bestIdxList); % extract best M eigenvectors
+eigVecsB_best = V(:,bestIdxList); % extract best M eigenvectors
 
 %% use A'A eigenvectors to calculate AA' eigenvectors
-% A'A and A'A have the same eigenvalues
+% A'A and AA' have the same eigenvalues
 
-eigFaces_best = trainingNorm*eigVecs_best;
+eigVecs_best = trainingNorm*eigVecsB_best;
 
 %normalise face vectors
 for i=1:M
-   eigFaces_best(:,i) = eigFaces_best(:,i) / norm(eigFaces_best(:,i));
+   eigVecs_best(:,i) = eigVecs_best(:,i) / norm(eigVecs_best(:,i));
 end
 
 %% plot 10 eigenfaces
@@ -97,7 +94,7 @@ if (exist('showPlots', 'var') && showPlots == true)
         for i = 1:faceW %extract image one line at a time
             lineStart = (i-1)* faceH + 1;
             lineEnd = i*faceH;
-            eigFace(1:faceH,i,j) = rot90(eigFaces_best(lineStart:lineEnd,j), 2);
+            eigFace(1:faceH,i,j) = rot90(eigVecs_best(lineStart:lineEnd,j), 2);
         end
         subplot(2,5,j)
         h = pcolor(eigFace(:,:,j));
@@ -106,10 +103,12 @@ if (exist('showPlots', 'var') && showPlots == true)
         shading interp
         set(findobj(gcf, 'type','axes'), 'Visible','off')
     end
+else
+    fprintf('No plots because showPlots != true\n')
 end
 
 if (exist('dataPath', 'var'))
-    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigFaces_best','eigVals','V','trainingNorm','meanFace')
+    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigVecs_best','V','trainingNorm','meanFace')
 else
-    save('Q1B_Eigen','eigVals_best','eigFaces_best','eigVals','V','trainingNorm','meanFace')
+    save('Q1B_Eigen','eigVals_best','eigVecs_best','V','trainingNorm','meanFace')
 end
