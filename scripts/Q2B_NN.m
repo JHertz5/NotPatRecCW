@@ -25,6 +25,7 @@ load Q1B_Eigen %using 1B because this method is more efficient
 
 V = fliplr(V);
 
+trainingClassSize = 8;
 numEigs = 200;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
@@ -40,11 +41,11 @@ end
 
 % Columns of w_n represent different face images. 
 % Face images are classed in groups of 8
-% The class of each image can be found by ceil(columnIndex / classSize)
+% The class of each image can be found by ceil(columnIndex / trainingClassSize)
 
 %% Plot testing face
 
-testingFaceIndex = 1;
+testingFaceIndex = 101;
 
 faceW = 46; faceH = 56;
 face_matrix = zeros(faceH, faceW, 'double');
@@ -90,6 +91,25 @@ for trainingFaceIndex = 1:size(trainingNorm,2)
     tempError = norm(w_testing(:,testingFaceIndex)-w_n(:,trainingFaceIndex));
     if tempError < minError(testingFaceIndex) || minError(testingFaceIndex) < 0
         minError(testingFaceIndex) = tempError;
-        classAssignment(testingFaceIndex) = ceil(trainingFaceIndex/8);
+        classAssignment(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
     end
+end
+fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment(testingFaceIndex));
+
+%% Plot example of assigned class for verification
+
+classExampleIndex = trainingClassSize*classAssignment(testingFaceIndex);
+if (exist('showPlots', 'var') && showPlots == true)
+    figure(2)
+    for i = 1:faceW %extract image one line at a time
+        lineStart = (i-1)*faceH + 1;
+        lineEnd = i*faceH;
+        face_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), classExampleIndex), 2);
+    end
+    
+    h = pcolor(face_matrix);
+    set(h,'edgecolor','none');
+    colormap gray
+    shading interp
+    title('Assigned Class Example')
 end
