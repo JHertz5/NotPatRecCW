@@ -19,11 +19,11 @@ V = fliplr(V);
 
 showPlots = true;
 
-numEigs = 100;
+numEigs = 200;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
-w = zeros(100, 416, 'double');
+w = zeros(numEigs, 416, 'double');
 for n = 1:size(trainingNorm,2)
         w(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
 end
