@@ -2,7 +2,7 @@
 % clean up
 clc
 close all
-clear all
+%clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -85,7 +85,7 @@ eigFaces_best = trainingNorm*eigVecs_best;
 
 %normalise face vectors
 for i=1:M
-   eigFaces_best(:,i) = eigFaces_best(:,i) / abs(norm(eigFaces_best(:,i)));
+   eigFaces_best(:,i) = eigFaces_best(:,i) / norm(eigFaces_best(:,i));
 end
 
 %% plot 10 eigenfaces

@@ -21,6 +21,7 @@ showPlots = true;
 
 numEigs = 50;
 
+
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
 w = zeros(numEigs, 416, 'double');
