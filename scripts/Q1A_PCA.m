@@ -99,8 +99,8 @@ if (exist('showPlots', 'var') && showPlots == true)
     end
 end
 
-if (exist('dataPath', 'var'))
-    save(char(strcat(dataPath, '/Q1A_Eigen')),'eigVecs_best','V','trainingNorm','meanFace')
-else
+% if (exist('dataPath', 'var'))
+%     save(char(strcat(dataPath, '/Q1A_Eigen')),'eigVecs_best','V','trainingNorm','meanFace')
+% else
     save('Q1A_Eigen','eigVecs_best','V','trainingNorm','meanFace')
-end
+% end

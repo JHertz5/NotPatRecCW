@@ -19,13 +19,13 @@ V = fliplr(V);
 
 showPlots = true;
 
-numEigs = 100;
+numEigs = 50;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
-w = zeros(100, 416, 'double');
+w = zeros(numEigs, 416, 'double');
 for n = 1:size(trainingNorm,2)
-        w(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
+        w(:,n) = [trainingNorm(:,n)'*V(:,1:numEigs)]';
 end
 % wn has now dimensions numEigs by size(trainigNorm,2) -> decresed
 % dimensionality to save on space, memory, computation time but to preserve
@@ -73,3 +73,18 @@ if (exist('showPlots', 'var') && showPlots == true)
     title(['Reconstructed Face with ' num2str(numEigs) ' eigenfaces'],'fontsize',20)
     
 end
+% ReconstructionError = norm(training(:,trainFaceIdx)-reconstructedFace)
+
+%% Enter testing face for reconstruction
+
+testingIdx = 1;
+testFace = testing(:,testingIdx);
+
+% subtract the mean
+testFace = testFace - meanFace;
+
+% project it onto eigenfaces
+w_test = [testFace'*V(:,1:numEigs)]';
+
+% compare each wn with w_test to find min error -> resulting in
+% indentification

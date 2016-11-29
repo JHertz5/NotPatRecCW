@@ -19,7 +19,7 @@ V = fliplr(V);
 eigVecs_best = eigFaces_best;
 showPlots = true;
 
-numEigs = 100;
+numEigs = 150;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
@@ -73,3 +73,4 @@ if (exist('showPlots', 'var') && showPlots == true)
     title(['Reconstructed Face with ' num2str(numEigs) ' eigenfaces'],'fontsize',20)
     
 end
+ReconstructionError = norm(training(:,TrainFaceIdx)-reconstructedFace)

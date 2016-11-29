@@ -42,9 +42,9 @@ testing = X(:,actual_index);
 training = X;
 training(:,actual_index)=[];
 
-if contains(pwd, 'NotPatRecCW')
-    %dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
-    save(char(strcat(dataPath, '/Separated_Data')),'testing','training') % dataPath is set in See_Faces
-else
+% if contains(pwd, 'NotPatRecCW')
+%     %dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+%     save(char(strcat(dataPath, '/Separated_Data')),'testing','training') % dataPath is set in See_Faces
+% else
     save('Separated_Data','testing','training')
-end
+% end
