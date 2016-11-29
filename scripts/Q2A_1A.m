@@ -24,7 +24,7 @@ numEigs = 50;
 
 w = zeros(numEigs, 416, 'double');
 for n = 1:size(trainingNorm,2)
-        w(:,n) = [trainingNorm(:,n)'*V(:,1:numEigs)]';
+        w(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
 end
 % wn has now dimensions numEigs by size(trainigNorm,2) -> decresed
 % dimensionality to save on space, memory, computation time but to preserve
