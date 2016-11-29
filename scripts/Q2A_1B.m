@@ -16,7 +16,7 @@ load Separated_Data.mat
 load Q1B_Eigen
 V = fliplr(V);
 
-numEigs = 100;
+numEigs = 150;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
@@ -58,7 +58,7 @@ if (exist('showPlots', 'var') && showPlots == true)
     subplot(1,2,1)
     h = pcolor(OrigFace);
     set(h,'edgecolor','none');
-    colormap gray)
+    colormap gray
     shading interp
     title('Original Face','fontsize',20)
     
@@ -71,3 +71,5 @@ if (exist('showPlots', 'var') && showPlots == true)
 else
     fprintf('No plots because showPlots != true\n')
 end
+
+ReconstructionError = norm(training(:,trainFaceIdx)-reconstructedFace)

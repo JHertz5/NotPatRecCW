@@ -25,8 +25,10 @@ load Q1B_Eigen %using 1B because this method is more efficient
 
 V = fliplr(V);
 
+testingFaceIndex = 100; %Choose which face to test
+
 trainingClassSize = 8;
-numEigs = 200;
+numEigs = 150;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 % representing projection on the eigenspace
@@ -45,7 +47,7 @@ end
 
 %% Plot testing face
 
-testingFaceIndex = 101;
+
 
 faceW = 46; faceH = 56;
 face_matrix = zeros(faceH, faceW, 'double');
@@ -96,7 +98,7 @@ for trainingFaceIndex = 1:size(trainingNorm,2)
 end
 fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment(testingFaceIndex));
 
-%% Plot example of assigned class for verification
+%% Plot example of assigned class for comparison
 
 classExampleIndex = trainingClassSize*classAssignment(testingFaceIndex);
 if (exist('showPlots', 'var') && showPlots == true)

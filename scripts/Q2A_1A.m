@@ -17,13 +17,14 @@ load Separated_Data.mat
 load Q1A_Eigen
 V = fliplr(V);
 
-numEigs = 200;
+numEigs = 50;
+
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
-w_n = zeros(numEigs, 416, 'double');
+w = zeros(numEigs, 416, 'double');
 for n = 1:size(trainingNorm,2)
-        w_n(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
+        w(:,n) = [trainingNorm(:,n)'*V(:,1:numEigs)]';
 end
 % wn has now dimensions numEigs by size(trainigNorm,2) -> decresed
 % dimensionality to save on space, memory, computation time but to preserve
@@ -33,12 +34,12 @@ end
 
 % Reconstruction
 
-trainFaceIdx = 17; %index of a face from training set to be reconstructed
+trainFaceIdx = 1; %index of a face from training set to be reconstructed
 
 reconstructedFace = zeros(1,2576);
 
 for n = 1:numEigs
-     reconstructedFace = reconstructedFace + w_n(n,trainFaceIdx)*V(:,n);
+     reconstructedFace = reconstructedFace + w(n,trainFaceIdx)*V(:,n);
 end
 reconstructedFace = reconstructedFace + meanFace;
 
@@ -72,3 +73,18 @@ if (exist('showPlots', 'var') && showPlots == true)
 else
     fprintf('No plots because showPlots != true\n')
 end
+% ReconstructionError = norm(training(:,trainFaceIdx)-reconstructedFace)
+
+%% Enter testing face for reconstruction
+
+testingIdx = 1;
+testFace = testing(:,testingIdx);
+
+% subtract the mean
+testFace = testFace - meanFace;
+
+% project it onto eigenfaces
+w_test = [testFace'*V(:,1:numEigs)]';
+
+% compare each wn with w_test to find min error -> resulting in
+% indentification

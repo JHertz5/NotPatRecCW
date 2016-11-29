@@ -2,12 +2,12 @@
 clc
 close all
 
-if contains(pwd, 'NotPatRecCW')
-    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
-    addpath(char(dataPath));
-else
-    printf('Move to NotPatRecCW directory\n');
-end
+% if contains(pwd, 'NotPatRecCW')
+%     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+%     addpath(char(dataPath));
+% else
+%     printf('Move to NotPatRecCW directory\n');
+% end
 
 load 'face.mat'
 
