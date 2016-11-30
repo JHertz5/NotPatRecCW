@@ -84,7 +84,7 @@ testFace = testing(:,testingIdx);
 testFace = testFace - meanFace;
 
 % project it onto eigenfaces
-w_test = [testFace'*V(:,1:numEigs)]';
+w_test = (testFace'*V(:,1:numEigs))';
 
 % compare each wn with w_test to find min error -> resulting in
 % indentification

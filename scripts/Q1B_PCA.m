@@ -14,6 +14,10 @@ end
 % load partitioned data
 load Separated_Data.mat
 
+if ~(exist('numEigs', 'var'))
+    numEigs = 200;
+end
+
 %% Normalise and plot mean face
 
 faceW = 46; faceH = 56;
@@ -69,10 +73,10 @@ end
 
 % technically the eigenvalues are presorted in the ascending order. But
 % just to be sure sort them again
-M = 200;
+
 [sortedEigs,sortedIdxList] = sort(eigVals,'descend');
-bestIdxList = sortedIdxList(1:M);
-eigVals_best = sortedEigs(1:M); % extract top M eigenvalues
+bestIdxList = sortedIdxList(1:numEigs);
+eigVals_best = sortedEigs(1:numEigs); % extract top M eigenvalues
 eigVecsB_best = V(:,bestIdxList); % extract best M eigenvectors
 
 %% use A'A eigenvectors to calculate AA' eigenvectors
@@ -81,7 +85,7 @@ eigVecsB_best = V(:,bestIdxList); % extract best M eigenvectors
 eigVecs_best = trainingNorm*eigVecsB_best;
 
 %normalise face vectors
-for i=1:M
+for i=1:numEigs
    eigVecs_best(:,i) = eigVecs_best(:,i) / norm(eigVecs_best(:,i));
 end
 

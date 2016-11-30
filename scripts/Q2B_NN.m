@@ -10,25 +10,24 @@ if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
     addpath(char(dataPath));
 else
-    printf('Move to NotPatRecCW directory\n');
+    fprintf('Move to NotPatRecCW directory\n');
 end
+
+numEigs = 150;
 
 if ~exist('Separated_Data.mat', 'file')
     extract_ave_faces
 end
-if ~exist('Q1B_Eigen.mat', 'file')
-    Q1B_PCA
-end
+
+Q1B_PCA
 
 load Separated_Data.mat
 load Q1B_Eigen %using 1B because this method is more efficient
 
 V = fliplr(V);
 
-testingFaceIndex = 100; %Choose which face to test
-
-trainingClassSize = 8;
-numEigs = 150;
+trainingClassSize = 8; %number of faces per class in training data
+testingGroupSize = 2; %number of faces per class in training data
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 % representing projection on the eigenspace
@@ -47,8 +46,6 @@ end
 
 %% Plot testing face
 
-
-
 faceW = 46; faceH = 56;
 face_matrix = zeros(faceH, faceW, 'double');
 
@@ -60,11 +57,13 @@ if (exist('showPlots', 'var') && showPlots == true)
         face_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd),testingFaceIndex), 2);
     end
     
+    subplot(1,2,1)
     h = pcolor(face_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
-    title('Testing Face')
+    ylabel('Testing Face')
+    set(gca,'XtickLabel',[],'YtickLabel',[]);
 end
 
 
@@ -85,33 +84,43 @@ end
 
 %% Classify testing faces
 
+classAssignment_ideal = ceil( 0.5 : 0.5 : ((size(trainingNorm,2))/trainingClassSize) );
 
 minError = -ones(size(testingNorm,2),1, 'double');
-classAssignment = zeros(size(testingNorm,2), 1, 'double');
+classAssignment_real = zeros(1, size(testingNorm,2), 'double');
 
-for trainingFaceIndex = 1:size(trainingNorm,2)
-    tempError = norm(w_testing(:,testingFaceIndex)-w_n(:,trainingFaceIndex));
-    if tempError < minError(testingFaceIndex) || minError(testingFaceIndex) < 0
-        minError(testingFaceIndex) = tempError;
-        classAssignment(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
+for testingFaceIndex = 1:size(testingNorm,2)
+    for trainingFaceIndex = 1:size(trainingNorm,2)
+        tempError = norm(w_testing(:,testingFaceIndex)-w_n(:,trainingFaceIndex));
+        if tempError < minError(testingFaceIndex) || minError(testingFaceIndex) < 0
+            minError(testingFaceIndex) = tempError;
+            classAssignment_real(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
+        end
     end
+    fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
 end
-fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment(testingFaceIndex));
 
 %% Plot example of assigned class for comparison
 
-classExampleIndex = trainingClassSize*classAssignment(testingFaceIndex);
+classExampleIndex = trainingClassSize*classAssignment_real(testingFaceIndex);
 if (exist('showPlots', 'var') && showPlots == true)
-    figure(2)
     for i = 1:faceW %extract image one line at a time
         lineStart = (i-1)*faceH + 1;
         lineEnd = i*faceH;
         face_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), classExampleIndex), 2);
     end
     
+    subplot(1,2,2)
     h = pcolor(face_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
-    title('Assigned Class Example')
+    ylabel('Assigned Class Example')
+    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    %set(findobj(gcf, 'type','axes'), 'Visible','off')
 end
+
+%% Compute accuracy
+
+accuracyVector = (classAssignment_ideal == classAssignment_real);
+successPercentage = 100 * sum(accuracyVector, 2) / size(testingNorm, 2)
