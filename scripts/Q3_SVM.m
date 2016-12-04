@@ -57,33 +57,51 @@ incorrect = 0;
 binaryTrain = [training(:,(class1-1)*8+1:(class1-1)*8+8) training(:,(class2-1)*8+1:(class2-1)*8+8)]';
 binaryTest = [testing(:,(class1-1)*2+1:(class1-1)*2+2) training(:,(class2-1)*2+1:(class2-1)*2+2)]';
 trainFlags = [class1*ones(1,8) class2*ones(1,8)];
+confTrain = [zeros(1,8) ones(1,8)];
 testFlags = [class1*ones(1,2) class2*ones(1,2)];
+confTest = [zeros(1,2) ones(1,2)];
 
 % Compute the SVM model
 SVMModel = fitcsvm(binaryTrain,trainFlags,'KernelFunction','linear','Standardize',true);
 
 % Test its correctness on the training data
 for i = 1:16
-    [label,~] = predict(SVMModel,binaryTrain(i,:));
-    if label == trainFlags(i)
+    [label1,~] = predict(SVMModel,binaryTrain(i,:));
+    if label1 == trainFlags(i)
         correct = correct + 1;
     else
         incorrect = incorrect + 1;
     end
+    
+    if label1 == class1
+        conf1(i) = 0;
+    else
+        conf1(i) = 1;
+    end
 end
 TrainCorrectness = correct*100/16
+figure(1)
+plotconfusion(confTrain,conf1,'Confusion Matrix of Training Data')
 
 correct = 0;
 incorrect = 0;
 
 % Test it on the testing data
 for i = 1:4
-    [label,~] = predict(SVMModel,binaryTest(i,:));
-    if label == testFlags(i)
-        correct = correct + 1;
+    [label2,~] = predict(SVMModel,binaryTest(i,:));
+    if label2 == testFlags(i)
+        correct = correct + 1
     else
-        incorrect = incorrect + 1;
+        incorrect = incorrect + 1
+    end
+    
+    if label2 == class1
+        conf2(i) = 0;
+    else
+        conf2(i) = 1;
     end
 end
+figure(2)
+plotconfusion(confTest,conf2,'Confusion Matrix of Testing Data')
 
 TestCorrectness = correct*100/4
