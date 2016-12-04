@@ -45,6 +45,7 @@ twoClass = trainV2(:,1:16);
 
 % Select which classes to use <- The only user bit here. Rest you dont need
 % to modify (other than optimise)
+class1 = 5;
 class2 = 10;
 
 % set up trackers of guesses
