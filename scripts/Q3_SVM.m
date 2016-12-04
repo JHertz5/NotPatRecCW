@@ -45,7 +45,7 @@ twoClass = trainV2(:,1:16);
 
 % Select which classes to use <- The only user bit here. Rest you dont need
 % to modify (other than optimise)
-class1 = 5;
+class1 = 32;
 class2 = 10;
 
 % set up trackers of guesses
@@ -55,7 +55,7 @@ incorrect = 0;
 % put the classes of interest on the matrix transpose -> rows contain faces
 % now
 binaryTrain = [training(:,(class1-1)*8+1:(class1-1)*8+8) training(:,(class2-1)*8+1:(class2-1)*8+8)]';
-binaryTest = [testing(:,(class1-1)*2+1:(class1-1)*2+2) training(:,(class2-1)*2+1:(class2-1)*2+2)]';
+binaryTest = [testing(:,(class1-1)*2+1:(class1-1)*2+2) testing(:,(class2-1)*2+1:(class2-1)*2+2)]';
 trainFlags = [class1*ones(1,8) class2*ones(1,8)];
 confTrain = [zeros(1,8) ones(1,8)];
 testFlags = [class1*ones(1,2) class2*ones(1,2)];
@@ -79,7 +79,7 @@ for i = 1:16
         conf1(i) = 1;
     end
 end
-TrainCorrectness = correct*100/16
+TrainCorrectness = correct*100/16;
 figure(1)
 plotconfusion(confTrain,conf1,'Confusion Matrix of Training Data')
 
@@ -90,9 +90,9 @@ incorrect = 0;
 for i = 1:4
     [label2,~] = predict(SVMModel,binaryTest(i,:));
     if label2 == testFlags(i)
-        correct = correct + 1
+        correct = correct + 1;
     else
-        incorrect = incorrect + 1
+        incorrect = incorrect + 1;
     end
     
     if label2 == class1
@@ -104,4 +104,4 @@ end
 figure(2)
 plotconfusion(confTest,conf2,'Confusion Matrix of Testing Data')
 
-TestCorrectness = correct*100/4
+TestCorrectness = correct*100/4;
