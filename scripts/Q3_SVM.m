@@ -1,4 +1,6 @@
 %% Support Vector Machines
+% Currently only for raw intensity vectors
+% TO BE DONE: Confusion Matrices, MultiClass SVA - one v. one & one v. all,
 
 clear all
 close all
@@ -15,6 +17,8 @@ load Separated_Data.mat
 load face.mat
 value = 1;
 counter = 1;
+
+% this is a crude way of setting class value to each column in the training
 for i = 1:416
     class(i) = value;
     counter = counter + 1;
@@ -23,7 +27,6 @@ for i = 1:416
         value = value + 1;
     end
 end
-
 trainV2 = [class; training];
 
 %% extract just two classes
@@ -33,10 +36,10 @@ twoClass = trainV2(:,1:16);
 % STEP1: Go to APPS, click om Classification Learner
 % STEP2: Press New Session - > from Workspace
 % STEP3: Click twoClass on the LHS and below it select Use Rows as
-% Variables
-% STEP4: In the window's Step two, set the first row "Improt as" to Response
+% Variables (make sure to run the script first)
+% STEP4: In the window's Step Two, set the first row "Import as" to Response
 % STEP5: Press Start Session
-% STEP6: On the top bar, select any SVM you wat to use and press Train
+% STEP6: On the top bar, select any SVM you want to use and press Train
 
 %% Alternatively use this guy
 
