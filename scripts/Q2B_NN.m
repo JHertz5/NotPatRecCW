@@ -21,6 +21,8 @@ end
 
 Q1B_PCA
 
+close all
+
 load Separated_Data.mat
 load Q1B_Eigen %using 1B because this method is more efficient
 
