@@ -69,7 +69,13 @@ In this paper we are investigating and describing basic methods of training and 
 %-------------------------------------------------------------------------
 \section{Eigenfaces}
 
-All manuscripts must be in English.
+\subsection{Data partition}
+
+A Matlab file containing face data {\tt\small face.mat} has been provided for the purpose of this coursework. The file contains a $2576 \times 520$ matrix of face images. Each image is stored in a column. Given that the matrix has 520 columns there are 520 pictures of faces. Those pictures belong to 52 distinct persons. Therefore there are 10 pictures per person. Furthermore each picture has dimensions of $56 \times 46$ pixels.
+
+In order to divide the data set into training and testing subsets, we have decide to preserve as much variance int he training data as possible. This would ensure that each set of faces is separated as far as possible, which potentially ensures higher identification rate.
+
+The data was divided in the following ratio of testing to training: $20\%$ to $80\%$. From each set of 10 pictures we have thus taken two most average pictures, based on the average pixel values. 
 
 \subsection{Dual submission}
 
