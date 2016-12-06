@@ -43,8 +43,8 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
-N = size(trainingNorm, 2);
-faceCov = (trainingNorm*trainingNorm')/N;
+N = size(trainingNorm, 1);
+faceCov = (trainingNorm*trainingNorm');%/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);

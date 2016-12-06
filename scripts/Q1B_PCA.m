@@ -48,7 +48,7 @@ end
 
 % Calculate Covariance Matrix
 N = size(trainingNorm, 2);
-faceCov = (trainingNorm'*trainingNorm)/N;
+faceCov = (trainingNorm'*trainingNorm);%/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
@@ -88,7 +88,7 @@ eigVecs_best = trainingNorm*eigVecsB_best;
 
 %normalise face vectors
 for i=1:numEigs
-   eigVecs_best(:,i) = eigVecs_best(:,i) / norm(eigVecs_best(:,i));
+   eigVecs2_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
 end
 
 %% plot 10 eigenfaces

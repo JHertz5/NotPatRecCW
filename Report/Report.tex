@@ -128,7 +128,7 @@ It can be seen that first 415 values are much greater than 1. The \nth{416} valu
 
 We have determined empirically that using just 80 out of 415 eigenvectors is suitable for facial recognition - Figure \ref{fig:Reco}. This constitutes a compromise between accuracy and performance, by reducing the problem dimensionality.
 \subsubsection{\boldmath$A^TA$}
-Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvectors and eigenvalues. The plot of the latter in the  descending order shown in Figure \ref{fig:Eig3} proves the above claim.
+Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvalues. Their plot in the  descending order in Figure \ref{fig:Eig3} proves the above claim.
 
 \begin{figure}[H]
 \centering
@@ -140,6 +140,23 @@ Alternatively as suggested earlier we could compute a covariance matrix $S_T = \
 
 Figure \ref{fig:Eig3} allows to to deduce that the \nth{416} value is actually zero. If it was non-zero the two methods of calculating a covariance matrix would result in very tiny, yet identical values. However the first method resulted in eigenvalue 416 being equal to $2.3 \times 10^{-10}$, whereas the second method gave a value of $-1.9 \times 10^{-12}$.
 
+We know however that eigenvectors will be different and therefore more computation is required to find the eigenfaces. Starting from the well-known equation:
+
+\begin{equation}
+A^TAx = \lambda x
+\end{equation}
+
+Let us multiply both sides by $A$:
+
+\begin{equation}
+AA^T(Ax) = \lambda (Ax)
+\end{equation}
+
+We deduce that the eigenvectors of $AA^T$ are $u_i = Ax_i, \forall \lambda_i \neq 0$, where $x_i$ is the i$^{th}$ eigenvector of $A^TA$. Having thus calculated $x_i$, we must multiply each of the vectors by the original zero-mean matrix {\tt\small training} in order to obtain eigenfaces.
+
+However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. We have tried explaining that using Singular Vector Decomposition, however there is no mathematical reason fro this behaviour. We believe that the MATLAB {\tt\small eig} function causes this reversal. This is however not an issue, e.g. vectors $x= \begin{bmatrix}
+1&1 \end{bmatrix} $ and $y= \begin{bmatrix}
+-1&-1 \end{bmatrix} $ describe the same plane.
 \subsection{DAYYYUUM}
 \begin{quote}
 \begin{center}
