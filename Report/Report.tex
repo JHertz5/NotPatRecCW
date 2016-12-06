@@ -81,7 +81,7 @@ In order to divide the data set into training and testing subsets, we have decid
 The data was divided in the following ratio of testing to training: $20\%$ to $80\%$. From each set of 10 pictures we have thus taken two most average pictures, based on the average pixel values. The two sets will be heron referred to as {\tt\small training} ($2576 \times 416$ matrix) and {\tt\small testing} ($2576 \times 104$ matrix).
 
 \subsection{PCA of face data}
-
+\subsubsection{\boldmath$AA^T$}
 Following the algorithm for Principal Component Analysis, we have first detrended the face images by subtracting a mean vector from all columns of {\tt\small training}, which resulted in a matrix $A$, whose rows are now zero-mean. Following the above, the covariance matrix $S=\frac{1}{416} \times AA^T$ has been calculated. $S$ has dimensions of $2576 \times 2576$.
 
 The covariance matrix $S$ uniquely describes the data by calculating its spread or variance denoted $\sigma$ and its orientation. For face recognition we would like to make use of both of those properties. Namely, we would like to identify and keep vectors along which the data spread is the largest, disposing of dimensions which do not carry any spread information. This helps us to reduce problem size, decrease memory usage and increase performance. 
@@ -126,7 +126,18 @@ It can be seen that first 415 values are much greater than 1. The \nth{416} valu
 \end{figure}
 
 
-We have determined empirically that using just 80 out of 415 eigenvectors is suitable for facial recognition - Figure \ref{fig:Reco} .
+We have determined empirically that using just 80 out of 415 eigenvectors is suitable for facial recognition - Figure \ref{fig:Reco}. This constitutes a compromise between accuracy and performance, by reducing the problem dimensionality.
+\subsubsection{\boldmath$A^TA$}
+Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvectors and eigenvalues. The plot of the latter in the  descending order shown in Figure \ref{fig:Eig3} proves the above claim.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../results/Q1B_PCA_Eigenvalues}
+
+  \caption{Eignevalues of $S_T$ \label{fig:Eig3}}
+
+\end{figure}
+
 \subsection{DAYYYUUM}
 \begin{quote}
 \begin{center}

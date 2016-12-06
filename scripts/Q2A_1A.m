@@ -3,7 +3,7 @@
 
 % clean up
 clc
-%close all
+close all
 %clear all
 
 if contains(pwd, 'NotPatRecCW')
