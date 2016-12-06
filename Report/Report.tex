@@ -156,7 +156,17 @@ We deduce that the eigenvectors of $AA^T$ are $u_i = Ax_i, \forall \lambda_i \ne
 
 However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. We have tried explaining that using Singular Vector Decomposition, however there is no mathematical reason fro this behaviour. We believe that the MATLAB {\tt\small eig} function causes this reversal. This is however not an issue, e.g. vectors $x= \begin{bmatrix}
 1&1 \end{bmatrix} $ and $y= \begin{bmatrix}
--1&-1 \end{bmatrix} $ describe the same plane.
+-1&-1 \end{bmatrix} $ describe the same plane. The best 3 eigenfaces are shown in Figure \ref{fig:Eig4} .
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{../results/Q1B_PCA_Eigenfaces}
+
+  \caption{Top 3 Eignefaces \label{fig:Eig4}}
+
+\end{figure}
+
+
 \subsection{DAYYYUUM}
 \begin{quote}
 \begin{center}
