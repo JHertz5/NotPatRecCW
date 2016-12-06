@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  6 DEC 2016 17:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  6 DEC 2016 19:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -470,22 +470,29 @@ Overfull \hbox (11.29218pt too wide) in paragraph at lines 163--164
 [2 <../results/Q1A_PCA_Eigenvalues.jpg> <../results/Q1A_PCA_Eigenfaces.jpg> <..
 /results/Q1A_PCA_Mean.jpg> <../results/Q2A_PCA_Reco.jpg> <../results/Q1B_PCA_Ei
 genvalues.jpg>]
+
+LaTeX Warning: Reference `tab:times1' on page 3 undefined on input line 170.
+
 No file Report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 223.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 197.
 [3
 
  <../results/Q1B_PCA_Eigenfaces.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 223.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 197.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 223.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 223.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 223.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 197.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 197.
+
+
+LaTeX Warning: There were undefined references.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 197.
  ) 
 Here is how much of TeX's memory you used:
- 6424 strings out of 493014
- 92863 string characters out of 6133351
- 181352 words of memory out of 5000000
- 9824 multiletter control sequences out of 15000+600000
+ 6430 strings out of 493014
+ 92928 string characters out of 6133351
+ 181469 words of memory out of 5000000
+ 9828 multiletter control sequences out of 15000+600000
  30947 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,9n,26p,887b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -505,10 +512,10 @@ texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on Report.pdf (3 pages, 910763 bytes).
+Output written on Report.pdf (3 pages, 914135 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
- 94 compressed objects within 1 object stream
- 24 named destinations out of 1000 (max. 500000)
+ 126 PDF objects out of 1000 (max. 8388607)
+ 99 compressed objects within 1 object stream
+ 26 named destinations out of 1000 (max. 500000)
  31 words of extra memory for PDF output out of 10000 (max. 10000000)
 

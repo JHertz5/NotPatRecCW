@@ -81,7 +81,7 @@ In order to divide the data set into training and testing subsets, we have decid
 The data was divided in the following ratio of testing to training: $20\%$ to $80\%$. From each set of 10 pictures we have thus taken two most average pictures, based on the average pixel values. The two sets will be heron referred to as {\tt\small training} ($2576 \times 416$ matrix) and {\tt\small testing} ($2576 \times 104$ matrix).
 
 \subsection{PCA of face data}
-\subsubsection{\boldmath$AA^T$}
+\subsubsection{\boldmath$AA^T$} \label{sec:aat}
 Following the algorithm for Principal Component Analysis, we have first detrended the face images by subtracting a mean vector from all columns of {\tt\small training}, which resulted in a matrix $A$, whose rows are now zero-mean. Following the above, the covariance matrix $S=\frac{1}{416} \times AA^T$ has been calculated. $S$ has dimensions of $2576 \times 2576$.
 
 The covariance matrix $S$ uniquely describes the data by calculating its spread or variance denoted $\sigma$ and its orientation. For face recognition we would like to make use of both of those properties. Namely, we would like to identify and keep vectors along which the data spread is the largest, disposing of dimensions which do not carry any spread information. This helps us to reduce problem size, decrease memory usage and increase performance. 
@@ -127,7 +127,7 @@ It can be seen that first 415 values are much greater than 1. The \nth{416} valu
 
 
 We have determined empirically that using just 80 out of 415 eigenvectors is suitable for facial recognition - Figure \ref{fig:Reco}. This constitutes a compromise between accuracy and performance, by reducing the problem dimensionality.
-\subsubsection{\boldmath$A^TA$}
+\subsubsection{\boldmath$A^TA$} \label{sec:ata}
 Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvalues. Their plot in the  descending order in Figure \ref{fig:Eig3} proves the above claim.
 
 \begin{figure}[H]
@@ -154,59 +154,28 @@ AA^T(Ax) = \lambda (Ax)
 
 We deduce that the eigenvectors of $AA^T$ are $u_i = Ax_i, \forall \lambda_i \neq 0$, where $x_i$ is the i$^{th}$ eigenvector of $A^TA$. Having thus calculated $x_i$, we must multiply each of the vectors by the original zero-mean matrix {\tt\small training} in order to obtain eigenfaces.
 
-However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. We have tried explaining that using Singular Vector Decomposition, however there is no mathematical reason fro this behaviour. We believe that the MATLAB {\tt\small eig} function causes this reversal. This is however not an issue, e.g. vectors $x= \begin{bmatrix}
+However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. We have tried explaining that using Singular Vector Decomposition, however there is no mathematical reason for this behaviour. We believe that the MATLAB {\tt\small eig} function causes this reversal. This is however not an issue, e.g. vectors $x= \begin{bmatrix}
 1&1 \end{bmatrix} $ and $y= \begin{bmatrix}
--1&-1 \end{bmatrix} $ describe the same plane. The best 3 eigenfaces are shown in Figure \ref{fig:Eig4} . Note the direction reversal in the middle image.
+-1&-1 \end{bmatrix} $ are parallel. The best 3 eigenfaces are shown in Figure \ref{fig:Eig4} . Note the direction reversal in the middle image.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.5\textwidth]{../results/Q1B_PCA_Eigenfaces}
 
-  \caption{Top 3 Eignefaces \label{fig:Eig4}}
+  \caption{Top 3 Eigenfaces \label{fig:Eig4}}
 
 \end{figure}
+\subsubsection{Comparison}
 
+We know that the method presented in section \ref{sec:aat} is accurate. It is however more time consuming to calculate the eigenvectors of matrix with dimensions $2576 \times 2576$ rather than those of a $416 \times 416$ matrix. It is shown \cite{Complex} that eigenproblem complexity is bounded by $O(n^2log(n)+(nlog^2(n))log(b)$, where $b$ is a measure of accuracy in bits $2^{-b}$. However it should be noted that the eigenvectors of the second matrix are not what we are trying to calculate. Thus the latter method introduces an extra step. We have thus timed the full execution of both methods from implementing the {\tt\small eig} function to having a dataset with properly ordered eigenvectors. The results are shown in Table \ref{tab:times1} .
+INSERT TIMES HERE IN A TABLE
 
-\subsection{DAYYYUUM}
-\begin{quote}
-\begin{center}
-     An analysis of the frobnicatable foo filter.
-\end{center}
-
-   In this paper we present a performance analysis of the
-   paper of Smith \etal [1], and show it to be inferior to
-   all previously known methods.  Why the previous paper
-   was accepted without this analysis is beyond me.
-
-   [1] Smith, L and Jones, C. ``The frobnicatable foo
-   filter, a fundamental contribution to human knowledge''.
-   Nature 381(12), 1-213.
-\end{quote}
-
-
-\begin{quotation}
-\noindent
-   We describe a system for zero-g frobnication.  This
-   system is new because it handles the following cases:
-   A, B.  Previous systems [Zeus et al. 1968] didn't
-   handle case B properly.  Ours handles it by including
-   a foo term in the bar integral.
-
-   ...
-
-   The proposed system was integrated with the Apollo
-   lunar lander, and went all the way to the moon, don't
-   you know.  It displayed the following behaviours
-   which show how well we solved cases A and B: ...
-\end{quotation}
+\section{Applications of Eigenfaces}
 
 
 
-\section{Final copy}
+\section{DAYYYUUM}
 
-You must include your signed IEEE copyright release form when you submit
-your finished paper. We MUST have this form before your paper can be
-published in the proceedings.
 
 
 {\small
@@ -219,5 +188,10 @@ published in the proceedings.
 Inderjit Dhillon. 
 \textit{CS 391D Data Mining: A Mathematical Perspective Fall 2009}. 
 The University of Texas at Austin, September 2009.
+
+\bibitem{Complex} 
+Victor Y.Pan, Zhao Q. Chen, Ailong Zheng. 
+\textit{The Complexity of the Algebraic Eigenproblem}. 
+Lehman College and Graduate Center, CUNY, NY, December 1998
 \end{thebibliography}
 \end{document}

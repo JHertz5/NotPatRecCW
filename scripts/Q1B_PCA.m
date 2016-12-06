@@ -47,6 +47,7 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
+tic;
 N = size(trainingNorm, 2);
 faceCov = (trainingNorm'*trainingNorm);%/N;
 
@@ -85,7 +86,7 @@ eigVecsB_best = V(:,bestIdxList); % extract best M eigenvectors
 % A'A and AA' have the same eigenvalues
 
 eigVecs_best = trainingNorm*eigVecsB_best;
-
+t2 = toc
 %normalise face vectors
 for i=1:numEigs
    eigVecs2_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
