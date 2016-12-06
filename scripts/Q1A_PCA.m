@@ -61,9 +61,16 @@ if (exist('showPlots', 'var') && showPlots == true)
     plot(sort(eigVals,'descend'),'linewidth',2)
     set(gca,'YScale','log')
     title('Eigenvalues sorted','fontsize',20)
-    xlim([0 415])
+    xlabel('Index','fontsize',20)
+    ylabel('Eigenvalue','fontsize',20)
+    set(gca,'fontsize',15)
+
+    
+    %xlim([0 415])
     grid on
     grid minor
+    %saveas(h,'Q1A_PCA_Eigenvalues.jpg')
+    
 end
 
 %% get M best eigenvectors/values
@@ -78,22 +85,27 @@ eigVecs_best = V(:,bestIdxList); % extract best M eigenvectors
 
 %% plot 10 eigenfaces
 
-eigFace = zeros(faceH, faceW, 10, 'double');
+eigFace = zeros(faceH, faceW, 3, 'double');
 if (exist('showPlots', 'var') && showPlots == true)
     figure(3)
-    for j = 1:10
+    for j = 1:3
         for i = 1:faceW %extract image one line at a time
             lineStart = (i-1)* faceH + 1;
             lineEnd = i*faceH;
             eigFace(1:faceH,i,j) = rot90(eigVecs_best(lineStart:lineEnd,j), 2);
         end
-        subplot(2,5,j)
+        subplot(1,3,j)
         h = pcolor(eigFace(:,:,j));
+        
         set(h,'edgecolor','none');
         colormap gray
         shading interp
         set(findobj(gcf, 'type','axes'), 'Visible','off')
+         
+    
     end
+    
+    
 else
     fprintf('No plots because showPlots != true\n')
 end

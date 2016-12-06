@@ -3,7 +3,7 @@
 
 % clean up
 clc
-close all
+%close all
 %clear all
 
 if contains(pwd, 'NotPatRecCW')
@@ -17,8 +17,9 @@ load Separated_Data.mat
 load Q1A_Eigen
 V = fliplr(V);
 
-numEigs = 50;
-
+%numEigs = 20;
+%numEigs = 50;
+numEigs = 80;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 
@@ -57,19 +58,21 @@ if (exist('showPlots', 'var') && showPlots == true)
         origFace(1:faceH,i) = rot90(training(lineStart:lineEnd,trainFaceIdx), 2);
         recoFace(1:faceH,i) = rot90(reconstructedFace(lineStart:lineEnd), 2);
     end
-    subplot(1,2,1)
-    h = pcolor(origFace);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    title('Original Face','fontsize',20)
     
-    subplot(1,2,2)
+%     subplot(1,4,1)
+%     h = pcolor(origFace);
+%     set(h,'edgecolor','none');
+%     colormap gray
+%     shading interp
+%     title('Original Face','fontsize',20)
+    
+    subplot(1,4,4)
     h = pcolor(recoFace);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
     title(['Reconstructed Face with ' num2str(numEigs) ' eigenfaces'],'fontsize',20)
+    set(findobj(gcf, 'type','axes'), 'Visible','off')
 else
     fprintf('No plots because showPlots != true\n')
 end
