@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  6 DEC 2016 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  6 DEC 2016 15:06
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -455,19 +455,19 @@ Overfull \hbox (11.29218pt too wide) in paragraph at lines 135--136
  [][] 
  []
 
-No file Report.bbl.
 [2 <../results/Q1A_PCA_Eigenvalues.jpg> <../results/Q1A_PCA_Eigenfaces.jpg> <..
 /results/Q1A_PCA_Mean.jpg> <../results/Q2A_PCA_Reco.jpg> <../results/Q1B_PCA_Ei
 genvalues.jpg>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 194.
- [3
+No file Report.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 196.
+[3
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 194.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 196.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 194.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 194.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 194.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 196.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 196.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 196.
  ) 
 Here is how much of TeX's memory you used:
  6415 strings out of 493014
@@ -476,7 +476,7 @@ Here is how much of TeX's memory you used:
  9819 multiletter control sequences out of 15000+600000
  30947 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,9n,26p,887b,432s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,9n,26p,887b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texl
@@ -492,10 +492,10 @@ e/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2
 ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on Report.pdf (3 pages, 799960 bytes).
+Output written on Report.pdf (3 pages, 800980 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
- 86 compressed objects within 1 object stream
+ 112 PDF objects out of 1000 (max. 8388607)
+ 87 compressed objects within 1 object stream
  21 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
