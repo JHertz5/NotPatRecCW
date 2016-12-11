@@ -4,7 +4,7 @@
 % clean up
 clc
 close all
-clear all
+%clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -17,32 +17,16 @@ load Separated_Data.mat
 load Q1A_Eigen
 V = fliplr(V);
 
-%numEigs = 20;
-%numEigs = 50;
-numEigs = 121;
+numEigs = 150;
 
-%% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
-
-w = zeros(numEigs, 416, 'double');
-for n = 1:size(trainingNorm,2)
-        w(:,n) = (trainingNorm(:,n)'*V(:,1:numEigs))';
-end
-% wn has now dimensions numEigs by size(trainigNorm,2) -> decresed
-% dimensionality to save on space, memory, computation time but to preserve
-% maximum feature variance
-
-%%
-
-% Reconstruction
+%% Reconstruction
 
 trainFaceIdx = 1; %index of a face from training set to be reconstructed
 
-reconstructedFace = zeros(1,2576);
-
+reconstructedFace = meanFace;
 for n = 1:numEigs
-     reconstructedFace = reconstructedFace + w(n,trainFaceIdx)*V(:,n);
+     reconstructedFace = reconstructedFace + projections(n,trainFaceIdx)*V(:,n);
 end
-reconstructedFace = reconstructedFace + meanFace;
 
 %% Plot for comparison
 
@@ -59,14 +43,14 @@ if (exist('showPlots', 'var') && showPlots == true)
         recoFace(1:faceH,i) = rot90(reconstructedFace(lineStart:lineEnd), 2);
     end
     
-%     subplot(1,4,1)
-%     h = pcolor(origFace);
-%     set(h,'edgecolor','none');
-%     colormap gray
-%     shading interp
-%     title('Original Face','fontsize',20)
+    subplot(1,2,1)
+    h = pcolor(origFace);
+    set(h,'edgecolor','none');
+    colormap gray
+    shading interp
+    title('Original Face','fontsize',20)
     
-    subplot(1,4,4)
+    subplot(1,2,2)
     h = pcolor(recoFace);
     set(h,'edgecolor','none');
     colormap gray
@@ -76,7 +60,7 @@ if (exist('showPlots', 'var') && showPlots == true)
 else
     fprintf('No plots because showPlots != true\n')
 end
-% ReconstructionError = norm(training(:,trainFaceIdx)-reconstructedFace)
+ReconstructionError = norm(training(:,trainFaceIdx)-reconstructedFace)
 
 %% Enter testing face for reconstruction
 

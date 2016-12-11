@@ -31,20 +31,6 @@ V = fliplr(V);
 trainingClassSize = 8; %number of faces per class in training data
 testingGroupSize = 2; %number of faces per class in training data
 testingFaceIndex = 10;
-%% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
-% representing projection on the eigenspace
-
-w_n = zeros(numEigs, size(trainingNorm,2), 'double');
-for n = 1:size(trainingNorm,2)
-        w_n(:,n) = (trainingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
-end
-% w_n has now dimensions numEigs by size(trainigNorm,2) -> decresed
-% dimensionality to save on space, memory, computation time but to preserve
-% maximum feature variance
-
-% Columns of w_n represent different face images. 
-% Face images are classed in groups of 8
-% The class of each image can be found by ceil(columnIndex / trainingClassSize)
 
 %% Normalise testing faces
 
@@ -70,7 +56,7 @@ classAssignment_real = zeros(1, size(testingNorm,2), 'double');
 
 for testingFaceIndex = 1:size(testingNorm,2)
     for trainingFaceIndex = 1:size(trainingNorm,2)
-        tempError = norm(w_testing(:,testingFaceIndex)-w_n(:,trainingFaceIndex));
+        tempError = norm(w_testing(:,testingFaceIndex)-projections(:,trainingFaceIndex));
         if tempError < minError(testingFaceIndex) || minError(testingFaceIndex) < 0
             minError(testingFaceIndex) = tempError;
             classAssignment_real(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
@@ -161,5 +147,5 @@ for i = 1:numTests
     confusion_resultsData(classAssignment_real(i), i) = true;
 end
 
-figure(2);
-plotconfusion(confusion_groundTruth, confusion_resultsData)
+%figure(2);
+%plotconfusion(confusion_groundTruth, confusion_resultsData)

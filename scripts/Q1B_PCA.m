@@ -14,10 +14,6 @@ end
 % load partitioned data
 load Separated_Data.mat
 
-if ~(exist('numEigs', 'var'))
-    numEigs = 416;
-end
-
 %% Normalise and plot mean face
 
 faceW = 46; faceH = 56;
@@ -75,7 +71,7 @@ end
 
 % technically the eigenvalues are presorted in the ascending order. But
 % just to be sure sort them again
-
+numEigs = 150;
 [sortedEigs,sortedIdxList] = sort(eigVals,'descend');
 bestIdxList = sortedIdxList(1:numEigs);
 eigVals_best = sortedEigs(1:numEigs); % extract top M eigenvalues
@@ -90,7 +86,23 @@ t2 = toc
 for i=1:numEigs
    eigVecs_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
 end
-t_done2 = toc()
+t_done2 = toc
+
+%% Find projections for each normalised training face
+
+projections = zeros(numEigs, size(trainingNorm,2), 'double');
+for n = 1:size(trainingNorm,2)
+        projections(:,n) = (trainingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
+end
+
+% projections has now dimensions numEigs by size(trainigNorm,2) -> decresed
+% dimensionality to save on space, memory, computation time but to preserve
+% maximum feature variance
+
+% Columns of projections represent different face images. 
+% Face images are classed in groups of 8
+% The class of each image can be found by ceil(columnIndex / trainingClassSize)
+
 %% plot 10 eigenfaces
 
 eigFace = zeros(faceH, faceW, 3, 'double');
@@ -113,8 +125,10 @@ else
     fprintf('No plots because showPlots != true\n')
 end
 
+%% Save data
+
 if (exist('dataPath', 'var'))
-    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigVecs_best','V','trainingNorm','meanFace')
+    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigVecs_best','V','trainingNorm','meanFace','projections')
 else
-    save('Q1B_Eigen','eigVals_best','eigVecs_best','V','trainingNorm','meanFace')
+    save('Q1B_Eigen','eigVals_best','eigVecs_best','V','trainingNorm','meanFace','projections')
 end
