@@ -30,7 +30,7 @@ V = fliplr(V);
 
 trainingClassSize = 8; %number of faces per class in training data
 testingGroupSize = 2; %number of faces per class in training data
-
+testingFaceIndex = 10;
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 % representing projection on the eigenspace
 
