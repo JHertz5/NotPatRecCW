@@ -112,8 +112,6 @@ if (exist('showPlots', 'var') && showPlots == true)
     
     figure(1)
     
-
-    
     subplot(2,2,1)
     h = pcolor(firstSuccessFace_matrix);
     set(h,'edgecolor','none');
@@ -163,4 +161,5 @@ for i = 1:numTests
     confusion_resultsData(classAssignment_real(i), i) = true;
 end
 
-%plotconfusion(confusion_groundTruth, confusion_resultsData)
+figure(2);
+plotconfusion(confusion_groundTruth, confusion_resultsData)
