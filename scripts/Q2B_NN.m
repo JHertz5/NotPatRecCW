@@ -46,29 +46,6 @@ end
 % Face images are classed in groups of 8
 % The class of each image can be found by ceil(columnIndex / trainingClassSize)
 
-%% Plot testing face
-
-faceW = 46; faceH = 56;
-face_matrix = zeros(faceH, faceW, 'double');
-
-if (exist('showPlots', 'var') && showPlots == true)
-    figure(1)
-    for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)*faceH + 1;
-        lineEnd = i*faceH;
-        face_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd),testingFaceIndex), 2);
-    end
-    
-    subplot(1,2,1)
-    h = pcolor(face_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    ylabel('Testing Face')
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
-end
-
-
 %% Normalise testing faces
 
 faceW = 46; faceH = 56;
@@ -102,27 +79,88 @@ for testingFaceIndex = 1:size(testingNorm,2)
     fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
 end
 
-%% Plot example of assigned class for comparison
-
-classExampleIndex = trainingClassSize*classAssignment_real(testingFaceIndex);
-if (exist('showPlots', 'var') && showPlots == true)
-    for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)*faceH + 1;
-        lineEnd = i*faceH;
-        face_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), classExampleIndex), 2);
-    end
-    
-    subplot(1,2,2)
-    h = pcolor(face_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    ylabel('Assigned Class Example')
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
-    %set(findobj(gcf, 'type','axes'), 'Visible','off')
-end
 
 %% Compute accuracy
 
 accuracyVector = (classAssignment_ideal == classAssignment_real);
 successPercentage = 100 * sum(accuracyVector, 2) / size(testingNorm, 2)
+
+%% Plot example success and example failure
+
+if (exist('showPlots', 'var') && showPlots == true)
+
+    faceW = 46; faceH = 56;
+    firstSuccessFace_matrix = zeros(faceH, faceW, 'double');
+    firstSuccessExample_matrix = zeros(faceH, faceW, 'double');
+    firstFailureFace_matrix = zeros(faceH, faceW, 'double');
+    firstFailureExample_matrix = zeros(faceH, faceW, 'double');
+
+    firstSuccessIndex = find(accuracyVector == true, 1);
+    firstSuccessClassIndex = classAssignment_real(firstSuccessIndex);
+    firstFailureIndex = find(accuracyVector == false, 1);
+    firstFailureClassIndex = classAssignment_real(firstFailureIndex);
+
+    for i = 1:faceW %extract image one line at a time
+        lineStart = (i-1)*faceH + 1;
+        lineEnd = i*faceH;
+        
+        firstSuccessFace_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd), firstSuccessIndex), 2);
+        firstSuccessExample_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), firstSuccessClassIndex), 2);
+        firstFailureFace_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd), firstFailureIndex), 2);
+        firstFailureExample_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), firstFailureClassIndex), 2);
+    end
+    
+    figure(1)
+    
+
+    
+    subplot(2,2,1)
+    h = pcolor(firstSuccessFace_matrix);
+    set(h,'edgecolor','none');
+    colormap gray
+    shading interp
+    ylabel('First Success Case')
+    xlabel('Testing Face')
+    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    
+    subplot(2,2,2)
+    h = pcolor(firstSuccessExample_matrix);
+    set(h,'edgecolor','none');
+    colormap gray
+    shading interp
+    xlabel('Assigned Class Example')
+    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    
+    subplot(2,2,3)
+    h = pcolor(firstFailureFace_matrix);
+    set(h,'edgecolor','none');
+    colormap gray
+    shading interp
+    ylabel('First Failure Case')
+    xlabel('Testing Face')
+    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    
+    subplot(2,2,4)
+    h = pcolor(firstFailureExample_matrix);
+    set(h,'edgecolor','none');
+    colormap gray
+    shading interp
+    xlabel('Assigned Class Example')
+    set(gca,'XtickLabel',[],'YtickLabel',[]);
+
+end
+
+%% Plot confusion matrix
+
+numClasses = size(training, 2)/trainingClassSize;
+numTests = size(accuracyVector, 2);
+
+confusion_groundTruth = zeros(numClasses, numTests);
+confusion_resultsData = zeros(numClasses, numTests);
+
+for i = 1:numTests
+    confusion_groundTruth(classAssignment_ideal(i), i) = true;
+    confusion_resultsData(classAssignment_real(i), i) = true;
+end
+
+%plotconfusion(confusion_groundTruth, confusion_resultsData)

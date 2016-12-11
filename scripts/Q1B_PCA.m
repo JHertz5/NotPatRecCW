@@ -8,7 +8,7 @@ if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
     addpath(char(dataPath));
 else
-    printf('Move to NotPatRecCW directory\n');
+    fprintf('Move to NotPatRecCW directory\n');
 end
 
 % load partitioned data
