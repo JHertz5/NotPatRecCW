@@ -28,6 +28,7 @@ load Q1B_Eigen %using 1B because this method is more efficient
 
 V = fliplr(V);
 
+plotExampleIndex = 48;
 trainingClassSize = 8; %number of faces per class in training data
 testingGroupSize = 2; %number of faces per class in training data
 
@@ -56,7 +57,7 @@ if (exist('showPlots', 'var') && showPlots == true)
     for i = 1:faceW %extract image one line at a time
         lineStart = (i-1)*faceH + 1;
         lineEnd = i*faceH;
-        face_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd),testingFaceIndex), 2);
+        face_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd),plotExampleIndex), 2);
     end
     
     subplot(1,2,1)
@@ -109,7 +110,7 @@ if (exist('showPlots', 'var') && showPlots == true)
     for i = 1:faceW %extract image one line at a time
         lineStart = (i-1)*faceH + 1;
         lineEnd = i*faceH;
-        face_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), classExampleIndex), 2);
+        face_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), plotExampleIndex), 2);
     end
     
     subplot(1,2,2)

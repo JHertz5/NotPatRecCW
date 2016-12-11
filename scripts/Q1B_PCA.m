@@ -89,7 +89,7 @@ eigVecs_best = trainingNorm*eigVecsB_best;
 t2 = toc
 %normalise face vectors
 for i=1:numEigs
-   eigVecs2_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
+   eigVecs_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
 end
 
 %% plot 10 eigenfaces
