@@ -1,6 +1,6 @@
 *~
 *.mat
 /data
-/Report*.aux
-/Report*.synctex.gz
-/Report*.log
+/Report/*.aux
+/Report/*.synctex.gz
+/Report/*.log
