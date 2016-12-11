@@ -257,7 +257,7 @@ $J = \sum_{n=M+1}^{D} \lambda_n$
   
     \includegraphics[width=0.5\textwidth]{../results/DistMeasure}
 
-  \caption{Distrtion Measure for varying number of PCA bases \label{fig:DistMeasure}}
+  \caption{Distortion Measure for varying number of PCA bases \label{fig:DistMeasure}}
 
 \end{center}
 \end{figure}
@@ -268,6 +268,27 @@ The test results shown in Table \ref{tab:RecoError} show as expected a monotonou
 Similarly, we observe that the distortion is monotonously decreasing as we increase number of the PCA bases. This is expected as, with each extra PCA base used to reconstruct we take away the biggest eigenvalue from the total sum.
 
 \subsection{Nearest Neighbour (NN) classification}
+
+In order to perform the PCA-based face recognition, the Nearest Neighbour classification method was used. Having calculated the projections of each normalised training face onto the eigenspace, we could take a new image and classify it into a class. This was done by calculating the new image's projection onto the eigenspace, and compare it to the existing projections. The new image was given the class of the projection that it is closest to. The following classifier equation was used to acheive this:
+\begin{equation}
+e = min_n ||\omega - \omega_n||,\quad n = 1,...,N
+\end{equation}
+where $\omega$ is the projection of the new image onto the eigenspace, $\omega_n$ is the projection of the training vector $x_n$ and $N$ is the number of training vectors.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_examples}
+
+  \caption{Examples of a successful classification and a failed classification: Successfully Classified Testing Face, Example from Assigned Class, Unsuccessfully Classified Testing Face, Example from Assigned Class,  \label{fig:Q2B_NN_examples}}
+
+\end{center}
+\end{figure}
+
+Using this method, each testing vector was classified. In $70.1293\%$, the classification was successful and testing images were assigned to the correct class. This method is classification works only on how similar the testing image is to another similar image, so it is easily fooled by incorrect pictures with similar lighting, or testing images that have a particular difference from the training data, i.e. the removal of the glasses in the failure example in Figure \ref{fig:Q2B_NN_examples}.
+
+
+
 
 \section{Multi-Class SVM}
 
