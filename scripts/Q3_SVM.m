@@ -15,17 +15,15 @@ end
 
 load Separated_Data.mat
 load face.mat
-value = 1;
-counter = 1;
 
-% this is a crude way of setting class value to each column in the training
-for i = 1:416
-    class(i) = value;
-    counter = counter + 1;
-    if counter == 9
-        counter = 1;
-        value = value + 1;
-    end
+class = ones(1,416);
+trainingClassSize = 8; %number of faces per class in training data
+numClasses = size(training, 2)/trainingClassSize;
+
+for i = 1:numClasses
+    lineStart = ((i-1)*trainingClassSize) + 1;
+    lineEnd = i*trainingClassSize;
+    class(1, lineStart:lineEnd) = i*ones(1,trainingClassSize);
 end
 trainV2 = [class; training];
 
@@ -60,6 +58,9 @@ trainFlags = [class1*ones(1,8) class2*ones(1,8)];
 confTrain = [zeros(1,8) ones(1,8)];
 testFlags = [class1*ones(1,2) class2*ones(1,2)];
 confTest = [zeros(1,2) ones(1,2)];
+
+conf1 = zeros(1, 16);
+conf2 = zeros(1, 4);
 
 % Compute the SVM model
 SVMModel = fitcsvm(binaryTrain,trainFlags,'KernelFunction','linear','Standardize',true);
