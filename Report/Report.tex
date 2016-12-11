@@ -260,12 +260,15 @@ $J = \sum_{n=M+1}^{D} \lambda_n$
 
 \end{center}
 \end{figure}
+From the Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} we can infer that 121 eigenfaces (the 95\% bound calculated earlier) is sufficient to a human eye in order to assign class to a given image. 50 PCA bases results in a very fuzzy image, though the main characteristics of the class can be identified. Finally, 180 eigenfaces produce a relatively sharp image, though it isn't much different from the one obtained with 121 bases, as shown in Table \ref{tab:RecoError}.
 
 The test results shown in Table \ref{tab:RecoError} show as expected a monotonous trend. As we increase the number of eigenfaces the reconstruction error (or the D-dimensional distance between original and reconstructed images) decreases. We also observe that both face images from the {\tt\small testing} set produce larger errors than the face from {\tt\small training} set for larger amount of PCA bases. The reconstruction error of the training faces can actually reach zero, when we use all of 415 eigenfaces. This however cannot be said about the test faces.
 
-\section{DAYYYUUM}
+Similarly, we observe that the distortion is monotonously decreasing as we increase number of the PCA bases. This is expected as, with each extra PCA base used to reconstruct we take away the biggest eigenvalue from the total sum.
 
+\subsection{Nearest Neighbour (NN) classification}
 
+\section{Multi-Class SVM}
 
 {\small
 \bibliographystyle{ieee}

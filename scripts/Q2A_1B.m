@@ -16,7 +16,7 @@ load Separated_Data.mat
 load Q1B_Eigen
 V = fliplr(V);
 
-numEigs = 400;
+numEigs = 150;
 testingIdx = 20;
 trainFaceIdx = 2;
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui

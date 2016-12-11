@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  11 DEC 2016 16:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  11 DEC 2016 17:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -509,29 +509,28 @@ Overfull \hbox (11.29218pt too wide) in paragraph at lines 257--258
  []
 
 
-Underfull \hbox (badness 1057) in paragraph at lines 264--265
-\OT1/ptm/m/n/10 a monotonous trend. As we in-crease the num-ber of
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3 <../results/Train1_reco.jpg> <../results/Test1_reco.jpg> <../results/Test2_
 reco.jpg> <../results/DistMeasure.jpg>]
+Underfull \hbox (badness 1057) in paragraph at lines 265--266
+\OT1/ptm/m/n/10 a monotonous trend. As we in-crease the num-ber of
+ []
+
 No file Report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 286.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
 [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 286.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 286.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 286.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 286.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 289.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
  ) 
 Here is how much of TeX's memory you used:
- 6459 strings out of 493014
- 93482 string characters out of 6133351
+ 6460 strings out of 493014
+ 93496 string characters out of 6133351
  184850 words of memory out of 5000000
  9847 multiletter control sequences out of 15000+600000
  30947 words of font info for 79 fonts, out of 8000000 for 9000
@@ -553,10 +552,10 @@ texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on Report.pdf (4 pages, 1432850 bytes).
+Output written on Report.pdf (4 pages, 1434162 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
- 115 compressed objects within 2 object streams
- 33 named destinations out of 1000 (max. 500000)
+ 152 PDF objects out of 1000 (max. 8388607)
+ 120 compressed objects within 2 object streams
+ 34 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
