@@ -4,7 +4,7 @@
 % clean up
 clc
 close all
-%clear all
+clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -19,7 +19,7 @@ V = fliplr(V);
 
 %numEigs = 20;
 %numEigs = 50;
-numEigs = 80;
+numEigs = 121;
 
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
 

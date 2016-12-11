@@ -2,7 +2,7 @@
 % clean up
 clc
 close all
-%clear all
+clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -10,7 +10,7 @@ if contains(pwd, 'NotPatRecCW')
 else
     printf('Move to NotPatRecCW directory\n');
 end
-
+showPlots=true;
 % load partitioned data
 load Separated_Data.mat
 
@@ -49,9 +49,9 @@ faceCov = (trainingNorm*trainingNorm');%/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
-t2 = toc
-eigVals = diag(D); % move D into an array
 
+eigVals = diag(D); % move D into an array
+t_done1 = toc()
 
 %% plot eig vals
 

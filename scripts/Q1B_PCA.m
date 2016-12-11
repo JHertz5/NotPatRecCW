@@ -2,7 +2,7 @@
 % clean up
 clc
 close all
-%clear all
+clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -15,7 +15,7 @@ end
 load Separated_Data.mat
 
 if ~(exist('numEigs', 'var'))
-    numEigs = 200;
+    numEigs = 416;
 end
 
 %% Normalise and plot mean face
@@ -49,8 +49,7 @@ end
 % Calculate Covariance Matrix
 tic;
 N = size(trainingNorm, 2);
-faceCov = (trainingNorm'*trainingNorm);%/N;
-
+faceCov = (trainingNorm'*trainingNorm);
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
 
@@ -91,7 +90,7 @@ t2 = toc
 for i=1:numEigs
    eigVecs_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
 end
-
+t_done2 = toc()
 %% plot 10 eigenfaces
 
 eigFace = zeros(faceH, faceW, 3, 'double');
