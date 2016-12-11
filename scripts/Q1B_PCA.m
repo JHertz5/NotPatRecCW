@@ -2,7 +2,7 @@
 % clean up
 clc
 close all
-%clear all
+clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
