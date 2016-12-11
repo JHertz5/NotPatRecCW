@@ -18,7 +18,6 @@ load Separated_Data.mat
 load Q1B_Eigen
 V = fliplr(V);
 
-numEigs = 150;
 testingIdx = 20;
 
 %% Reconstruction
@@ -27,7 +26,7 @@ trainFaceIdx = 2; %index of a face from training set to be reconstructed
 
 reconstructedFace = meanFace;
 for n = 1:numEigs
-     reconstructedFace = reconstructedFace + projections(n,trainFaceIdx)*eigVecs_best(:,n);
+     reconstructedFace = reconstructedFace + trainingProjections(n,trainFaceIdx)*eigVecs_best(:,n);
 end
 
 %% Plot for comparison

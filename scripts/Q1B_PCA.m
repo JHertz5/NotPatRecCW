@@ -88,18 +88,18 @@ for i=1:numEigs
 end
 t_done2 = toc
 
-%% Find projections for each normalised training face
+%% Find trainingProjections for each normalised training face
 
-projections = zeros(numEigs, size(trainingNorm,2), 'double');
+trainingProjections = zeros(numEigs, size(trainingNorm,2), 'double');
 for n = 1:size(trainingNorm,2)
-        projections(:,n) = (trainingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
+        trainingProjections(:,n) = (trainingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
 end
 
-% projections has now dimensions numEigs by size(trainigNorm,2) -> decresed
+% trainingProjections has now dimensions numEigs by size(trainigNorm,2) -> decresed
 % dimensionality to save on space, memory, computation time but to preserve
 % maximum feature variance
 
-% Columns of projections represent different face images. 
+% Columns of trainingProjections represent different face images. 
 % Face images are classed in groups of 8
 % The class of each image can be found by ceil(columnIndex / trainingClassSize)
 
@@ -128,7 +128,7 @@ end
 %% Save data
 
 if (exist('dataPath', 'var'))
-    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigVecs_best','V','trainingNorm','meanFace','projections')
+    save(char(strcat(dataPath, '/Q1B_Eigen')),'eigVals_best','eigVecs_best','V','trainingNorm','meanFace','trainingProjections','numEigs')
 else
-    save('Q1B_Eigen','eigVals_best','eigVecs_best','V','trainingNorm','meanFace','projections')
+    save('Q1B_Eigen','eigVals_best','eigVecs_best','V','trainingNorm','meanFace','trainingProjections','numEigs')
 end

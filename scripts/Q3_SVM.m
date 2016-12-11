@@ -16,6 +16,8 @@ end
 load Separated_Data.mat
 load face.mat
 
+%% Set up training data
+
 class = ones(1,416);
 trainingClassSize = 8; %number of faces per class in training data
 testingClassSize = 2;

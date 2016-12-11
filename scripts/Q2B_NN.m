@@ -13,8 +13,6 @@ else
     fprintf('Move to NotPatRecCW directory\n');
 end
 
-numEigs = 150;
-
 if ~exist('Separated_Data.mat', 'file')
     extract_ave_faces
 end
@@ -42,9 +40,9 @@ testingNorm = testing - meanFace;
 
 %% Project testing faces onto eigenspace
 
-w_testing = zeros(numEigs, size(testingNorm,2), 'double');
+testingProjections = zeros(numEigs, size(testingNorm,2), 'double');
 for n = 1:size(testingNorm,2)
-        w_testing(:,n) = (testingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
+        testingProjections(:,n) = (testingNorm(:,n)'*eigVecs_best(:,1:numEigs))';
 end
 
 %% Classify testing faces
@@ -56,7 +54,7 @@ classAssignment_real = zeros(1, size(testingNorm,2), 'double');
 
 for testingFaceIndex = 1:size(testingNorm,2)
     for trainingFaceIndex = 1:size(trainingNorm,2)
-        tempError = norm(w_testing(:,testingFaceIndex)-projections(:,trainingFaceIndex));
+        tempError = norm(testingProjections(:,testingFaceIndex)-trainingProjections(:,trainingFaceIndex));
         if tempError < minError(testingFaceIndex) || minError(testingFaceIndex) < 0
             minError(testingFaceIndex) = tempError;
             classAssignment_real(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
