@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  11 DEC 2016 17:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  11 DEC 2016 17:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -156,12 +156,32 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 144.
+)
+(/usr/local/texlive/2016/texmf-dist/tex/latex/soul/soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks20
+\SOUL@lasttoken=\toks21
+\SOUL@cmds=\toks22
+\SOUL@buffer=\toks23
+\SOUL@token=\toks24
+\SOUL@spaceskip=\skip48
+\SOUL@ttwidth=\dimen119
+\SOUL@uldp=\dimen120
+\SOUL@ulht=\dimen121
+)
 (/usr/local/texlive/2016/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count105
-\float@exts=\toks20
+\float@exts=\toks25
 \float@box=\box30
-\@float@everytoks=\toks21
+\@float@everytoks=\toks26
 \@floatcapt=\box31
 )
 (/usr/local/texlive/2016/texmf-dist/tex/generic/genmisc/nth.sty
@@ -223,7 +243,7 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen119
+\@linkdim=\dimen122
 \Hy@linkcounter=\count106
 \Hy@pagecounter=\count107
 
@@ -251,10 +271,10 @@ Package hyperref Info: Bookmarks OFF on input line 4697.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5044.
-\XeTeXLinkMargin=\dimen120
+\XeTeXLinkMargin=\dimen123
 \Fld@menulength=\count110
-\Field@Width=\dimen121
-\Fld@charsize=\dimen122
+\Field@Width=\dimen124
+\Fld@charsize=\dimen125
 Package hyperref Info: Hyper figures OFF on input line 6298.
 Package hyperref Info: Link nesting OFF on input line 6303.
 Package hyperref Info: Hyper index ON on input line 6306.
@@ -281,51 +301,43 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 )
-\Hy@SectionHShift=\skip48
+\Hy@SectionHShift=\skip49
 )
 (./Report.aux)
 \openout1 = `Report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 28.
-LaTeX Font Info:    ... okay on input line 28.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 28.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 29.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 ABD: EveryShipout initializing macros
-(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics/color.sty
-Package: color 2016/05/09 v1.1c Standard LaTeX Color (DPC)
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/graphics-cfg/color.cfg
-File: color.cfg 2016/01/02 v1.6 sample color configuration
-)
-Package color Info: Driver file: pdftex.def on input line 144.
-)
 (/usr/local/texlive/2016/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count116
-\scratchdimen=\dimen123
+\scratchdimen=\dimen126
 \scratchbox=\box32
 \nofMPsegments=\count117
 \nofMParguments=\count118
-\everyMPshowfont=\toks22
+\everyMPshowfont=\toks27
 \MPscratchCnt=\count119
-\MPscratchDim=\dimen124
+\MPscratchDim=\dimen127
 \MPnumerator=\count120
 \makeMPintoPDFobject=\count121
-\everyMPtoPDFconversion=\toks23
+\everyMPtoPDFconversion=\toks28
 ) (/usr/local/texlive/2016/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -343,7 +355,7 @@ e
 ))
 \AtBeginShipoutBox=\box33
 Package atbegshi Info: Package `everyshi' patched.
-Package hyperref Info: Link coloring OFF on input line 28.
+Package hyperref Info: Link coloring OFF on input line 29.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -353,189 +365,266 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count122
 )
-LaTeX Info: Redefining \ref on input line 28.
-LaTeX Info: Redefining \pageref on input line 28.
-LaTeX Info: Redefining \nameref on input line 28.
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 51.
-LaTeX Font Info:    Try loading font information for U+msa on input line 51.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 52.
+LaTeX Font Info:    Try loading font information for U+msa on input line 52.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 51.
+LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 51.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 52.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 54.
 
-Underfull \hbox (badness 10000) in paragraph at lines 55--56
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 57--58
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 59--60
+Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--62
+Underfull \hbox (badness 10000) in paragraph at lines 60--61
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--63
 
  []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 84.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 85.
+
+LaTeX Warning: Citation `Data Mining' on page 1 undefined on input line 90.
+
 [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-<../results/Q1A_PCA_Eigenvalues.jpg, id=28, 2677.00125pt x 1028.84375pt>
+
+LaTeX Warning: Reference `fig:Eig1' on page 2 undefined on input line 94.
+
+<../results/Q1A_PCA_Eigenvalues.jpg, id=25, 2677.00125pt x 1028.84375pt>
 File: ../results/Q1A_PCA_Eigenvalues.jpg Graphic file (type jpg)
 
 <use ../results/Q1A_PCA_Eigenvalues.jpg>
 Package pdftex.def Info: ../results/Q1A_PCA_Eigenvalues.jpg used on input line 
-99.
+100.
 (pdftex.def)             Requested size: 248.42812pt x 95.46483pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 99--100
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 100--101
  [][] 
  []
 
-<../results/Q1A_PCA_Eigenfaces.jpg, id=31, 2677.00125pt x 936.49875pt>
+
+LaTeX Warning: Reference `fig:Eig2' on page 2 undefined on input line 106.
+
+
+LaTeX Warning: Reference `fig:Mean' on page 2 undefined on input line 106.
+
+<../results/Q1A_PCA_Eigenfaces.jpg, id=26, 2677.00125pt x 936.49875pt>
 File: ../results/Q1A_PCA_Eigenfaces.jpg Graphic file (type jpg)
 
 <use ../results/Q1A_PCA_Eigenfaces.jpg>
 Package pdftex.def Info: ../results/Q1A_PCA_Eigenfaces.jpg used on input line 1
-11.
+12.
 (pdftex.def)             Requested size: 248.42812pt x 86.89627pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 111--112
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 112--113
  [][] 
  []
 
-<../results/Q1A_PCA_Mean.jpg, id=32, 999.735pt x 1167.36125pt>
+<../results/Q1A_PCA_Mean.jpg, id=27, 999.735pt x 1167.36125pt>
 File: ../results/Q1A_PCA_Mean.jpg Graphic file (type jpg)
 
 <use ../results/Q1A_PCA_Mean.jpg>
-Package pdftex.def Info: ../results/Q1A_PCA_Mean.jpg used on input line 116.
+Package pdftex.def Info: ../results/Q1A_PCA_Mean.jpg used on input line 117.
 (pdftex.def)             Requested size: 74.52539pt x 87.01393pt.
 
-<../results/Q1B_PCA_Eigenvalues.jpg, id=35, 2677.00125pt x 1104.125pt>
+
+LaTeX Warning: Citation `Data Mining' on page 2 undefined on input line 126.
+
+
+LaTeX Warning: Reference `fig:Eig3' on page 2 undefined on input line 126.
+
+<../results/Q1B_PCA_Eigenvalues.jpg, id=28, 2677.00125pt x 1104.125pt>
 File: ../results/Q1B_PCA_Eigenvalues.jpg Graphic file (type jpg)
 
 <use ../results/Q1B_PCA_Eigenvalues.jpg>
 Package pdftex.def Info: ../results/Q1B_PCA_Eigenvalues.jpg used on input line 
-129.
+130.
 (pdftex.def)             Requested size: 248.42812pt x 102.45006pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 129--130
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 130--131
  [][] 
  []
 
-<../results/Q1B_PCA_Eigenfaces.jpg, id=38, 2677.00125pt x 936.49875pt>
+
+LaTeX Warning: Reference `fig:Eig3' on page 2 undefined on input line 136.
+
+
+LaTeX Warning: Reference `fig:Eig4' on page 2 undefined on input line 154.
+
+<../results/Q1B_PCA_Eigenfaces.jpg, id=29, 2677.00125pt x 936.49875pt>
 File: ../results/Q1B_PCA_Eigenfaces.jpg Graphic file (type jpg)
 
 <use ../results/Q1B_PCA_Eigenfaces.jpg>
 Package pdftex.def Info: ../results/Q1B_PCA_Eigenfaces.jpg used on input line 1
-57.
+58.
 (pdftex.def)             Requested size: 248.42812pt x 86.89627pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 157--158
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 158--159
  [][] 
  []
+
+
+LaTeX Warning: Citation `Complex' on page 2 undefined on input line 165.
+
+
+LaTeX Warning: Reference `tab:times1' on page 2 undefined on input line 165.
 
 [2 <../results/Q1A_PCA_Eigenvalues.jpg> <../results/Q1A_PCA_Eigenfaces.jpg> <..
 /results/Q1A_PCA_Mean.jpg> <../results/Q1B_PCA_Eigenvalues.jpg> <../results/Q1B
 _PCA_Eigenfaces.jpg>]
-<../results/Train1_reco.jpg, id=61, 2569.6pt x 809.0225pt>
+
+LaTeX Warning: Reference `sec:ata' on page 3 undefined on input line 185.
+
+<../results/Train1_reco.jpg, id=49, 2569.6pt x 809.0225pt>
 File: ../results/Train1_reco.jpg Graphic file (type jpg)
 
 <use ../results/Train1_reco.jpg>
-Package pdftex.def Info: ../results/Train1_reco.jpg used on input line 190.
+Package pdftex.def Info: ../results/Train1_reco.jpg used on input line 191.
 (pdftex.def)             Requested size: 248.42812pt x 78.21585pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 190--191
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 191--192
  [] 
  []
 
-<../results/Test1_reco.jpg, id=62, 2569.6pt x 809.0225pt>
+<../results/Test1_reco.jpg, id=50, 2569.6pt x 809.0225pt>
 File: ../results/Test1_reco.jpg Graphic file (type jpg)
 
 <use ../results/Test1_reco.jpg>
-Package pdftex.def Info: ../results/Test1_reco.jpg used on input line 194.
+Package pdftex.def Info: ../results/Test1_reco.jpg used on input line 195.
 (pdftex.def)             Requested size: 248.42812pt x 78.21585pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 194--195
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 195--196
  [][] 
  []
 
-<../results/Test2_reco.jpg, id=67, 2569.6pt x 809.0225pt>
+
+LaTeX Warning: Reference `fig:RecoTrain1' on page 3 undefined on input line 202
+.
+
+
+LaTeX Warning: Reference `fig:RecoTest1' on page 3 undefined on input line 202.
+
+
+
+LaTeX Warning: Reference `fig:RecoTest2' on page 3 undefined on input line 202.
+
+
+
+LaTeX Warning: Reference `tab:RecoError' on page 3 undefined on input line 202.
+
+
+<../results/Test2_reco.jpg, id=51, 2569.6pt x 809.0225pt>
 File: ../results/Test2_reco.jpg Graphic file (type jpg)
 
 <use ../results/Test2_reco.jpg>
-Package pdftex.def Info: ../results/Test2_reco.jpg used on input line 206.
+Package pdftex.def Info: ../results/Test2_reco.jpg used on input line 207.
 (pdftex.def)             Requested size: 248.42812pt x 78.21585pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 206--207
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 207--208
  [] 
  []
 
 
-Overfull \hbox (22.14195pt too wide) in paragraph at lines 215--244
+Overfull \hbox (22.14195pt too wide) in paragraph at lines 216--245
  [] 
  []
 
-<../results/DistMeasure.jpg, id=68, 2569.6pt x 1405.25pt>
+<../results/DistMeasure.jpg, id=52, 2569.6pt x 1405.25pt>
 File: ../results/DistMeasure.jpg Graphic file (type jpg)
 
 <use ../results/DistMeasure.jpg>
-Package pdftex.def Info: ../results/DistMeasure.jpg used on input line 257.
+Package pdftex.def Info: ../results/DistMeasure.jpg used on input line 258.
 (pdftex.def)             Requested size: 248.42812pt x 135.8588pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 257--258
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 258--259
  [] 
  []
+
+
+LaTeX Warning: Reference `fig:RecoTrain1' on page 3 undefined on input line 264
+.
+
+
+LaTeX Warning: Reference `fig:RecoTest1' on page 3 undefined on input line 264.
+
+
+
+LaTeX Warning: Reference `fig:RecoTest2' on page 3 undefined on input line 264.
+
+
+
+LaTeX Warning: Reference `tab:RecoError' on page 3 undefined on input line 264.
+
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3 <../results/Train1_reco.jpg> <../results/Test1_reco.jpg> <../results/Test2_
 reco.jpg> <../results/DistMeasure.jpg>]
-Underfull \hbox (badness 1057) in paragraph at lines 265--266
+
+LaTeX Warning: Reference `tab:RecoError' on page 4 undefined on input line 266.
+
+
+
+Underfull \hbox (badness 1057) in paragraph at lines 266--267
 \OT1/ptm/m/n/10 a monotonous trend. As we in-crease the num-ber of
  []
 
 No file Report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 289.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 290.
 [4
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 289.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 290.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 289.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 289.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 289.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 290.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 290.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 290.
  ) 
 Here is how much of TeX's memory you used:
- 6460 strings out of 493014
- 93496 string characters out of 6133351
- 184850 words of memory out of 5000000
- 9847 multiletter control sequences out of 15000+600000
- 30947 words of font info for 79 fonts, out of 8000000 for 9000
+ 6629 strings out of 493014
+ 95602 string characters out of 6133351
+ 191472 words of memory out of 5000000
+ 10011 multiletter control sequences out of 15000+600000
+ 31260 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,9n,26p,887b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,9n,26p,884b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -552,10 +641,10 @@ texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/t
 imes/utmri8a.pfb>
-Output written on Report.pdf (4 pages, 1434162 bytes).
+Output written on Report.pdf (4 pages, 1435833 bytes).
 PDF statistics:
- 152 PDF objects out of 1000 (max. 8388607)
- 120 compressed objects within 2 object streams
+ 131 PDF objects out of 1000 (max. 8388607)
+ 100 compressed objects within 1 object stream
  34 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
