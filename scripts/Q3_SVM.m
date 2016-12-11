@@ -18,6 +18,7 @@ load face.mat
 
 class = ones(1,416);
 trainingClassSize = 8; %number of faces per class in training data
+testingClassSize = 2;
 numClasses = size(training, 2)/trainingClassSize;
 
 for i = 1:numClasses
@@ -80,6 +81,7 @@ for i = 1:16
         conf1(i) = 1;
     end
 end
+
 TrainCorrectness = correct*100/16;
 figure(1)
 plotconfusion(confTrain,conf1,'Confusion Matrix of Training Data')
