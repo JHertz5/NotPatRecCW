@@ -25,7 +25,7 @@ trainFaceIdx = 1; %index of a face from training set to be reconstructed
 
 reconstructedFace = meanFace;
 for n = 1:numEigs
-     reconstructedFace = reconstructedFace + projections(n,trainFaceIdx)*V(:,n);
+     reconstructedFace = reconstructedFace + projections(n,trainFaceIdx)*eigVecs_best(:,n);
 end
 
 %% Plot for comparison

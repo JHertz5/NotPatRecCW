@@ -20,11 +20,10 @@ V = fliplr(V);
 
 numEigs = 150;
 testingIdx = 20;
-trainFaceIdx = 2;
 
 %% Reconstruction
 
- %index of a face from training set to be reconstructed
+trainFaceIdx = 2; %index of a face from training set to be reconstructed
 
 reconstructedFace = meanFace;
 for n = 1:numEigs
@@ -51,7 +50,7 @@ if (exist('showPlots', 'var') && showPlots == true)
     colormap gray
     shading interp
     title('Original Face','fontsize',20)
-%     
+  
     subplot(1,2,2)
     h = pcolor(RecoFace);
     set(h,'edgecolor','none');
