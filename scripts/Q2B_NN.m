@@ -149,3 +149,18 @@ if (exist('showPlots', 'var') && showPlots == true)
     set(gca,'XtickLabel',[],'YtickLabel',[]);
 
 end
+
+%% Plot confusion matrix
+
+numClasses = size(training, 2)/trainingClassSize;
+numTests = size(accuracyVector, 2);
+
+confusion_groundTruth = zeros(numClasses, numTests);
+confusion_resultsData = zeros(numClasses, numTests);
+
+for i = 1:numTests
+    confusion_groundTruth(classAssignment_ideal(i), i) = true;
+    confusion_resultsData(classAssignment_real(i), i) = true;
+end
+
+%plotconfusion(confusion_groundTruth, confusion_resultsData)
