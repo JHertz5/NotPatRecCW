@@ -2,7 +2,7 @@
 % clean up
 clc
 close all
-%clear all
+clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -49,8 +49,8 @@ faceCov = (trainingNorm*trainingNorm');%/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
-
 eigVals = diag(D); % move D into an array
+
 t_done1 = toc()
 
 %% plot eig vals
