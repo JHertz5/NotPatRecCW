@@ -1,4 +1,4 @@
-function [assignedClass scores] = OVASVM(testingImage, testLabel, training)
+function [assignedClass] = OVASVM(testingImage, testLabel, training)
 
 scores = zeros(52,1);
 
