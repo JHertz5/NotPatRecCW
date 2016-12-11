@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage[super]{nth}
-\setlength{\textfloatsep}{5pt}
+\setlength{\intextsep}{5pt}
 
 % Include other packages here, before hyperref.
 
@@ -117,16 +117,10 @@ It can be seen that first 415 values are much greater than 1. The \nth{416} valu
 
   \caption{Mean Face from {\tt\small training} \label{fig:Mean}}
 
-
-\centering
-\includegraphics[width=0.5\textwidth]{../results/Q2A_PCA_Reco}
-
-  \caption{Comparison of Reconstruted Images: Original Image, 20 Eigenfaces, 50 Eigenfaces, 80 Eigenfaces \label{fig:Reco}}
-
 \end{figure}
 
 
-We have determined empirically that using just 80 out of 415 eigenvectors is suitable for facial recognition - Figure \ref{fig:Reco}. This constitutes a compromise between accuracy and performance, by reducing the problem dimensionality.
+The 95\% confidence bound would require us to use 121 eigenfaces. This constitutes a compromise between accuracy and performance, by reducing the problem dimensionality.
 \subsubsection{\boldmath$A^TA$} \label{sec:ata}
 Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvalues. Their plot in the  descending order in Figure \ref{fig:Eig3} proves the above claim.
 
@@ -168,11 +162,106 @@ However as we do it, we find that some of the images have inverted colours - i.e
 \subsubsection{Comparison}
 
 We know that the method presented in section \ref{sec:aat} is accurate. It is however more time consuming to calculate the eigenvectors of matrix with dimensions $2576 \times 2576$ rather than those of a $416 \times 416$ matrix. It is shown \cite{Complex} that eigenproblem complexity is bounded by $O(n^2log(n)+(nlog^2(n))log(b)$, where $b$ is a measure of accuracy in bits $2^{-b}$. However it should be noted that the eigenvectors of the second matrix are not what we are trying to calculate. Thus the latter method introduces an extra step. We have thus timed the full execution of both methods from implementing the {\tt\small eig} function to having a dataset with properly ordered eigenvectors. The results are shown in Table \ref{tab:times1} .
-INSERT TIMES HERE IN A TABLE
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c c||}
+\hline
+\bf Algorithm & \bf Time\\ [0.5ex]
+\hline
+ $AA^T$ & 3.59 sec\\ [0.5ex]
+\hline
+ $A^TA$ & 0.176 sec \\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+\caption{Computation Time for Both Algorithms} \label{tab:times1}
+\end{table}
 
 \section{Applications of Eigenfaces}
+\subsection{Face reconstruction}
 
+For the remainder of the work, the second algorithm (\ref{sec:ata}) has been used.
 
+Having determined the PCA bases we are now able to reconstruct faces. We expect that those from the training set will be reconstructed more accurately for any given number of PCA components.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.5\textwidth]{../results/Train1_reco}
+
+  \caption{Reconstruction of a Training Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTrain1}}
+  
+  \includegraphics[width=0.5\textwidth]{../results/Test1_reco}
+
+  \caption{Reconstruction of a Test Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest1}}
+
+\end{center}
+\end{figure}
+
+The reconstruction errors measured as the Euclidean norm of the difference of two vectors: $Original Face$ and $Reconstructed Face$ of the images shown in Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} are presented in the Table \ref{tab:RecoError} below.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Test2_reco}
+
+  \caption{Reconstruction of a Test Face 2: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest2}}
+
+\end{center}
+\end{figure}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c c c||}
+\hline
+\bf Image & \bf Number of bases & \bf Reconstruction Error\\ [0.5ex]
+\hline \hline
+Training Face & 50 & 884.4740 \\ [0.5ex]
+\hline
+Training Face & 121 & 556.3322\\ [0.5ex]
+\hline
+Training Face & 180 & 347.7328\\ [0.5ex]
+\hline
+Training Face & 400 & 18.1174\\ [0.5ex]
+\hline \hline
+Test Face 1 & 50 & 864.7057\\ [0.5ex]
+\hline
+Test Face 1 & 121 & 721.7824\\ [0.5ex]
+\hline
+Test Face 1 & 180 & 676.7093\\ [0.5ex]
+\hline
+Test Face 1 & 400 & 582.9752\\ [0.5ex]
+\hline \hline
+Test Face 2 & 50 & 816.2902\\ [0.5ex]
+\hline
+Test Face 2 & 121 & 649.3541\\ [0.5ex]
+\hline
+Test Face 2 & 180 & 575.2193\\ [0.5ex]
+\hline
+Test Face 2 & 400 & 474.1061\\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+\caption{Reconstruction error for various images and number of PCA bases} \label{tab:RecoError}
+\end{table}
+
+Additionally, we can determine the distortion measure of the reconstruction. For any given number of PCA bases, the distortion measure will be the same for any image from the same training set. The distortion measure has been calculated as:
+%\begin{equation}
+$J = \sum_{n=M+1}^{D} \lambda_n$
+%\end{equation}
+, where M represents number of PCA bases used to reconstruct the image and D it the total number of eigenfaces. It should also be noted that the eigenvalues are ordered in the descending order s.t. $\lambda_1 > \lambda_2 > ... > \lambda_{M+1} > ... > \lambda_D$.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/DistMeasure}
+
+  \caption{Distrtion Measure for varying number of PCA bases \label{fig:DistMeasure}}
+
+\end{center}
+\end{figure}
+
+The test results shown in Table \ref{tab:RecoError} show as expected a monotonous trend. As we increase the number of eigenfaces the reconstruction error (or the D-dimensional distance between original and reconstructed images) decreases. We also observe that both face images from the {\tt\small testing} set produce larger errors than the face from {\tt\small training} set for larger amount of PCA bases. The reconstruction error of the training faces can actually reach zero, when we use all of 415 eigenfaces. This however cannot be said about the test faces.
 
 \section{DAYYYUUM}
 
