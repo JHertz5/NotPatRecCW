@@ -3,7 +3,7 @@
 
 % clean up
 clc
-%close all
+close all
 clear all
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -16,7 +16,7 @@ load Separated_Data.mat
 load Q1B_Eigen
 V = fliplr(V);
 
-numEigs = 180;
+numEigs = 400;
 testingIdx = 20;
 trainFaceIdx = 2;
 %% Calculate wn = [an1 an2 ... anM]', ani = normFace_n'*ui
@@ -121,5 +121,5 @@ else
     fprintf('No plots because showPlots != true\n')
 end
 
-% compare each wn with w_test to find min error -> resulting in
-% indentification
+
+ReconstructionError = norm(testing(:,testingIdx)-reconstructedFace2)

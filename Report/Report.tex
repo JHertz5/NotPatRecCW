@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{float}
 \usepackage[super]{nth}
-\setlength{\textfloatsep}{5pt}
+\setlength{\intextsep}{5pt}
 
 % Include other packages here, before hyperref.
 
@@ -41,7 +41,7 @@ EEE4\\
 % To save space, use either the email address or home page, not both
 \and
 Jacobus Jukka Hertzog\\
-CID: \\
+CID: 00828711\\
 EEE4\\
 {\tt\small jjh13@ic.ac.uk}
 }
@@ -178,8 +178,6 @@ We know that the method presented in section \ref{sec:aat} is accurate. It is ho
 \caption{Computation Time for Both Algorithms} \label{tab:times1}
 \end{table}
 
-PERHAPS ADD MEMORY INFORMATION
-
 \section{Applications of Eigenfaces}
 \subsection{Face reconstruction}
 
@@ -191,15 +189,79 @@ Having determined the PCA bases we are now able to reconstruct faces. We expect 
 \begin{center}
 \includegraphics[width=0.5\textwidth]{../results/Train1_reco}
 
-  \caption{Reconstruction of a Training Face: Orginal, 50 bases, 121 bases, 180 bases \label{fig:RecoTrain1}}
+  \caption{Reconstruction of a Training Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTrain1}}
   
   \includegraphics[width=0.5\textwidth]{../results/Test1_reco}
 
-  \caption{Reconstruction of a Test Face: Orginal, 50 bases, 121 bases, 180 bases \label{fig:RecoTest1}}
+  \caption{Reconstruction of a Test Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest1}}
 
 \end{center}
 \end{figure}
 
+The reconstruction errors measured as the Euclidean norm of the difference of two vectors: $Original Face$ and $Reconstructed Face$ of the images shown in Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} are presented in the Table \ref{tab:RecoError} below.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Test2_reco}
+
+  \caption{Reconstruction of a Test Face 2: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest2}}
+
+\end{center}
+\end{figure}
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c c c||}
+\hline
+\bf Image & \bf Number of bases & \bf Reconstruction Error\\ [0.5ex]
+\hline \hline
+Training Face & 50 & 884.4740 \\ [0.5ex]
+\hline
+Training Face & 121 & 556.3322\\ [0.5ex]
+\hline
+Training Face & 180 & 347.7328\\ [0.5ex]
+\hline
+Training Face & 400 & 18.1174\\ [0.5ex]
+\hline \hline
+Test Face 1 & 50 & 864.7057\\ [0.5ex]
+\hline
+Test Face 1 & 121 & 721.7824\\ [0.5ex]
+\hline
+Test Face 1 & 180 & 676.7093\\ [0.5ex]
+\hline
+Test Face 1 & 400 & 582.9752\\ [0.5ex]
+\hline \hline
+Test Face 2 & 50 & 816.2902\\ [0.5ex]
+\hline
+Test Face 2 & 121 & 649.3541\\ [0.5ex]
+\hline
+Test Face 2 & 180 & 575.2193\\ [0.5ex]
+\hline
+Test Face 2 & 400 & 474.1061\\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+\caption{Reconstruction error for various images and number of PCA bases} \label{tab:RecoError}
+\end{table}
+
+Additionally, we can determine the distortion measure of the reconstruction. For any given number of PCA bases, the distortion measure will be the same for any image from the same training set. The distortion measure has been calculated as:
+%\begin{equation}
+$J = \sum_{n=M+1}^{D} \lambda_n$
+%\end{equation}
+, where M represents number of PCA bases used to reconstruct the image and D it the total number of eigenfaces. It should also be noted that the eigenvalues are ordered in the descending order s.t. $\lambda_1 > \lambda_2 > ... > \lambda_{M+1} > ... > \lambda_D$.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/DistMeasure}
+
+  \caption{Distrtion Measure for varying number of PCA bases \label{fig:DistMeasure}}
+
+\end{center}
+\end{figure}
+
+The test results shown in Table \ref{tab:RecoError} show as expected a monotonous trend. As we increase the number of eigenfaces the reconstruction error (or the D-dimensional distance between original and reconstructed images) decreases. We also observe that both face images from the {\tt\small testing} set produce larger errors than the face from {\tt\small training} set for larger amount of PCA bases. The reconstruction error of the training faces can actually reach zero, when we use all of 415 eigenfaces. This however cannot be said about the test faces.
 
 \section{DAYYYUUM}
 
