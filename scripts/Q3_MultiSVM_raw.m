@@ -23,8 +23,7 @@ end
 load Separated_Data.mat
 load face.mat
 
-%% Set test parameter
-%testImageIndex = 31; % <- the only user variable here
+%% Set test loop
 
 numClasses = size(testing, 2)/2;
 accuracyVector = zeros(1, size(testing, 2), 'logical');
