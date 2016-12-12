@@ -51,10 +51,10 @@ for testClassIndex = 1:numClasses
     testingImage2 = testingProjections(:,  (testClassIndex-1)*2+2)';
     
     %% Compute One vs One SVM with my function
-    [class1] = OVOSVM(testingImage1,trainingProjections);
-    [class2] = OVOSVM(testingImage2,trainingProjections);
-    %[class1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
-    %[class2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
+    [classAssignment1] = OVOSVM(testingImage1,trainingProjections);
+    [classAssignment2] = OVOSVM(testingImage2,trainingProjections);
+    %[classAssignment1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
+    %[classAssignment2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
     
     if classAssignment1 == testClassIndex
         fprintf('Class %i - First image recognised correctly!\n', testClassIndex);
