@@ -1,7 +1,6 @@
 \documentclass[10pt,twocolumn,letterpaper]{article}
 
 \usepackage{cvpr}
-\usepackage{xfrac}
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{graphicx}
@@ -11,8 +10,6 @@
 \usepackage{float}
 \usepackage[super]{nth}
 \setlength{\intextsep}{5pt}
-\usepackage[nodisplayskipstretch]{setspace}
-\setstretch{1}
 
 % Include other packages here, before hyperref.
 
@@ -135,11 +132,10 @@ Alternatively as suggested earlier we could compute a covariance matrix $S_T = \
   \caption{Eignevalues of $S_T$ \label{fig:Eig3}}
 
 \end{figure}
-\setlength{\belowdisplayshortskip}{0pt}
-\setlength{\abovedisplayshortskip}{0pt}
+
 Figure \ref{fig:Eig3} allows to to deduce that the \nth{416} value is actually zero. If it was non-zero the two methods of calculating a covariance matrix would result in very tiny, yet identical values. However the first method resulted in eigenvalue 416 being equal to $2.3 \times 10^{-10}$, whereas the second method gave a value of $-1.9 \times 10^{-12}$.
 
-We know however that eigenvectors will be different and therefore more computation is required to find the eigenfaces. Starting from:
+We know however that eigenvectors will be different and therefore more computation is required to find the eigenfaces. Starting from the well-known equation:
 
 \begin{equation}
 A^TAx = \lambda x
@@ -153,16 +149,9 @@ AA^T(Ax) = \lambda (Ax)
 
 We deduce that the eigenvectors of $AA^T$ are $u_i = Ax_i, \forall \lambda_i \neq 0$, where $x_i$ is the i$^{th}$ eigenvector of $A^TA$. Having thus calculated $x_i$, we must multiply each of the vectors by the original zero-mean matrix {\tt\small training} in order to obtain eigenfaces.
 
-However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. using Singular Vector Decomposition for any two matrices $AA^T$ and $A^TA$ we can show that:
-
-\begin{equation}
-Av_i = \sigma_i u_i
-\end{equation}
-
-, where $u_i$ and $v_i$ are the eigenvectors of the two matrices respectively and $\sigma_i$ is the square root of the corresponding eigenvalue. Thus having found $v_i$ we can calculate $u_i = \sfrac{Av_i}{\sigma_i}$. Given that $\sigma_i > 0  \forall i$, $Av_i$ has the effect of reversing the direction of some eigenvectors.
-%This is however not an issue, e.g. vectors $x= \begin{bmatrix}
-%1&1 \end{bmatrix} $ and $y= \begin{bmatrix}
-%-1&-1 \end{bmatrix} $ are parallel. The best 3 eigenfaces are shown in Figure \ref{fig:Eig4} . Note the direction reversal in the middle image.
+\hl{However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. We have tried explaining that using Singular Vector Decomposition, however there is no mathematical reason for this behaviour. We believe that the MATLAB {\tt\small eig} function causes this reversal.} This is however not an issue, e.g. vectors $x= \begin{bmatrix}
+1&1 \end{bmatrix} $ and $y= \begin{bmatrix}
+-1&-1 \end{bmatrix} $ are parallel. The best 3 eigenfaces are shown in Figure \ref{fig:Eig4} . Note the direction reversal in the middle image.
 
 \begin{figure}[H]
 \centering
@@ -207,14 +196,20 @@ Having determined the PCA bases we are now able to reconstruct faces. We expect 
 
   \caption{Reconstruction of a Test Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest1}}
 
+\end{center}
+\end{figure}
+
+The reconstruction errors measured as the Euclidean norm of the difference of two vectors: $Original Face$ and $Reconstructed Face$ of the images shown in Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} are presented in the Table \ref{tab:RecoError} below.
+
+\begin{figure}[H]
+\begin{center}
+  
     \includegraphics[width=0.5\textwidth]{../results/Test2_reco}
 
   \caption{Reconstruction of a Test Face 2: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest2}}
 
 \end{center}
 \end{figure}
-
-The reconstruction errors measured as the Euclidean norm of the difference of two vectors: $Original Face$ and $Reconstructed Face$ of the images shown in Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} are presented in the Table \ref{tab:RecoError} below.
 
 \begin{table}[H]
 \begin{center}
@@ -280,20 +275,54 @@ e = min_n ||\omega - \omega_n||,\quad n = 1,...,N
 \end{equation}
 where $\omega$ is the projection of the new image onto the eigenspace, $\omega_n$ is the projection of the training vector $x_n$ and $N$ is the number of training vectors.
 
+Using this method, each testing vector was classified. With the optimum parameter selection, the classification was successful in $70.1293\%$, and testing images were assigned to the correct class, as shown in Figure \ref{fig:Q2B_NN_success}. However, there were limitations to the classifier. This method works only on how similar the testing image is to one other image, so it is easily fooled by pictures from incorrect classes with similar lighting, or testing images that have a particular difference from the training data, i.e. the removal of the glasses in the failure example in Figure \ref{fig:Q2B_NN_failure}.
+
 \begin{figure}[H]
 \begin{center}
   
-    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_examples}
+    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_success}
 
-  \caption{Examples of a successful classification and a failed classification: Successfully Classified Testing Face, Example from Assigned Class, Unsuccessfully Classified Testing Face, Example from Assigned Class,  \label{fig:Q2B_NN_examples}}
+  \caption{Example of a successful classification: Testing Face, Example from Assigned Class \label{fig:Q2B_NN_success}}
 
 \end{center}
 \end{figure}
 
-Using this method, each testing vector was classified. In $70.1293\%$, the classification was successful and testing images were assigned to the correct class. This method is classification works only on how similar the testing image is to another similar image, so it is easily fooled by incorrect pictures with similar lighting, or testing images that have a particular difference from the training data, i.e. the removal of the glasses in the failure example in Figure \ref{fig:Q2B_NN_examples}.
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_failure}
 
+  \caption{Example of a failed classification: Testing Face, Example from Assigned Class \label{fig:Q2B_NN_failure}}
 
+\end{center}
+\end{figure}
 
+Varying the number of eigenvectors used to project vectors onto the eigenspace causes the execution time and success rate of the classifier to change, as can be seen in Table  \ref{fig:Q2B_NN_success}. It can be clearly seen that as the number of eigenvectors increases, the execution time increases, while the success percentage peaks when the number of eigenvectors is 150.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c c c||}
+\hline
+\bf Num. Eigenvectors & \bf Execution Time /sec & \bf Success \%\\ [0.5ex]
+\hline \hline
+50 & 0.227370 & 63.4615 \\ [0.5ex]
+\hline
+100 & 0.232730 & 68.2692 \\ [0.5ex]
+\hline
+125 & 0.241029 & 69.2308 \\ [0.5ex]
+\hline
+150 & 0.245756 & 70.1923 \\ [0.5ex]
+\hline
+175 & 0.263097 & 69.2308 \\ [0.5ex]
+\hline
+200 & 0.292893 & 69.2308 \\ [0.5ex]
+\hline
+250 & 0.357959 & 68.2692 \\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+\caption{Execution time and success percentage for Nearest Neighbour Classifier with different numbers of eigenvalues} \label{tab:NN_table}
+\end{table}
 
 \section{Multi-Class SVM}
 
