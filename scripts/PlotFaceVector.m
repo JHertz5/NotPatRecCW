@@ -12,7 +12,6 @@ for i = 1:faceWidth %extract image one line at a time
 end
 
 if plotNow
-    figure
     h = pcolor(faceMatrix);
     set(h,'edgecolor','none');
     colormap gray

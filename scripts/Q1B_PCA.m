@@ -2,7 +2,7 @@
 % clean up
 clc
 close all
-clear all
+%clear all
 
 if contains(pwd, 'NotPatRecCW')
     dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
@@ -27,16 +27,17 @@ meanFace_matrix = zeros(faceH, faceW, 'double');
 % plot mean face
 if (exist('showPlots', 'var') && showPlots == true)
     figure(1)
-    for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)*faceH + 1;
-        lineEnd = i*faceH;
-        meanFace_matrix(1:faceH,i) = rot90(meanFace(lineStart:lineEnd), 2);
-    end
-    
-    h = pcolor(meanFace_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
+%     for i = 1:faceW %extract image one line at a time
+%         lineStart = (i-1)*faceH + 1;
+%         lineEnd = i*faceH;
+%         meanFace_matrix(1:faceH,i) = rot90(meanFace(lineStart:lineEnd), 2);
+%     end
+%     
+%     h = pcolor(meanFace_matrix);
+%     set(h,'edgecolor','none');
+%     colormap gray
+%     shading interp
+    PlotFaceVector(faceW, faceH, meanFace(:), true);
     title('Average Face','fontsize',20)
 end
 
@@ -106,17 +107,18 @@ eigFace = zeros(faceH, faceW, 3, 'double');
 if (exist('showPlots', 'var') && showPlots == true)
     figure(3)
     for j = 1:3
-        for i = 1:faceW %extract image one line at a time
-            lineStart = (i-1)* faceH + 1;
-            lineEnd = i*faceH;
-            eigFace(1:faceH,i,j) = rot90(eigVecs_best(lineStart:lineEnd,j), 2);
-        end
+%         for i = 1:faceW %extract image one line at a time
+%             lineStart = (i-1)* faceH + 1;
+%             lineEnd = i*faceH;
+%             eigFace(1:faceH,i,j) = rot90(eigVecs_best(lineStart:lineEnd,j), 2);
+%         end
         subplot(1,3,j)
-        h = pcolor(eigFace(:,:,j));
-        set(h,'edgecolor','none');
-        colormap gray
-        shading interp
-        set(findobj(gcf, 'type','axes'), 'Visible','off')
+        PlotFaceVector(faceW, faceH, eigVecs_best(:, j), true);
+%         h = pcolor(eigFace(:,:,j));
+%         set(h,'edgecolor','none');
+%         colormap gray
+%         shading interp
+%         set(findobj(gcf, 'type','axes'), 'Visible','off')
     end
 else
     %fprintf('No plots because showPlots != true\n')
