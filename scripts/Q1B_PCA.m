@@ -83,7 +83,7 @@ eigVecsB_best = V(:,bestIdxList); % extract best M eigenvectors
 eigVecs_best = trainingNorm*eigVecsB_best;
 %normalise face vectors
 for i=1:numEigs
-   eigVecs_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
+   eigVecsC_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
 end
 
 %% Find trainingProjections for each normalised training face

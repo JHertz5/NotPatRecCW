@@ -333,15 +333,14 @@ The Support Vector Machine in the simple form supports binary classification of 
 \subsection{One-versus-one SVM}
 For $C$ number of classes, one-versus-one SVM technique requires $T = \sfrac{(C-1)}{2}\times C$ trainings and testings as we want to compare each pair of classes and run the test image past the resulting kernels. It can be seen already that this method is computationally expensive. In our case $C=52$ and so $T = 1325$.
 
-The test image is passed through all 1325 kernels. Each kernel will assign the image to class $j$ or $i$, $1<j<C \quad j<i<C+1$. Those are called votes. For instance if we input an image of class 3, we expect (ideally) that all 51 kernels which are based on class 3 will result  in $3$ being assigned to the image. We then expect that all other kernels will 'randomly' assign other classes, thus making class 3 the highest voted class.
+The test image is passed through all 1325 kernels. Each kernel will assign the image to class $j$ or $i$, $1<j<C \quad j<i<C+1$. Those are called votes. For instance if we input an image of class 3, we expect (ideally) that all 51 kernels which are based on class 3 will result  in $3$ being assigned to the image. We then expect that all other kernels will 'randomly' assign other classes, thus making class 3 the highest voted class.\\
 RESULTS GO HERE\\
 RESULTS GO HERE
  
 \subsection{One-versus-all SVM}
 A faster method of performing the multiclass SVM classification is to employ the one-versus-all SVM method. Instead of creating 1325 kernels, we only require 52. By taking class $j$ as one part of the kernel, the OVASVM algorithm essentially assumes that the remaining $C-1$ classes are just one class. That way we can examine if the image belongs to class $j$ or the rest. Ideally OVASVM should result in +1 being outputted just once. This assumption could allow us to, on average, halve the computation time, as we wouldn't have to check other kernels if we have found the correct class early on. 
 
-However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM.
-
+However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM. Using the LibSVM library we do it by inserting the {\tt\small -wi} flag.
 \begin{figure}[H]
 \begin{center}
   
