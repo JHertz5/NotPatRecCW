@@ -12,7 +12,7 @@ close all
 clc
 
 if contains(pwd, 'NotPatRecCW')
-    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+    dataPath = regexprep(pwd, 'NotPatRecCW', 'NotPatRecCW/data');
     addpath(char(dataPath));
 else
     fprintf('Move to NotPatRecCW directory\n');
