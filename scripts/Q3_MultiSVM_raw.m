@@ -23,24 +23,35 @@ end
 load Separated_Data.mat
 load face.mat
 
-%% Set test parameter
-testImage = 31; % <- the only user variable here
+%% Set test loop
 
-testingImage1 = testing(:,(testImage-1)*2+1)';
-testingImage2 = testing(:,(testImage-1)*2+2)';
+numClasses = size(testing, 2)/2;
+accuracyVector = zeros(1, size(testing, 2), 'logical');
 
-%% Compute One vs One SVM with my function
-[class1] = OVOSVM(testingImage1,training);
-[class2] = OVOSVM(testingImage2,training);
-
-if class1 == testImage
-    fprintf('First image recognised correctly!\n');
-else
-    fprintf('First image not recognised...\n');
-end
-
-if class2 == testImage
-    fprintf('Second image recognised correctly!\n');
-else
-    fprintf('Second image not recognised...\n');
+for testClassIndex = 1:numClasses
+    
+    testingImage1 = testing(:, (testClassIndex-1)*2+1)';
+    testingImage2 = testing(:,  (testClassIndex-1)*2+2)';
+    
+    %% Compute One vs One SVM with my function
+    %[classAssignment1] = OVOSVM(testingImage1,training);
+    %[classAssignment2] = OVOSVM(testingImage2,training);
+    [classAssignment1] = OVASVM(testingImage1, testClassIndex, training);
+    [classAssignment2] = OVASVM(testingImage2, testClassIndex, training);
+    
+    if classAssignment1 == testClassIndex
+        fprintf('Class %i - First image recognised correctly!\n', testClassIndex);
+        accuracyVector(testClassIndex*2) = true;
+    else
+        fprintf('Class %i - First image not recognised\n', testClassIndex);
+        accuracyVector(testClassIndex*2) = false;
+    end
+    
+    if classAssignment2 == testClassIndex
+        fprintf('Class %i - Second image recognised correctly!\n', testClassIndex);
+        accuracyVector(testClassIndex*2 + 1) = true;
+    else
+        fprintf('Class %i - image not recognised\n', testClassIndex);
+        accuracyVector(testClassIndex*2 + 1) = false;
+    end
 end

@@ -43,7 +43,6 @@ end
 %% Do math and all
 
 % Calculate Covariance Matrix
-tic;
 N = size(trainingNorm, 2);
 faceCov = (trainingNorm'*trainingNorm);
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
@@ -81,12 +80,10 @@ eigVecsB_best = V(:,bestIdxList); % extract best M eigenvectors
 % A'A and AA' have the same eigenvalues
 
 eigVecs_best = trainingNorm*eigVecsB_best;
-t2 = toc
 %normalise face vectors
 for i=1:numEigs
    eigVecs_best(:,i) = eigVecs_best(:,i) /sqrt(eigVals_best(i));
 end
-t_done2 = toc
 
 %% Find trainingProjections for each normalised training face
 
@@ -122,7 +119,7 @@ if (exist('showPlots', 'var') && showPlots == true)
         set(findobj(gcf, 'type','axes'), 'Visible','off')
     end
 else
-    fprintf('No plots because showPlots != true\n')
+    %fprintf('No plots because showPlots != true\n')
 end
 
 %% Save data

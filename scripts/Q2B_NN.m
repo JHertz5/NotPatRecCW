@@ -60,7 +60,7 @@ for testingFaceIndex = 1:size(testingNorm,2)
             classAssignment_real(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
         end
     end
-    fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
+    %fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
 end
 
 
@@ -96,38 +96,34 @@ if (exist('showPlots', 'var') && showPlots == true)
     
     figure(1)
     
-    subplot(2,2,1)
+    subplot(1,4,1)
     h = pcolor(firstSuccessFace_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
-    ylabel('First Success Case')
-    xlabel('Testing Face')
+    %ylabel('First Success Case')
     set(gca,'XtickLabel',[],'YtickLabel',[]);
     
-    subplot(2,2,2)
+    subplot(1,4,2)
     h = pcolor(firstSuccessExample_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
-    xlabel('Assigned Class Example')
     set(gca,'XtickLabel',[],'YtickLabel',[]);
     
-    subplot(2,2,3)
+    subplot(1,4,3)
     h = pcolor(firstFailureFace_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
-    ylabel('First Failure Case')
-    xlabel('Testing Face')
+    %ylabel('First Failure Case')
     set(gca,'XtickLabel',[],'YtickLabel',[]);
     
-    subplot(2,2,4)
+    subplot(1,4,4)
     h = pcolor(firstFailureExample_matrix);
     set(h,'edgecolor','none');
     colormap gray
     shading interp
-    xlabel('Assigned Class Example')
     set(gca,'XtickLabel',[],'YtickLabel',[]);
 
 end
