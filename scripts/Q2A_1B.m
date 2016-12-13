@@ -32,32 +32,18 @@ end
 %% Plot for comparison
 
 faceW = 46; faceH = 56;
-OrigFace = zeros(faceH, faceW, 'double');
-RecoFace = zeros(faceH, faceW, 'double');
 
 if (exist('showPlots', 'var') && showPlots == true)
     figure(1)
-    for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)*faceH + 1;
-        lineEnd = i*faceH;
-        OrigFace(1:faceH,i) = rot90(training(lineStart:lineEnd,trainFaceIdx), 2);
-        RecoFace(1:faceH,i) = rot90(reconstructedFace(lineStart:lineEnd), 2);
-    end
-   subplot(1,2,1)
-    h = pcolor(OrigFace);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
+    
+    subplot(1,2,1)
+    PlotFaceVector(faceW, faceH, training(:,trainFaceIdx));
     title('Original Face','fontsize',20)
-  
+    
     subplot(1,2,2)
-    h = pcolor(RecoFace);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
+    PlotFaceVector(faceW, faceH, reconstructedFace(:));
     title(['Reconstructed Face with ' num2str(numEigs) ' eigenfaces'],'fontsize',20)
-    set(findobj(gcf, 'type','axes'), 'Visible','off')
-    %saveas(h,'Q2A_Reco_Train3_3.jpg')
+    
 else
     fprintf('No plots because showPlots != true\n')
 end

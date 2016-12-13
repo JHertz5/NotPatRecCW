@@ -60,7 +60,7 @@ for testingFaceIndex = 1:size(testingNorm,2)
             classAssignment_real(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
         end
     end
-    %fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
+    fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
 end
 
 
@@ -74,58 +74,26 @@ successPercentage = 100 * sum(accuracyVector, 2) / size(testingNorm, 2)
 if (exist('showPlots', 'var') && showPlots == true)
 
     faceW = 46; faceH = 56;
-    firstSuccessFace_matrix = zeros(faceH, faceW, 'double');
-    firstSuccessExample_matrix = zeros(faceH, faceW, 'double');
-    firstFailureFace_matrix = zeros(faceH, faceW, 'double');
-    firstFailureExample_matrix = zeros(faceH, faceW, 'double');
-
+    
     firstSuccessIndex = find(accuracyVector == true, 1);
     firstSuccessClassIndex = classAssignment_real(firstSuccessIndex);
     firstFailureIndex = find(accuracyVector == false, 1);
     firstFailureClassIndex = classAssignment_real(firstFailureIndex);
-
-    for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)*faceH + 1;
-        lineEnd = i*faceH;
-        
-        firstSuccessFace_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd), firstSuccessIndex), 2);
-        firstSuccessExample_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), firstSuccessClassIndex), 2);
-        firstFailureFace_matrix(1:faceH,i) = rot90(testing((lineStart:lineEnd), firstFailureIndex), 2);
-        firstFailureExample_matrix(1:faceH,i) = rot90(training((lineStart:lineEnd), firstFailureClassIndex), 2);
-    end
     
     figure(1)
     
     subplot(1,4,1)
-    h = pcolor(firstSuccessFace_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    %ylabel('First Success Case')
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    PlotFaceVector(faceW, faceH, testing(:, firstSuccessIndex));
     
     subplot(1,4,2)
-    h = pcolor(firstSuccessExample_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    PlotFaceVector(faceW, faceH, training(:, firstSuccessClassIndex));
     
     subplot(1,4,3)
-    h = pcolor(firstFailureFace_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    %ylabel('First Failure Case')
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
+    PlotFaceVector(faceW, faceH, testing(:, firstFailureIndex));
     
     subplot(1,4,4)
-    h = pcolor(firstFailureExample_matrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
-
+    PlotFaceVector(faceW, faceH, training(:, firstFailureClassIndex));
+    
 end
 
 %% Plot confusion matrix

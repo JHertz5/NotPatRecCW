@@ -1,4 +1,4 @@
-function [faceMatrix] = PlotFaceVector( faceWidth, faceHeight, faceVector, plotNow )
+function [faceMatrix] = PlotFaceVector( faceWidth, faceHeight, faceVector )
 %Function to plot a face vector
 
 faceMatrix = zeros(faceHeight, faceWidth, 'double');
@@ -11,13 +11,12 @@ for i = 1:faceWidth %extract image one line at a time
     
 end
 
-if plotNow
-    h = pcolor(faceMatrix);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
-    %ylabel('First Success Case')
-    set(gca,'XtickLabel',[],'YtickLabel',[]);
-end
+h = pcolor(faceMatrix);
+set(h,'edgecolor','none');
+colormap gray
+shading interp
+%ylabel('First Success Case')
+set(gca,'XtickLabel',[],'YtickLabel',[]);
+
 
 end
