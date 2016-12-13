@@ -7,10 +7,10 @@ close all
 %clear all
 
 if contains(pwd, 'NotPatRecCW')
-    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+    dataPath = regexprep(pwd, 'NotPatRecCW', 'NotPatRecCW/data');
     addpath(char(dataPath));
 else
-    printf('Move to NotPatRecCW directory\n');
+    fprintf('Move to NotPatRecCW directory\n');
 end
 
 load Separated_Data.mat
@@ -29,32 +29,18 @@ end
 %% Plot for comparison
 
 faceW = 46; faceH = 56;
-origFace = zeros(faceH, faceW, 'double');
-recoFace = zeros(faceH, faceW, 'double');
 
 if (exist('showPlots', 'var') && showPlots == true)
     figure(1)
-    for i = 1:faceW %extract image one line at a time
-        lineStart = (i-1)*faceH + 1;
-        lineEnd = i*faceH;
-        origFace(1:faceH,i) = rot90(training(lineStart:lineEnd,trainFaceIdx), 2);
-        recoFace(1:faceH,i) = rot90(reconstructedFace(lineStart:lineEnd), 2);
-    end
     
     subplot(1,2,1)
-    h = pcolor(origFace);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
+    PlotFaceVector(faceW, faceH, training(:,trainFaceIdx));
     title('Original Face','fontsize',20)
     
     subplot(1,2,2)
-    h = pcolor(recoFace);
-    set(h,'edgecolor','none');
-    colormap gray
-    shading interp
+    PlotFaceVector(faceW, faceH, reconstructedFace(:));
     title(['Reconstructed Face with ' num2str(numEigs) ' eigenfaces'],'fontsize',20)
-    set(findobj(gcf, 'type','axes'), 'Visible','off')
+    
 else
     fprintf('No plots because showPlots != true\n')
 end

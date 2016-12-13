@@ -7,10 +7,10 @@ close all
 clc
 
 if contains(pwd, 'NotPatRecCW')
-    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data');
+    dataPath = regexprep(pwd, 'NotPatRecCW', 'NotPatRecCW/data');
     addpath(char(dataPath));
 else
-    printf('Move to NotPatRecCW directory\n');
+    fprintf('Move to NotPatRecCW directory\n');
 end
 
 load Separated_Data.mat
