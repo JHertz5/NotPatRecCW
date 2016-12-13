@@ -109,5 +109,5 @@ for i = 1:numTests
     confusion_resultsData(classAssignment_real(i), i) = true;
 end
 
-figure(2);
-plotconfusion(confusion_groundTruth, confusion_resultsData)
+figure
+PlotConfusionMatrix(confusion_groundTruth, confusion_resultsData);
