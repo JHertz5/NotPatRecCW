@@ -274,8 +274,67 @@ Similarly, we observe that the distortion is monotonously decreasing as we incre
 
 \subsection{Nearest Neighbour (NN) classification}
 
-\section{Multi-Class SVM}
+In order to perform the PCA-based face recognition, the Nearest Neighbour classification method was used. Having calculated the projections of each normalised training face onto the eigenspace, we could take a new image and classify it into a class. This was done by calculating the new image's projection onto the eigenspace, and compare it to the existing projections. The new image was given the class of the projection that it is closest to. The following classifier equation was used to acheive this:
+\begin{equation}
+e = min_n ||\omega - \omega_n||,\quad n = 1,...,N
+\end{equation}
+where $\omega$ is the projection of the new image onto the eigenspace, $\omega_n$ is the projection of the training vector $x_n$ and $N$ is the number of training vectors.
 
+Using this method, each testing vector was classified. With the optimum parameter selection, the classification was successful in $70.1293\%$, and testing images were assigned to the correct class, as shown in Figure \ref{fig:Q2B_NN_success}. However, there were limitations to the classifier. This method works only on how similar the testing image is to one other image, so it is easily fooled by pictures from incorrect classes with similar lighting, or testing images that have a particular difference from the training data, i.e. the removal of the glasses in the failure example in Figure \ref{fig:Q2B_NN_failure}.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_success}
+
+  \caption{Example of a successful classification: Testing Face, Example from Assigned Class \label{fig:Q2B_NN_success}}
+
+\end{center}
+\end{figure}
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_failure}
+
+  \caption{Example of a failed classification: Testing Face, Example from Assigned Class \label{fig:Q2B_NN_failure}}
+
+\end{center}
+\end{figure}
+
+Varying the number of eigenvectors used to project vectors onto the eigenspace causes the execution time and success rate of the classifier to change, as can be seen in Table  \ref{fig:Q2B_NN_success}. It can be clearly seen that as the number of eigenvectors increases, the execution time increases, while the success percentage peaks when the number of eigenvectors is 150.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{||c c c||}
+\hline
+\bf Num. Eigenvectors & \bf Execution Time /sec & \bf Success \%\\ [0.5ex]
+\hline \hline
+50 & 0.227370 & 63.4615 \\ [0.5ex]
+\hline
+100 & 0.232730 & 68.2692 \\ [0.5ex]
+\hline
+125 & 0.241029 & 69.2308 \\ [0.5ex]
+\hline
+150 & 0.245756 & 70.1923 \\ [0.5ex]
+\hline
+175 & 0.263097 & 69.2308 \\ [0.5ex]
+\hline
+200 & 0.292893 & 69.2308 \\ [0.5ex]
+\hline
+250 & 0.357959 & 68.2692 \\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+\caption{Execution time and success percentage for Nearest Neighbour Classifier with different numbers of eigenvalues} \label{tab:NN_table}
+\end{table}
+
+\section{Multi-Class SVM}
+\subsection{Binary Class SVM}
+The Support Vector Machine in the simple form supports binary classification of data. Hence if we train the classifier with 52 classes we will obtain meaningless results. This section is based on the LibSVM Matlab library provided by ????? \cite{LibSVM}. In order to achieve multiclass SVM classification we can implement one of two algorithms: one-versus-one (OVOSVM) or one-versus-all (OVASVM). These two are both based on the binary version of SVM. There are other extensions of SVM which also allow multiclass recognition.
+\subsection{One-versus-one SVM}
+The basic principle of the OVOSVM is to make $$ 
+\subsection{One-versus-all SVM} 
 {\small
 \bibliographystyle{ieee}
 \bibliography{egbib}

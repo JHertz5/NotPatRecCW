@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  11 DEC 2016 19:03
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  13 DEC 2016 11:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -786,27 +786,95 @@ Underfull \hbox (badness 1057) in paragraph at lines 271--272
 \OT1/ptm/m/n/10 a monotonous trend. As we in-crease the num-ber of
  []
 
-No file Report.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 295.
-[4
 
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 295.
+LaTeX Warning: Reference `fig:Q2B_NN_success' on page 4 undefined on input line
+ 283.
+
+
+LaTeX Warning: Reference `fig:Q2B_NN_failure' on page 4 undefined on input line
+ 283.
+
+
+! LaTeX Error: File `../results/Q2B_NN_success' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.288 ...0.5\textwidth]{../results/Q2B_NN_success}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: File `../results/Q2B_NN_failure' not found.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 ...0.5\textwidth]{../results/Q2B_NN_failure}
+                                                  
+I could not locate the file with any of these extensions:
+.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPEG,.JBIG2,.JB2,.eps
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: Reference `fig:Q2B_NN_success' on page 4 undefined on input line
+ 305.
+
+
+Overfull \hbox (14.15181pt too wide) in paragraph at lines 309--328
+ [] 
+ []
+
+
+LaTeX Warning: Citation `LibSVM' on page 4 undefined on input line 334.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.337 \subsection{One-versus-all SVM}
+                                     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Display math should end with $$.
+<to be read again> 
+                   \par 
+l.337 \subsection{One-versus-all SVM}
+                                     
+The `$' that I just saw supposedly matches a previous `$$'.
+So I shall assume that you typed `$$' both times.
+
+No file Report.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 354.
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 354.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 295.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 295.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 354.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 354.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.25002pt have occurred.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 295.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 354.
  ) 
 Here is how much of TeX's memory you used:
- 14448 strings out of 493014
- 257250 string characters out of 6133351
+ 14472 strings out of 493014
+ 257469 string characters out of 6133351
  315229 words of memory out of 5000000
- 17786 multiletter control sequences out of 15000+600000
+ 17790 multiletter control sequences out of 15000+600000
  38449 words of font info for 108 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  34i,12n,42p,10375b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -827,10 +895,10 @@ xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist
 /fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on Report.pdf (4 pages, 1394298 bytes).
+Output written on Report.pdf (4 pages, 1400971 bytes).
 PDF statistics:
- 156 PDF objects out of 1000 (max. 8388607)
- 123 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 133 compressed objects within 2 object streams
+ 42 named destinations out of 1000 (max. 500000)
  46 words of extra memory for PDF output out of 10000 (max. 10000000)
 

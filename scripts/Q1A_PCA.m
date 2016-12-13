@@ -14,6 +14,8 @@ end
 % load partitioned data
 load Separated_Data.mat
 
+
+showPlots=true;
 %% Normalise and plot mean face
 
 faceW = 46; faceH = 56;
