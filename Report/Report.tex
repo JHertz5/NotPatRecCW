@@ -5,6 +5,7 @@
 \usepackage{times}
 \usepackage{epsfig}
 \usepackage{graphicx}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{color, soul}
@@ -349,6 +350,65 @@ However, OVASVM's disadvantage is that the classes are no longer balanced. This 
 \end{figure}
 
 \subsection{Comparison}
+
+The two SVM methods were tested for pixel intensity and PCA components. Each classification approach was tested by varying the kernel settings. The results are shown in Tables \ref{tab:rawsvm} and \ref{tab:pcasvm}.
+
+\begin{table}[H]
+\begin{center}
+\caption{Multiclass SVM for Raw Pixel Intensity Vectors.} \label{tab:rawsvm}
+\begin{tabular}{||c c c c||}
+\hline
+\bf Method & \bf Kernel & \bf Success \% & \bf Time\\ [0.5ex]
+\hline \hline
+OVO & linear & 96.2 & time\\ [0.5ex]
+\hline
+OVO & quadratic & 96.2 & time\\ [0.5ex]
+\hline
+OVO & radial & 1.9 & time\\ [0.5ex]
+\hline
+OVO & sigmoid & 33.7 & time\\ [0.5ex]
+\hline \hline
+OVA & unweighted & 98.1 & time\\ [0.5ex]
+& linear & & \\ [0.5ex]
+\hline
+OVA & weighted & 98.1 & time\\ [0.5ex]
+ & linear & & \\ [0.5ex]
+\hline
+OVA & unweighted & 94.2 & time\\ [0.5ex]
+ & quadratic & &\\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\begin{table}[H]
+\begin{center}
+\caption{Multiclass SVM for PCA bases.}  \label{tab:pcasvm}
+\begin{tabular}{||c c c c||}
+\hline
+\bf Method & \bf Kernel & \bf Success \% & \bf Time\\ [0.5ex]
+\hline \hline
+OVO & linear & prec & time\\ [0.5ex]
+\hline
+OVO & quadratic & prec & time\\ [0.5ex]
+\hline
+OVO & radial & prec & time\\ [0.5ex]
+\hline
+OVO & sigmoid & prec & time\\ [0.5ex]
+\hline \hline
+OVA & unweighted & 98.1 & time\\ [0.5ex]
+& linear & & \\ [0.5ex]
+\hline
+OVA & weighted & 98.1 & time\\ [0.5ex]
+ & linear & & \\ [0.5ex]
+\hline
+OVA & unweighted & 84.6 & time\\ [0.5ex]
+ & quadratic & &\\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+
+\end{table}
 
 {\small
 \bibliographystyle{ieee}
