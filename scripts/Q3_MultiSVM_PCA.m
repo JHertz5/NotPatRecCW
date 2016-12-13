@@ -45,22 +45,22 @@ end
 numClasses = size(testing, 2)/2;
 accuracyVector = zeros(1, size(testing, 2), 'logical');
 
-for testClassIndex = 1:1
+for testClassIndex = 1:numClasses
     
     testingImage1 = testingProjections(:, (testClassIndex-1)*2+1)';
     testingImage2 = testingProjections(:,  (testClassIndex-1)*2+2)';
     
     %% Compute One vs One SVM with my function
-    [classAssignment1] = OVOSVM(testingImage1,trainingProjections);
-    [classAssignment2] = OVOSVM(testingImage2,trainingProjections);
-    %[classAssignment1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
-    %[classAssignment2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
+    %[classAssignment1] = OVOSVM(testingImage1,testClassIndex,training);
+    %[classAssignment2] = OVOSVM(testingImage2,testClassIndex,training);
+    [classAssignment1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
+    [classAssignment2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
     
     if classAssignment1 == testClassIndex
         fprintf('Class %i - First image recognised correctly!\n', testClassIndex);
         accuracyVector(testClassIndex*2) = true;
     else
-        fprintf('Class %i - First image not recognised\n', testClassIndex);
+        fprintf('Class %i - First image not recognised: %i \n', testClassIndex, classAssignment1);
         accuracyVector(testClassIndex*2) = false;
     end
     
@@ -68,7 +68,7 @@ for testClassIndex = 1:1
         fprintf('Class %i - Second image recognised correctly!\n', testClassIndex);
         accuracyVector(testClassIndex*2 + 1) = true;
     else
-        fprintf('Class %i - image not recognised\n', testClassIndex);
+        fprintf('Class %i - Second image not recognised: %i\n', testClassIndex, classAssignment2);
         accuracyVector(testClassIndex*2 + 1) = false;
     end
 end
