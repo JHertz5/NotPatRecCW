@@ -34,16 +34,16 @@ for testClassIndex = 1:numClasses
     testingImage2 = testing(:,  (testClassIndex-1)*2+2)';
     
     %% Compute One vs One SVM with my function
-    %[classAssignment1] = OVOSVM(testingImage1,training);
-    %[classAssignment2] = OVOSVM(testingImage2,training);
-    [classAssignment1] = OVASVM(testingImage1, testClassIndex, training);
-    [classAssignment2] = OVASVM(testingImage2, testClassIndex, training);
+    [classAssignment1] = OVOSVM(testingImage1,testClassIndex,training);
+    [classAssignment2] = OVOSVM(testingImage2,testClassIndex,training);
+    %[classAssignment1] = OVASVM(testingImage1, testClassIndex, training);
+    %[classAssignment2] = OVASVM(testingImage2, testClassIndex, training);
     
     if classAssignment1 == testClassIndex
         fprintf('Class %i - First image recognised correctly!\n', testClassIndex);
         accuracyVector(testClassIndex*2) = true;
     else
-        fprintf('Class %i - First image not recognised\n', testClassIndex);
+        fprintf('Class %i - First image not recognised: %i \n', testClassIndex, classAssignment1);
         accuracyVector(testClassIndex*2) = false;
     end
     
@@ -51,7 +51,7 @@ for testClassIndex = 1:numClasses
         fprintf('Class %i - Second image recognised correctly!\n', testClassIndex);
         accuracyVector(testClassIndex*2 + 1) = true;
     else
-        fprintf('Class %i - image not recognised\n', testClassIndex);
+        fprintf('Class %i - Second image not recognised: %i\n', testClassIndex, classAssignment2);
         accuracyVector(testClassIndex*2 + 1) = false;
     end
 end

@@ -45,7 +45,7 @@ end
 numClasses = size(testing, 2)/2;
 accuracyVector = zeros(1, size(testing, 2), 'logical');
 
-for testClassIndex = 1:numClasses
+for testClassIndex = 1:1
     
     testingImage1 = testingProjections(:, (testClassIndex-1)*2+1)';
     testingImage2 = testingProjections(:,  (testClassIndex-1)*2+2)';
