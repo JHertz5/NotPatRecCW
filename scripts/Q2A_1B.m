@@ -10,7 +10,7 @@ if contains(pwd, 'NotPatRecCW')
     dataPath = regexprep(pwd, 'NotPatRecCW', 'NotPatRecCW/data');
     addpath(char(dataPath));
 else
-    printf('Move to NotPatRecCW directory\n');
+    fprintf('Move to NotPatRecCW directory\n');
 end
 
 showPlots = true;
