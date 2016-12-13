@@ -7,7 +7,7 @@ close all
 %clear all
 
 if contains(pwd, 'NotPatRecCW')
-    dataPath = regexprep(pwd, 'NotPatRecCW', 'NotPatRecCW/data');
+    dataPath = strcat( extractBefore(pwd, 'NotPatRecCW'), 'NotPatRecCW/data'); 
     addpath(char(dataPath));
 else
     fprintf('Move to NotPatRecCW directory\n');
@@ -109,5 +109,5 @@ for i = 1:numTests
     confusion_resultsData(classAssignment_real(i), i) = true;
 end
 
-%figure(2);
-%plotconfusion(confusion_groundTruth, confusion_resultsData)
+figure(2);
+plotconfusion(confusion_groundTruth, confusion_resultsData)
