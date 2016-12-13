@@ -8,7 +8,7 @@ for i = 1:52
     trainFlags = -ones(size(training,2),1);
     trainFlags( (class1-1)*8+1:(class1-1)*8+8 ) = 1;
     
-    SVMModel = svmtrain(trainFlags, training', '-t 0');
+    SVMModel = svmtrain(trainFlags, training', '-t 1 -d 2 -r 1');
     
     [~,~,scores(i)] = svmpredict(testLabel,testingImage,SVMModel);
 end
