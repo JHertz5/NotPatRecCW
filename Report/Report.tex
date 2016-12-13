@@ -154,11 +154,9 @@ AA^T(Ax) = \lambda (Ax)
 We deduce that the eigenvectors of $AA^T$ are $u_i = Ax_i, \forall \lambda_i \neq 0$, where $x_i$ is the i$^{th}$ eigenvector of $A^TA$. Having thus calculated $x_i$, we must multiply each of the vectors by the original zero-mean matrix {\tt\small training} in order to obtain eigenfaces.
 
 However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. using Singular Vector Decomposition for any two matrices $AA^T$ and $A^TA$ we can show that:
-
 \begin{equation}
 Av_i = \sigma_i u_i
 \end{equation}
-
 , where $u_i$ and $v_i$ are the eigenvectors of the two matrices respectively and $\sigma_i$ is the square root of the corresponding eigenvalue. Thus having found $v_i$ we can calculate $u_i = \sfrac{Av_i}{\sigma_i}$. Given that $\sigma_i > 0  \forall i$, $Av_i$ has the effect of reversing the direction of some eigenvectors.
 %This is however not an issue, e.g. vectors $x= \begin{bmatrix}
 %1&1 \end{bmatrix} $ and $y= \begin{bmatrix}
@@ -331,11 +329,30 @@ Varying the number of eigenvectors used to project vectors onto the eigenspace c
 
 \section{Multi-Class SVM}
 \subsection{Binary Class SVM}
-The Support Vector Machine in the simple form supports binary classification of data. Hence if we train the classifier with 52 classes we will obtain meaningless results. This section is based on the LibSVM Matlab library provided by ????? \cite{LibSVM}. In order to achieve multiclass SVM classification we can implement one of two algorithms: one-versus-one (OVOSVM) or one-versus-all (OVASVM). These two are both based on the binary version of SVM. There are other extensions of SVM which also allow multiclass recognition.
+The Support Vector Machine in the simple form supports binary classification of data. Hence if we train the classifier with 52 classes we will obtain meaningless results. This section is based on the LibSVM Matlab library provided by \cite{LibSVM}. In order to achieve multiclass SVM classification we can implement one of two algorithms: one-versus-one (OVOSVM) or one-versus-all (OVASVM). These two are both based on the binary version of SVM. There are other extensions of SVM which also allow multiclass recognition.
 \subsection{One-versus-one SVM}
-The basic principle of the OVOSVM is to make
+For $C$ number of classes, one-versus-one SVM technique requires $T = \sfrac{(C-1)}{2}\times C$ trainings and testings as we want to compare each pair of classes and run the test image past the resulting kernels. It can be seen already that this method is computationally expensive. In our case $C=52$ and so $T = 1325$.
+
+The test image is passed through all 1325 kernels. Each kernel will assign the image to class $j$ or $i$, $1<j<C \quad j<i<C+1$. Those are called votes. For instance if we input an image of class 3, we expect (ideally) that all 51 kernels which are based on class 3 will result  in $3$ being assigned to the image. We then expect that all other kernels will 'randomly' assign other classes, thus making class 3 the highest voted class.
+RESULTS GO HERE\\
+RESULTS GO HERE
  
-\subsection{One-versus-all SVM} 
+\subsection{One-versus-all SVM}
+A faster method of performing the multiclass SVM classification is to employ the one-versus-all SVM method. Instead of creating 1325 kernels, we only require 52. By taking class $j$ as one part of the kernel, the OVASVM algorithm essentially assumes that the remaining $C-1$ classes are just one class. That way we can examine if the image belongs to class $j$ or the rest. Ideally OVASVM should result in +1 being outputted just once. This assumption could allow us to, on average, halve the computation time, as we wouldn't have to check other kernels if we have found the correct class early on. 
+
+However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.4\textwidth]{../results/SVM_unbalanced}
+
+  \caption{Example of unbalanced binary class SVM \cite{SVM_unb}} \label{fig:SVM_un}
+\end{center}
+\end{figure}
+RESULTS GO HERE\\
+RESULTS GO HERE
+
 {\small
 \bibliographystyle{ieee}
 \bibliography{egbib}
@@ -351,5 +368,17 @@ The University of Texas at Austin, September 2009.
 Victor Y.Pan, Zhao Q. Chen, Ailong Zheng. 
 \textit{The Complexity of the Algebraic Eigenproblem}. 
 Lehman College and Graduate Center, CUNY, NY, December 1998
+
+\bibitem{LibSVM}
+Chang, Chih-Chung and Lin, Chih-Jen
+\textit{LIBSVM: A library for support vector machines}
+ACM Transactions on Intelligent Systems and Technology, vol. 2, iss. 3, 2011, 27:1--27:27
+Software available at \url{http://www.csie.ntu.edu.tw/~cjlin/libsvm}
+
+\bibitem{SVM_unb}
+D. Cournapeau
+\textit{3.2. Support Vector Machines}
+scikits.learn developers (BSD License), 2010
+
 \end{thebibliography}
 \end{document}

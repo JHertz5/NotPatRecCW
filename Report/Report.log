@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  13 DEC 2016 11:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.12.5)  13 DEC 2016 14:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -702,29 +702,29 @@ Overfull \hbox (11.29218pt too wide) in paragraph at lines 133--134
  [][] 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <6.99997> on input line 162
+LaTeX Font Info:    Calculating math sizes for size <6.99997> on input line 160
 .
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <3.49998> not available
-(Font)              size <5> substituted on input line 162.
+(Font)              size <5> substituted on input line 160.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <3.49998> not available
-(Font)              size <5> substituted on input line 162.
+(Font)              size <5> substituted on input line 160.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <3.49998> not available
-(Font)              size <5> substituted on input line 162.
+(Font)              size <5> substituted on input line 160.
 
 <../results/Q1B_PCA_Eigenfaces.jpg, id=37, 2677.00125pt x 936.49875pt>
 File: ../results/Q1B_PCA_Eigenfaces.jpg Graphic file (type jpg)
 
 <use ../results/Q1B_PCA_Eigenfaces.jpg>
 Package pdftex.def Info: ../results/Q1B_PCA_Eigenfaces.jpg used on input line 1
-69.
+67.
 (pdftex.def)             Requested size: 248.42812pt x 86.89627pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 169--170
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 167--168
  [][] 
  []
 
@@ -735,10 +735,10 @@ _PCA_Eigenfaces.jpg>]
 File: ../results/Train1_reco.jpg Graphic file (type jpg)
 
 <use ../results/Train1_reco.jpg>
-Package pdftex.def Info: ../results/Train1_reco.jpg used on input line 202.
+Package pdftex.def Info: ../results/Train1_reco.jpg used on input line 200.
 (pdftex.def)             Requested size: 248.42812pt x 62.59209pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 202--203
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 200--201
  [] 
  []
 
@@ -746,10 +746,10 @@ Overfull \hbox (11.29218pt too wide) in paragraph at lines 202--203
 File: ../results/Test1_reco.jpg Graphic file (type jpg)
 
 <use ../results/Test1_reco.jpg>
-Package pdftex.def Info: ../results/Test1_reco.jpg used on input line 206.
+Package pdftex.def Info: ../results/Test1_reco.jpg used on input line 204.
 (pdftex.def)             Requested size: 248.42812pt x 62.59209pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 206--207
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 204--205
  [][] 
  []
 
@@ -757,15 +757,15 @@ Overfull \hbox (11.29218pt too wide) in paragraph at lines 206--207
 File: ../results/Test2_reco.jpg Graphic file (type jpg)
 
 <use ../results/Test2_reco.jpg>
-Package pdftex.def Info: ../results/Test2_reco.jpg used on input line 210.
+Package pdftex.def Info: ../results/Test2_reco.jpg used on input line 208.
 (pdftex.def)             Requested size: 248.42812pt x 62.59209pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 210--211
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 208--209
  [][] 
  []
 
 
-Overfull \hbox (22.14195pt too wide) in paragraph at lines 221--250
+Overfull \hbox (22.14195pt too wide) in paragraph at lines 219--248
  [] 
  []
 
@@ -773,16 +773,16 @@ Overfull \hbox (22.14195pt too wide) in paragraph at lines 221--250
 File: ../results/DistMeasure.jpg Graphic file (type jpg)
 
 <use ../results/DistMeasure.jpg>
-Package pdftex.def Info: ../results/DistMeasure.jpg used on input line 263.
+Package pdftex.def Info: ../results/DistMeasure.jpg used on input line 261.
 (pdftex.def)             Requested size: 248.42812pt x 135.8588pt.
 
-Overfull \hbox (11.29218pt too wide) in paragraph at lines 263--264
+Overfull \hbox (11.29218pt too wide) in paragraph at lines 261--262
  [] 
  []
 
 [3 <../results/Train1_reco.jpg> <../results/Test1_reco.jpg> <../results/Test2_r
 eco.jpg> <../results/DistMeasure.jpg>]
-Underfull \hbox (badness 1057) in paragraph at lines 271--272
+Underfull \hbox (badness 1057) in paragraph at lines 269--270
 \OT1/ptm/m/n/10 a monotonous trend. As we in-crease the num-ber of
  []
 
@@ -790,52 +790,50 @@ Underfull \hbox (badness 1057) in paragraph at lines 271--272
 File: ../results/Q2B_NN_success.png Graphic file (type png)
 
 <use ../results/Q2B_NN_success.png>
-Package pdftex.def Info: ../results/Q2B_NN_success.png used on input line 288.
+Package pdftex.def Info: ../results/Q2B_NN_success.png used on input line 286.
 (pdftex.def)             Requested size: 149.05838pt x 74.85275pt.
 
 <../results/Q2B_NN_failure.png, id=92, 173.14688pt x 87.32625pt>
 File: ../results/Q2B_NN_failure.png Graphic file (type png)
 
 <use ../results/Q2B_NN_failure.png>
-Package pdftex.def Info: ../results/Q2B_NN_failure.png used on input line 298.
+Package pdftex.def Info: ../results/Q2B_NN_failure.png used on input line 296.
 (pdftex.def)             Requested size: 149.05838pt x 75.17905pt.
 
-Overfull \hbox (14.15181pt too wide) in paragraph at lines 309--328
+Overfull \hbox (14.15181pt too wide) in paragraph at lines 307--326
  [] 
  []
 
+[4 <../results/Q2B_NN_success.png (PNG copy)> <../results/Q2B_NN_failure.png>]
+<../results/SVM_unbalanced.png, id=111, 578.16pt x 433.62pt>
+File: ../results/SVM_unbalanced.png Graphic file (type png)
 
-LaTeX Warning: Citation `LibSVM' on page 4 undefined on input line 334.
+<use ../results/SVM_unbalanced.png>
+Package pdftex.def Info: ../results/SVM_unbalanced.png used on input line 348.
+(pdftex.def)             Requested size: 198.73946pt x 149.04988pt.
 
 No file Report.bbl.
-[4 <../results/Q2B_NN_success.png (PNG copy)> <../results/Q2B_NN_failure.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 355.
-
-[5
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 355.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 384.
+[5 <../results/SVM_unbalanced.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 384.
  (./Report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 355.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 355.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 384.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 384.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 3.25002pt have occurred.
 
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 355.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 384.
  ) 
 Here is how much of TeX's memory you used:
- 14470 strings out of 493014
- 257703 string characters out of 6133351
- 315564 words of memory out of 5000000
- 17798 multiletter control sequences out of 15000+600000
- 38449 words of font info for 108 fonts, out of 8000000 for 9000
+ 14481 strings out of 493014
+ 257915 string characters out of 6133351
+ 315694 words of memory out of 5000000
+ 17804 multiletter control sequences out of 15000+600000
+ 38748 words of font info for 109 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,12n,42p,10375b,430s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,12n,42p,10375b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -853,10 +851,10 @@ xmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist
 /fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/typ
 e1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on Report.pdf (5 pages, 1556994 bytes).
+Output written on Report.pdf (5 pages, 1684658 bytes).
 PDF statistics:
- 178 PDF objects out of 1000 (max. 8388607)
- 141 compressed objects within 2 object streams
- 43 named destinations out of 1000 (max. 500000)
- 56 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 188 PDF objects out of 1000 (max. 8388607)
+ 149 compressed objects within 2 object streams
+ 46 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 
