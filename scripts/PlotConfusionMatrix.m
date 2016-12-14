@@ -30,11 +30,13 @@ map = [%r,      g,      b;
         0,      0.5,    0;
         0,      1,      0];
 
+set(0,'defaulttextinterpreter','latex')
+set(gca,'FontSize', 10)
 colormap(map)
-labels = {'2 cases incorrect', '1 case incorrect', '0 cases incorrect', '0 cases correct', '1 case correct', '2 cases correct'};
-lcolorbar(labels)
-xlabel('Target Class')
-ylabel('Output Class')
+labels = {'2 cases', '1 case', '0 cases', '0 cases', '1 case', '2 cases'};
+lcolorbar(labels, 'FontSize', 20)
+xlabel('Target Class', 'FontSize', 25)
+ylabel('Output Class', 'FontSize', 25)
 set(gca,'YDir','reverse')
 
 end
