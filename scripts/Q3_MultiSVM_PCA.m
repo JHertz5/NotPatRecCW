@@ -25,7 +25,7 @@ load face.mat
 Q1B_PCA
 
 %% Normalise testing faces
-tic;
+
 
 faceW = 46; faceH = 56;
 
@@ -41,7 +41,7 @@ for n = 1:size(testingNorm,2)
 end
 
 %% Set test loop
-
+tic;
 numClasses = size(testing, 2)/2;
 accuracyVector = zeros(1, size(testing, 2), 'logical');
 
@@ -51,8 +51,8 @@ for testClassIndex = 1:numClasses
     testingImage2 = testingProjections(:,  (testClassIndex-1)*2+2)';
     
     %% Compute One vs One SVM with my function
-    %[classAssignment1] = OVOSVM(testingImage1,testClassIndex,training);
-    %[classAssignment2] = OVOSVM(testingImage2,testClassIndex,training);
+    %[classAssignment1] = OVOSVM(testingImage1,testClassIndex,trainingProjections);
+    %[classAssignment2] = OVOSVM(testingImage2,testClassIndex,trainingProjections);
     [classAssignment1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
     [classAssignment2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
     
@@ -72,3 +72,5 @@ for testClassIndex = 1:numClasses
         accuracyVector(testClassIndex*2 + 1) = false;
     end
 end
+
+toc()

@@ -351,31 +351,32 @@ However, OVASVM's disadvantage is that the classes are no longer balanced. This 
 
 \subsection{Comparison}
 
-The two SVM methods were tested for pixel intensity and PCA components. Each classification approach was tested by varying the kernel settings. The results are shown in Tables \ref{tab:rawsvm} and \ref{tab:pcasvm}.
+The two SVM methods were tested for pixel intensity and PCA components. Each classification approach was tested by varying the kernel settings. The results are shown in Tables \ref{tab:rawsvm} and \ref{tab:pcasvm}. Note that 'Acc' means success rate, Time$_{Tot}$ shows total execution time for 104 test images and Time$_{Succ}$ represents time per successful identification.
 
 \begin{table}[H]
 \begin{center}
 \caption{Multiclass SVM for Raw Pixel Intensity Vectors.} \label{tab:rawsvm}
-\begin{tabular}{||c c c c||}
+\small
+\begin{tabular}{||c c c c c||}
 \hline
-\bf Method & \bf Kernel & \bf Success \% & \bf Time\\ [0.5ex]
+\bf Method & \bf Kernel & \bf Acc. \% & \bf Time$_{Tot}$ s & \bf Time$_{Succ}$ s\\ [0.5ex]
 \hline \hline
-OVO & linear & 96.2 & time\\ [0.5ex]
+OVO & linear & 96.2 & 325.5 & 3.3\\ [0.5ex]
 \hline
-OVO & quadratic & 96.2 & time\\ [0.5ex]
+OVO & quadratic & 96.2 & 295.9 & 3.0\\ [0.5ex]
 \hline
-OVO & radial & 1.9 & time\\ [0.5ex]
+OVO & radial & 33.7 & 379.1 & 10.8\\ [0.5ex]
 \hline
-OVO & sigmoid & 33.7 & time\\ [0.5ex]
+OVO & sigmoid & 1.9 & 370.5 & 185.3\\ [0.5ex]
 \hline \hline
-OVA & unweighted & 98.1 & time\\ [0.5ex]
-& linear & & \\ [0.5ex]
+OVA & unweighted & 98.1 & 624.3 & 6.1\\ [0.5ex]
+& linear & & &\\ [0.5ex]
 \hline
-OVA & weighted & 98.1 & time\\ [0.5ex]
- & linear & & \\ [0.5ex]
+OVA & weighted & 98.1 & 631.7 & 6.2\\ [0.5ex]
+ & linear & & & \\ [0.5ex]
 \hline
-OVA & unweighted & 94.2 & time\\ [0.5ex]
- & quadratic & &\\ [0.5ex]
+OVA & unweighted & 94.2 & 640.2 & 6.5\\ [0.5ex]
+ & quadratic & & &\\ [0.5ex]
 \hline
 \end{tabular}
 \end{center}
@@ -384,26 +385,27 @@ OVA & unweighted & 94.2 & time\\ [0.5ex]
 \begin{table}[H]
 \begin{center}
 \caption{Multiclass SVM for PCA bases.}  \label{tab:pcasvm}
-\begin{tabular}{||c c c c||}
+\small
+\begin{tabular}{||c c c c c||}
 \hline
-\bf Method & \bf Kernel & \bf Success \% & \bf Time\\ [0.5ex]
+\bf Method & \bf Kernel & \bf Acc. \% & \bf Time$_{Tot}$ s & \bf Time$_{Succ}$ s\\ [0.5ex]
 \hline \hline
-OVO & linear & prec & time\\ [0.5ex]
+OVO & linear & 98.1 & 31.1 & 0.31\\ [0.5ex]
 \hline
-OVO & quadratic & prec & time\\ [0.5ex]
+OVO & quadratic & 74.0 & 31.3 & 0.41\\ [0.5ex]
 \hline
-OVO & radial & prec & time\\ [0.5ex]
+OVO & radial & 1.9 & 32.6 & 16.3\\ [0.5ex]
 \hline
-OVO & sigmoid & prec & time\\ [0.5ex]
+OVO & sigmoid & 7.7 & 21.3 & 2.7\\ [0.5ex]
 \hline \hline
-OVA & unweighted & 98.1 & time\\ [0.5ex]
-& linear & & \\ [0.5ex]
+OVA & unweighted & 98.1 & 38.3 & 0.38\\ [0.5ex]
+& linear & & & \\ [0.5ex]
 \hline
-OVA & weighted & 98.1 & time\\ [0.5ex]
- & linear & & \\ [0.5ex]
+OVA & weighted & 98.1 & 38.4 & 0.38\\ [0.5ex]
+ & linear & & & \\ [0.5ex]
 \hline
-OVA & unweighted & 84.6 & time\\ [0.5ex]
- & quadratic & &\\ [0.5ex]
+OVA & unweighted & 84.6 & 55.2 & 0.63\\ [0.5ex]
+ & quadratic & & & \\ [0.5ex]
 \hline
 \end{tabular}
 \end{center}
