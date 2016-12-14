@@ -37,7 +37,7 @@ end
 
 % Calculate Covariance Matrix
 N = size(trainingNorm, 2);
-faceCov = (trainingNorm*trainingNorm');%/N;
+faceCov = (trainingNorm*trainingNorm')/N;
 
 % Find eigenvalues and eigenvectors, D is a diagonal matrix - pointless
 [V,D] = eig(faceCov);
@@ -49,18 +49,18 @@ eigVals = diag(D); % move D into an array
 % 1, where N is number of training data (416 in this case)
 if (exist('showPlots', 'var') && showPlots == true)
     figure(2)
-    plot(sort(eigVals,'descend'),'linewidth',2)
+    h = plot(sort(eigVals,'descend'),'linewidth',2)
     set(gca,'YScale','log')
-    title('Eigenvalues sorted','fontsize',20)
-    xlabel('Index','fontsize',20)
-    ylabel('Eigenvalue','fontsize',20)
     set(gca,'fontsize',15)
+    title('Eigenvalues sorted','fontsize',30)
+    xlabel('Index','fontsize',30)
+    ylabel('Eigenvalue','fontsize',30)
+    
 
     
     %xlim([0 415])
     grid on
     grid minor
-    %saveas(h,'Q1A_PCA_Eigenvalues.jpg')
     
 end
 
