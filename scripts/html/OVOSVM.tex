@@ -1,3 +1,19 @@
+
+% This LaTeX was auto-generated from MATLAB code.
+% To make changes, update the MATLAB code and republish this document.
+
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{color}
+
+\sloppy
+\definecolor{lightgray}{gray}{0.5}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+    
+    \begin{verbatim}
 function [assignedClass] = OVOSVM(testingImage, testLabel, training)
 
 % One vs One SVM requires us to carry out (for classSize = 52)
@@ -10,27 +26,39 @@ votes = zeros(1,52);
 
 for i = 1:51
     for j = i+1:52
-        
+
         % train each set of classes once -> 1 v 2 == 2 v 1
         class1 = i;
         class2 = j;
-        
+
         % extract the right data for easier handling
         binaryTrain = [training(:,(class1-1)*8+1:(class1-1)*8+8) training(:,(class2-1)*8+1:(class2-1)*8+8)]';
         trainFlags = [class1*ones(1,8) class2*ones(1,8)]';
-        
+
         % estimate model for those two classes
-        
+
         SVMModel = svmtrain(trainFlags,binaryTrain ,'-t 0 -q');
         %SVMModel = fitcsvm(binaryTrain,trainFlags,'KernelFunction','linear','Standardize',true);
-        
+
         [label,~,~] = svmpredict(testLabel,testingImage,SVMModel, '-q');
 
         %[label,~] = predict(SVMModel,testingImage);
         votes(label) = votes(label) + 1;
-        
+
     end
 end
 
 [~, assignedClass] = max(votes);
 end
+\end{verbatim}
+
+        \color{lightgray} \begin{verbatim}Not enough input arguments.
+
+Error in OVOSVM (line 19)
+        binaryTrain = [training(:,(class1-1)*8+1:(class1-1)*8+8) training(:,(class2-1)*8+1:(class2-1)*8+8)]';
+\end{verbatim} \color{black}
+    
+
+
+\end{document}
+    
