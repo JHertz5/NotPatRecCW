@@ -5,9 +5,6 @@ numTests = size(outputData, 2);
 
 confusionMatrix = zeros(numClasses); % create matrix of zeros
 
-% y axis has to be output class
-% x axis has to be target class
-
 for testIndex = 1:numTests
     targetClass = find(targetData(:,testIndex) == 1);
     outputClass = find(outputData(:,testIndex) == 1);
@@ -24,9 +21,6 @@ end
 
 pcolor(formatConfusionMatrix) %plot format copy
 
-max(max(formatConfusionMatrix))
-min(min(formatConfusionMatrix))
-
 % set up colourmap
 map = [ 1,      0,      0;
         0.5,    0,      0;
@@ -36,12 +30,10 @@ map = [ 1,      0,      0;
         0,      1,      0];
 
 colormap(map)
-labels = {'2 - incorrect', '1 - incorrect', '0 - incorrect', '0 - correct', '1 - correct', '2 - correct'};
+labels = {'2 cases incorrect', '1 case incorrect', '0 cases incorrect', '0 cases correct', '1 case correct', '2 cases correct'};
 lcolorbar(labels)
 xlabel('Target Class')
 ylabel('Output Class')
 set(gca,'YDir','reverse')
 
-
 end
-
