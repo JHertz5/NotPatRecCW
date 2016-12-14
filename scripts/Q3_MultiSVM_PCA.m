@@ -41,20 +41,19 @@ for n = 1:size(testingNorm,2)
 end
 
 %% Set test loop
-tic;
 numClasses = size(testing, 2)/2;
 accuracyVector = zeros(1, size(testing, 2), 'logical');
 
-for testClassIndex = 1:numClasses
+for testClassIndex = 1:1
     
     testingImage1 = testingProjections(:, (testClassIndex-1)*2+1)';
     testingImage2 = testingProjections(:,  (testClassIndex-1)*2+2)';
     
     %% Compute One vs One SVM with my function
-    %[classAssignment1] = OVOSVM(testingImage1,testClassIndex,trainingProjections);
-    %[classAssignment2] = OVOSVM(testingImage2,testClassIndex,trainingProjections);
-    [classAssignment1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
-    [classAssignment2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
+    [classAssignment1] = OVOSVM(testingImage1,testClassIndex,trainingProjections);
+    [classAssignment2] = OVOSVM(testingImage2,testClassIndex,trainingProjections);
+    %[classAssignment1] = OVASVM(testingImage1, testClassIndex, trainingProjections);
+    %[classAssignment2] = OVASVM(testingImage2, testClassIndex, trainingProjections);
     
     if classAssignment1 == testClassIndex
         fprintf('Class %i - First image recognised correctly!\n', testClassIndex);
@@ -72,5 +71,3 @@ for testClassIndex = 1:numClasses
         accuracyVector(testClassIndex*2 + 1) = false;
     end
 end
-
-toc()

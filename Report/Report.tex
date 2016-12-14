@@ -305,6 +305,7 @@ Varying the number of eigenvectors used to project vectors onto the eigenspace c
 
 \begin{table}[H]
 \begin{center}
+\small
 \begin{tabular}{||c c c||}
 \hline
 \bf Num. Eigenvectors & \bf Execution Time /sec & \bf Success \%\\ [0.5ex]
@@ -328,6 +329,18 @@ Varying the number of eigenvectors used to project vectors onto the eigenspace c
 \caption{Execution time and success percentage for Nearest Neighbour Classifier with different numbers of eigenvalues} \label{tab:NN_table}
 \end{table}
 
+The best case shown in the table above, i.e. when using 150 eigenvectors s presented as a confusion matrix in Figure \ref{fig:confNN}.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Q2B_NN_confusion}
+
+  \caption{Confusion Matrix of NN method for 150 PCA bases. Green - correct guesses. Red - incorrect guesses. \label{fig:confNN}}
+
+\end{center}
+\end{figure}
+
 \section{Multi-Class SVM}
 \subsection{Binary Class SVM}
 The Support Vector Machine in the simple form supports binary classification of data. Hence if we train the classifier with 52 classes we will obtain meaningless results. This section is based on the LibSVM Matlab library provided by \cite{LibSVM}. In order to achieve multiclass SVM classification we can implement one of two algorithms: one-versus-one (OVOSVM) or one-versus-all (OVASVM). These two are both based on the binary version of SVM. There are other extensions of SVM which also allow multiclass recognition.
@@ -339,7 +352,6 @@ The test image is passed through all 1325 kernels. Each kernel will assign the i
 \subsection{One-versus-all SVM}
 Another method of performing the multiclass SVM classification is to employ the one-versus-all SVM method. Instead of creating 1325 kernels, we only require 52. By taking class $j$ as one part of the kernel, the OVASVM algorithm essentially assumes that the remaining $C-1$ classes are just one class. That way we can examine if the image belongs to class $j$ or the rest. Ideally OVASVM should result in +1 being outputted just once. This assumption could allow us to, on average, halve the computation time, as we wouldn't have to check other kernels if we have found the correct class early on. However this time in order to compute the kernel, we employ all 416 training images, which takes considerably longer.
 
-However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM. Using the LibSVM library we do it by inserting the {\tt\small -wi} flag.
 \begin{figure}[H]
 \begin{center}
   
@@ -348,6 +360,9 @@ However, OVASVM's disadvantage is that the classes are no longer balanced. This 
   \caption{Example of unbalanced binary class SVM \cite{SVM_unb}} \label{fig:SVM_un}
 \end{center}
 \end{figure}
+
+However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM. Using the LibSVM library we do it by inserting the {\tt\small -wi} flag.
+
 
 \subsection{Comparison}
 
@@ -398,10 +413,10 @@ OVO & radial & 1.9 & 32.6 & 16.3\\ [0.5ex]
 \hline
 OVO & sigmoid & 7.7 & 21.3 & 2.7\\ [0.5ex]
 \hline \hline
-OVA & unweighted & 98.1 & 38.3 & 0.38\\ [0.5ex]
+OVA & unweighted & 96.2 & 38.3 & 0.38\\ [0.5ex]
 & linear & & & \\ [0.5ex]
 \hline
-OVA & weighted & 98.1 & 38.4 & 0.38\\ [0.5ex]
+OVA & weighted & 96.2 & 38.4 & 0.38\\ [0.5ex]
  & linear & & & \\ [0.5ex]
 \hline
 OVA & unweighted & 84.6 & 55.2 & 0.63\\ [0.5ex]
@@ -411,6 +426,18 @@ OVA & unweighted & 84.6 & 55.2 & 0.63\\ [0.5ex]
 \end{center}
 
 \end{table}
+
+We can examine the various approaches in multiple ways. First of all just by comparing the success rates we see that linear OVOSVM and both linear version of OVASVM produce nearly equally accurate results varying between 96\% and 98\%.
+
+However we should also take into account how efficient a given algorithm is. Even though linear kernels in OVOSVM and OVASVM produce the same results, OVA takes significantly longer to execute. This is due to the fact that each time we are training the SVM classifier using all 416 vectors. For 104 testing images we train the SVM a total of 5408 times. This takes much longer than OVO, where SVM is trained 137904 times. However each training process uses only 16 images, thus making it very fast. Therefore the fastest method has been determined to be OVO with a sigmoid kernel for PCA bases.
+
+This raises an interesting point. We can use the dimensionally reduced images, i.e. the PCA bases for face recognition. Instead of using 2576 features, the algorithm now only employs top 150 varying features. Thus making the process on average 13.3 times faster.
+
+Finally, we can look at the combined measure of efficiency and accuracy - time per successful identification. This has been calculated by simply dividing the total execution time by the number of successful recognitions. The clear winners are again the linear kernel, since they are the simplest, producing a successful  every 310 ms. 
+
+Interestingly, the unweighted linear kernel produces the same results as the weighted counterpart, though the expectation was that it would be highly inaccurate. The unweighted binary classes are possibly internally corrected by the {\tt\small svmtrain} function, despite the fact that {\tt\small -wi} flag is not set.
+
+To conclude, the multiclass SVM classification is best achieved with a linear OVO kernel for PCA bases, as it produces 98.1\% accuracy rate and is relatively fast, performing 104 classifications in just over 30 seconds. This naturally could be optimised by precalculating all of 1326 models and simply iterating though them rather than having to build them every time a new image comes through. 
 
 {\small
 \bibliographystyle{ieee}

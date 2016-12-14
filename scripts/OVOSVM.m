@@ -20,10 +20,12 @@ for i = 1:51
         trainFlags = [class1*ones(1,8) class2*ones(1,8)]';
         
         % estimate model for those two classes
+        
         SVMModel = svmtrain(trainFlags,binaryTrain ,'-t 3 -q');
         %SVMModel = fitcsvm(binaryTrain,trainFlags,'KernelFunction','linear','Standardize',true);
         
         [label,~,~] = svmpredict(testLabel,testingImage,SVMModel, '-q');
+
         %[label,~] = predict(SVMModel,testingImage);
         votes(label) = votes(label) + 1;
         

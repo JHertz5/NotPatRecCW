@@ -24,21 +24,20 @@ load Separated_Data.mat
 load face.mat
 
 %% Set test loop
-tic;
 
 numClasses = size(testing, 2)/2;
 accuracyVector = zeros(1, size(testing, 2), 'logical');
 
-for testClassIndex = 1:numClasses
+for testClassIndex = 1:1
     
     testingImage1 = testing(:, (testClassIndex-1)*2+1)';
     testingImage2 = testing(:,  (testClassIndex-1)*2+2)';
     
     %% Compute One vs One SVM with my function
-    %[classAssignment1] = OVOSVM(testingImage1,testClassIndex,training);
-    %[classAssignment2] = OVOSVM(testingImage2,testClassIndex,training);
-    [classAssignment1] = OVASVM(testingImage1, testClassIndex, training);
-    [classAssignment2] = OVASVM(testingImage2, testClassIndex, training);
+    [classAssignment1] = OVOSVM(testingImage1,testClassIndex,training);
+    [classAssignment2] = OVOSVM(testingImage2,testClassIndex,training);
+    %[classAssignment1] = OVASVM(testingImage1, testClassIndex, training);
+    %[classAssignment2] = OVASVM(testingImage2, testClassIndex, training);
     
     if classAssignment1 == testClassIndex
         fprintf('Class %i - First image recognised correctly!\n', testClassIndex);
@@ -56,5 +55,3 @@ for testClassIndex = 1:numClasses
         accuracyVector(testClassIndex*2 + 1) = false;
     end
 end
-
-toc()
