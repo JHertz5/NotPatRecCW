@@ -60,7 +60,7 @@ for testingFaceIndex = 1:size(testingNorm,2)
             classAssignment_real(testingFaceIndex) = ceil(trainingFaceIndex/trainingClassSize);
         end
     end
-    fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
+    %fprintf('Testing image %i is assigned class %i\n', testingFaceIndex, classAssignment_real(testingFaceIndex));
 end
 
 

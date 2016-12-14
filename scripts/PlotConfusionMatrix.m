@@ -22,7 +22,8 @@ end
 pcolor(formatConfusionMatrix) %plot format copy
 
 % set up colourmap
-map = [ 1,      0,      0;
+map = [%r,      g,      b;
+        1,      0,      0;
         0.5,    0,      0;
         0.2,    0,      0;
         0,      0.2,    0;
