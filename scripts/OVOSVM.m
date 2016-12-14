@@ -21,7 +21,7 @@ for i = 1:51
         
         % estimate model for those two classes
         
-        SVMModel = svmtrain(trainFlags,binaryTrain ,'-t 3 -q');
+        SVMModel = svmtrain(trainFlags,binaryTrain ,'-t 0 -q');
         %SVMModel = fitcsvm(binaryTrain,trainFlags,'KernelFunction','linear','Standardize',true);
         
         [label,~,~] = svmpredict(testLabel,testingImage,SVMModel, '-q');

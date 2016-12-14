@@ -56,17 +56,10 @@ EEE4\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-
-Line1\\
-
-Line3\\
-
-Line5\\
-
-Line7\\
-
+\vspace{-4mm}
+In this coursework, we looked at performing face identification using Principal Component Analysis (PCA), the Nearest Neighbour (NN) classifier, and multi-class Support Vector Machines (SVM). We found that we can significantly reduce the execution time of a  PCA calculation by using a different method of finding the eigenvectors. Then we investigated the reconstruction error of PCA and looked at how different numbers of eigenvalues affected the performance of the Nearest Neighbour classifier. Finally, we implemented multi-class SVMs using binary SVMs, and compared the performance of different types of SVM.
 \end{abstract}
-
+\vspace{-5mm}
 %%%%%%%%% BODY TEXT
 \section{Introduction}
 
@@ -364,7 +357,7 @@ Another method of performing the multiclass SVM classification is to employ the 
 However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM. Using the LibSVM library we do it by inserting the {\tt\small -wi} flag.
 
 
-\subsection{Comparison}
+\subsection{Discussion}
 
 The two SVM methods were tested for pixel intensity and PCA components. Each classification approach was tested by varying the kernel settings. The results are shown in Tables \ref{tab:rawsvm} and \ref{tab:pcasvm}. Note that 'Acc' means success rate, Time$_{Tot}$ shows total execution time for 104 test images and Time$_{Succ}$ represents time per successful identification.
 
@@ -405,7 +398,7 @@ OVA & unweighted & 94.2 & 640.2 & 6.5\\ [0.5ex]
 \hline
 \bf Method & \bf Kernel & \bf Acc. \% & \bf Time$_{Tot}$ s & \bf Time$_{Succ}$ s\\ [0.5ex]
 \hline \hline
-OVO & linear & 98.1 & 31.1 & 0.31\\ [0.5ex]
+OVO & linear & 96.2 & 31.1 & 0.31\\ [0.5ex]
 \hline
 OVO & quadratic & 74.0 & 31.3 & 0.41\\ [0.5ex]
 \hline
@@ -437,8 +430,72 @@ Finally, we can look at the combined measure of efficiency and accuracy - time p
 
 Interestingly, the unweighted linear kernel produces the same results as the weighted counterpart, though the expectation was that it would be highly inaccurate. The unweighted binary classes are possibly internally corrected by the {\tt\small svmtrain} function, despite the fact that {\tt\small -wi} flag is not set.
 
-To conclude, the multiclass SVM classification is best achieved with a linear OVO kernel for PCA bases, as it produces 98.1\% accuracy rate and is relatively fast, performing 104 classifications in just over 30 seconds. This naturally could be optimised by precalculating all of 1326 models and simply iterating though them rather than having to build them every time a new image comes through. 
+Table \ref{tab:idvTimes} presents average training and testing times for OVO and OVA with PCA and full images.
 
+\begin{table}[H]
+\begin{center}
+\caption{OVO and OVA training and testing times}  \label{tab:idvTimes}
+\small
+\begin{tabular}{||c c c c c||}
+\hline
+\bf Method & \bf Kernel & \bf Test/Train & \bf Data Type & \bf Time [s]\\ [0.5ex]
+\hline \hline
+OVO & linear & Train & PCA & 97$\mu$\\ [0.5ex]
+\hline
+OVO & linear & Train & Images & 2m\\ [0.5ex]
+\hline
+OVO & linear & Test & PCA & 30$\mu$\\ [0.5ex]
+\hline
+OVO & linear & Test & Images & 417$\mu$\\ [0.5ex]
+\hline \hline
+OVA & linear & Train & PCA & 8m\\ [0.5ex]
+\hline
+OVA & linear & Train & Images & 125m\\ [0.5ex]
+\hline
+OVA & linear & Test & PCA & 96$\mu$\\ [0.5ex]
+\hline
+OVA & linear & Test & Images & 2.5m\\ [0.5ex]
+\hline
+\end{tabular}
+\end{center}
+
+\end{table}
+
+As expected the table supports the argument that OVO method using PCA bases it quicker. OVO training using PCA is roughly 20 times faster then training using full vectors. Similarly testing is about 14 times faster when using PCA.
+
+Thus, the multiclass SVM classification is best achieved with a linear OVO kernel for PCA bases, as it produces 98.1\% accuracy rate and is relatively fast, performing 104 classifications in just over 30 seconds. This naturally could be optimised by precalculating all of 1326 models and simply iterating though them rather than having to build them every time a new image comes through.
+
+For completeness Figure \ref{fig:confSVM} shows a confusion matrix of a OVOSVM with a quadratic kernel for PCA bases.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.5\textwidth]{../results/Q3_PCA_ONO_confusion}
+
+  \caption{Confusion Matrix of OVOSVM quadratic kernel PCA bases. Green - correct guesses. Red - incorrect guesses. \label{fig:confSVM}}
+
+\end{center}
+\end{figure}
+
+Finally, Figure \ref{fig:failSVM} shows one of four unsuccessful classifications of the most optimal SVM implementation - SVMOVO with a linear kernel using PCA bases.
+
+\begin{figure}[H]
+\begin{center}
+  
+    \includegraphics[width=0.3\textwidth]{../results/svmFail}
+
+  \caption{Unsuccessful Classification. Left: Testing Face, Right: Assigned Class \label{fig:failSVM}}
+
+\end{center}
+\end{figure}
+
+\subsection{Comparison of NN and SVM classifiers}
+The two most striking differences in terms of performance are the execution time and success rates. Firstly, we see that the best implementation of SVM is by far more accurate than optimal NN method, which peaks at 70.2\%.
+
+On the other hand the total execution time for NN classification for all 104 test images is in the range of a few hundred milliseconds; 250 ms for 150 PCA bases. This results in average time per successful identification of around 3 ms. For comparison, the best time per successful classification for SVM is around 310 ms, i.e. 100 times longer.
+
+\section{Conclusion}
+This report described Principal Component Analysis, the Nearest Neighbour classifier, and Support Vector Machines and compared versions of each in terms of execution time and classification accuracy. We also found that an SVM can be more accurate than a Nearest Neighbour classifier, but has a much greater execution time.
 {\small
 \bibliographystyle{ieee}
 \bibliography{egbib}

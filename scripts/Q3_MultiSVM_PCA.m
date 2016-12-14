@@ -96,3 +96,8 @@ end
 
 figure
 PlotConfusionMatrix(confusion_groundTruth, confusion_resultsData);
+figure(2)
+subplot(121)
+PlotFaceVector(faceW, faceH, testing(:,2));
+subplot(122)
+PlotFaceVector(faceW, faceH, training(:,33*8-4));
