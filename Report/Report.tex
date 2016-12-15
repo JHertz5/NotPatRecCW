@@ -60,26 +60,26 @@ EEE4\\
 %%%%%%%%% ABSTRACT
 \begin{abstract}
 \vspace{-4mm}
-In this coursework, we looked at performing face identification using Principal Component Analysis (PCA), the Nearest Neighbour (NN) classifier, and multi-class Support Vector Machines (SVM). We found that we can significantly reduce the execution time of a  PCA calculation by using a different method of finding the eigenvectors. Then we investigated the reconstruction error of PCA and looked at how different numbers of eigenvalues affected the performance of the Nearest Neighbour classifier. Finally, we implemented multi-class SVMs using binary SVMs, and compared the performance of different types of SVM.
+In this coursework, we looked at performing face identification using Principal Component Analysis (PCA), the Nearest Neighbour (NN) classifier, and multi-class Support Vector Machines (SVM). We found that we can significantly reduce the execution time of a  PCA computation by using a different method of finding the eigenvectors. Then we investigated the reconstruction error of PCA and looked at how different numbers of eigenvalues affected the performance of the Nearest Neighbour classifier. Finally, we implemented multi-class SVMs using binary SVMs, and compared the different implementations.
 \end{abstract}
 \vspace{-5mm}
 %%%%%%%%% BODY TEXT
 \section{Introduction}
 
-It is often desirable to be able to quickly and accurately transform handwritten text into computer text or to assign name to a person based on their face using computer programs. The process requires the computer to have some prior knowledge of what it is trying to compute. This is known as training data. Based on the training data we can build mathematical models which will allows us to recognise faces or letters.
+It is often desirable to be able to quickly and accurately transform handwritten text into digital text or to recognise a person based on their face using computer programs. The process requires the computer to have some training data, data that can be used to compare new data against. Based on the training data we can build mathematical models which will allows us to recognise faces or letters.
 
-In this paper we are investigating and describing basic methods of training and testing, such as Principal Coefficient Analysis (PCA), Nearest Neighbour classification (NN) and multiclass Support Vector Machine (SVM) classification including binary class SVM. 
+In this paper we are investigating and describing basic methods of training and testing, such as Principal Coefficient Analysis (PCA), Nearest Neighbour classification (NN) and multiclass Support Vector Machine (SVM) classification using a binary class SVM. 
 
 %-------------------------------------------------------------------------
 \section{Eigenfaces}
 
 \subsection{Data partition}
 
-A Matlab file containing face data {\tt\small face.mat} has been provided for the purpose of this coursework. The file contains a $2576 \times 520$ matrix of face images. Each image is stored in a column. Given that the matrix has 520 columns there are 520 pictures of faces. Those pictures belong to 52 distinct persons. Therefore there are 10 pictures per person. Furthermore each picture has dimensions of $56 \times 46$ pixels.
+A Matlab file containing face data {\tt\small face.mat} has been provided for the purpose of this coursework. The file contains a $2576 \times 520$ matrix. Each column stores a face image. Given that the matrix has 520 columns there are 520 pictures of faces. Those pictures belong to 52 distinct people and there are 10 pictures per person. Each picture has dimensions of $56 \times 46$ pixels.
 
-In order to divide the data set into training and testing subsets, we have decide to preserve as much variance int he training data as possible. This would ensure that each set of faces is separated as far as possible, which potentially ensures higher identification rate.
+While separating the data set into training and testing subsets, we have decided to preserve as much variance in the training data as possible. This would ensure that each set of faces is separated as far as possible, which potentially ensures higher identification rate.
 
-The data was divided in the following ratio of testing to training: $20\%$ to $80\%$. From each set of 10 pictures we have thus taken two most average pictures, based on the average pixel values. The two sets will be heron referred to as {\tt\small training} ($2576 \times 416$ matrix) and {\tt\small testing} ($2576 \times 104$ matrix).
+The data was divided in the following ratio of testing to training: $20\%$ to $80\%$. From each set of 10 pictures we have thus taken two most average pictures, based on the average pixel values. The two sets will be referred to as {\tt\small training} ($2576 \times 416$ matrix) and {\tt\small testing} ($2576 \times 104$ matrix).
 
 \subsection{PCA of face data}
 \subsubsection{\boldmath$AA^T$} \label{sec:aat}
@@ -121,9 +121,9 @@ It can be seen that first 415 values are much greater than 1. The \nth{416} valu
 \end{figure}
 
 
-The 95\% confidence bound would require us to use 121 eigenfaces. This constitutes a compromise between accuracy and performance, by reducing the problem dimensionality.
+The 95\% confidence bound would require us to use 121 eigenfaces. This is a compromise between accuracy and performance, by reducing the problem dimensionality.
 \subsubsection{\boldmath$A^TA$} \label{sec:ata}
-Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvalues. Their plot in the  descending order in Figure \ref{fig:Eig3} proves the above claim.
+Alternatively as suggested earlier we could compute a covariance matrix $S_T = \frac{1}{416} \times A^TA$, which now has dimensions of $416 \times 416$ instead of $2576 \times 2576$. We know \cite{Data Mining} that both matrices produce the same (meaningful) eigenvalues. Their plot in the descending order in Figure \ref{fig:Eig3} proves the this claim.
 
 \begin{figure}[H]
 \centering
@@ -150,7 +150,7 @@ AA^T(Ax) = \lambda (Ax)
 
 We deduce that the eigenvectors of $AA^T$ are $u_i = Ax_i, \forall \lambda_i \neq 0$, where $x_i$ is the i$^{th}$ eigenvector of $A^TA$. Having thus calculated $x_i$, we must multiply each of the vectors by the original zero-mean matrix {\tt\small training} in order to obtain eigenfaces.
 
-However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. using Singular Vector Decomposition for any two matrices $AA^T$ and $A^TA$ we can show that:
+However as we do it, we find that some of the images have inverted colours - i.e. the direction of the vector has been reversed. Using Singular Vector Decomposition for any two matrices $AA^T$ and $A^TA$ we can show that:
 \begin{equation}
 Av_i = \sigma_i u_i
 \end{equation}
@@ -168,7 +168,7 @@ Av_i = \sigma_i u_i
 \end{figure}
 \subsubsection{Comparison}
 
-We know that the method presented in section \ref{sec:aat} is accurate. It is however more time consuming to calculate the eigenvectors of matrix with dimensions $2576 \times 2576$ rather than those of a $416 \times 416$ matrix. It is shown \cite{Complex} that eigenproblem complexity is bounded by $O(n^2log(n)+(nlog^2(n))log(b)$, where $b$ is a measure of accuracy in bits $2^{-b}$. However it should be noted that the eigenvectors of the second matrix are not what we are trying to calculate. Thus the latter method introduces an extra step. We have thus timed the full execution of both methods from implementing the {\tt\small eig} function to having a dataset with properly ordered eigenvectors. The results are shown in Table \ref{tab:times1} .
+We know that the method presented in section \ref{sec:aat} is accurate. It is however more time consuming to calculate the eigenvectors of matrix with dimensions $2576 \times 2576$ rather than those of a $416 \times 416$ matrix. It is shown \cite{Complex} that eigenproblem complexity is bounded by $O(n^2log(n)+(nlog^2(n))log(b)$, where $b$ is a measure of precision in bits $2^{-b}$. However using the  $A^TA$  method requires an extra step. We have timed the full execution of both methods from implementing the {\tt\small eig} function to having a dataset with properly ordered eigenvectors. The results are shown in Table \ref{tab:times1}. It can be clearly seen that,the $A^TA$ method is much faster. It also uses far less memory due to the smaller martix size.
 
 \begin{table}[H]
 \begin{center}
@@ -188,19 +188,22 @@ We know that the method presented in section \ref{sec:aat} is accurate. It is ho
 \section{Applications of Eigenfaces}
 \subsection{Face reconstruction}
 
-For the remainder of the work, the second algorithm (\ref{sec:ata}) has been used.
-
-Having determined the PCA bases we are now able to reconstruct faces. We expect that those from the training set will be reconstructed more accurately for any given number of PCA components.
+For the remainder of the work, the second algorithm (\ref{sec:ata}) has been used. Having determined the PCA bases we are now able to reconstruct faces. We expect that faces from the training set will be reconstructed more accurately than faces from the testing set for any given number of PCA components.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[width=0.5\textwidth]{../results/Train1_reco}
 
   \caption{Reconstruction of a Training Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTrain1}}
-  
+
   \includegraphics[width=0.5\textwidth]{../results/Test1_reco}
 
   \caption{Reconstruction of a Test Face: Original, 50 bases, 121 bases, 180 bases \label{fig:RecoTest1}}
+
+%\end{center}
+%\end{figure}
+%\begin{figure}[H]
+%\begin{center}
 
     \includegraphics[width=0.5\textwidth]{../results/Test2_reco}
 
@@ -250,32 +253,28 @@ Additionally, we can determine the distortion measure of the reconstruction. For
 %\begin{equation}
 $J = \sum_{n=M+1}^{D} \lambda_n$
 %\end{equation}
-, where M represents number of PCA bases used to reconstruct the image and D it the total number of eigenfaces. It should also be noted that the eigenvalues are ordered in the descending order s.t. $\lambda_1 > \lambda_2 > ... > \lambda_{M+1} > ... > \lambda_D$.
+, where M represents number of PCA bases used to reconstruct the image and D is the total number of eigenfaces. It should also be noted that the eigenvalues are ordered in the descending order i.e. $\lambda_1 > \lambda_2 > ... > \lambda_{M+1} > ... > \lambda_D$.
 
 \begin{figure}[H]
 \begin{center}
   
     \includegraphics[width=0.5\textwidth]{../results/DistMeasure2}
 
-  \caption{Distrtion Measure for varying number of PCA bases \label{fig:DistMeasure}}
+  \caption{Distortion Measure for varying number of PCA bases \label{fig:DistMeasure}}
 
 \end{center}
 \end{figure}
-From the Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} we can infer that 121 eigenfaces (the 95\% bound calculated earlier) is sufficient to a human eye in order to assign class to a given image. 50 PCA bases results in a very fuzzy image, though the main characteristics of the class can be identified. Finally, 180 eigenfaces produce a relatively sharp image, though it isn't much different from the one obtained with 121 bases, as shown in Table \ref{tab:RecoError}.
+From the Figures \ref{fig:RecoTrain1},  \ref{fig:RecoTest1} and \ref{fig:RecoTest2} we can infer that 121 eigenfaces (the 95\% bound calculated earlier) is sufficient to the human eye in order to assign class to a given image. 50 PCA bases results in a very fuzzy image, though the main characteristics of the class can be identified. Finally, 180 eigenfaces produce a relatively sharp image, though it isn't very different from the one obtained with 121 bases, as shown in Table \ref{tab:RecoError}.
 
 The test results shown in Table \ref{tab:RecoError} show as expected a monotonous trend. As we increase the number of eigenfaces the reconstruction error (or the D-dimensional distance between original and reconstructed images) decreases. We also observe that both face images from the {\tt\small testing} set produce larger errors than the face from {\tt\small training} set for larger amount of PCA bases. The reconstruction error of the training faces can actually reach zero, when we use all of 415 eigenfaces. This however cannot be said about the test faces.
 
-Similarly, we observe that the distortion is monotonously decreasing as we increase number of the PCA bases. This is expected as, with each extra PCA base used to reconstruct we take away the biggest eigenvalue from the total sum.
+Similarly, we observe that the distortion is monotonously decreasing as we increase number of the PCA bases. This is expected, as with each extra PCA base used to reconstruct we take away the biggest eigenvalue from the total sum.
 
 \subsection{Nearest Neighbour (NN) classification}
 
-In order to perform the PCA-based face recognition, the Nearest Neighbour classification method was used. Having calculated the projections of each normalised training face onto the eigenspace, we could take a new image and classify it into a class. This was done by calculating the new image's projection onto the eigenspace, and compare it to the existing projections. The new image was given the class of the projection that it is closest to. The following classifier equation was used to acheive this:
-\begin{equation}
-e = min_n ||\omega - \omega_n||,\quad n = 1,...,N
-\end{equation}
-where $\omega$ is the projection of the new image onto the eigenspace, $\omega_n$ is the projection of the training vector $x_n$ and $N$ is the number of training vectors.
-
-Using this method, each testing vector was classified. With the optimum parameter selection, the classification was successful in $70.1293\%$, and testing images were assigned to the correct class, as shown in Figure \ref{fig:Q2B_NN_success}. However, there were limitations to the classifier. This method works only on how similar the testing image is to one other image, so it is easily fooled by pictures from incorrect classes with similar lighting, or testing images that have a particular difference from the training data, i.e. the removal of the glasses in the failure example in Figure \ref{fig:Q2B_NN_failure}.
+In order to perform the PCA-based face recognition, the NN classification method was used. Having calculated the projections of each normalised training face onto the eigenspace, we could take a new image and categorise it into a class. This was done by calculating the new image's projection onto the eigenspace, and comparing it to the existing projections. The new image was given the class of the projection that it is closest to. The following classifier equation was used to acheive this 
+$e = min_n ||\omega - \omega_n||,\quad n = 1,...,N$
+, where $\omega$ is the projection of the new image onto the eigenspace, $\omega_n$ is the projection of the training vector $x_n$ and $N$ is the number of training vectors.
 
 \begin{figure}[H]
 \begin{center}
@@ -287,6 +286,9 @@ Using this method, each testing vector was classified. With the optimum paramete
 \end{center}
 \end{figure}
 
+Using this method, each testing vector was classified. With the optimum parameter selection, the classification was successful in $70.1293\%$ of cases, and these testing images were assigned to the correct class, as shown in Figure \ref{fig:Q2B_NN_success}. However, there were limitations to the classifier. This method works only on how similar the testing image is to one other image, as opposed to an entire class. Therefore, the classifier is easily fooled by pictures from incorrect classes with similar lighting, or testing images that have a particular difference from the training data, i.e. the removal of the glasses in the failure example in Figure \ref{fig:Q2B_NN_failure}.
+
+
 \begin{figure}[H]
 \begin{center}
   
@@ -297,7 +299,7 @@ Using this method, each testing vector was classified. With the optimum paramete
 \end{center}
 \end{figure}
 
-Varying the number of eigenvectors used to project vectors onto the eigenspace causes the execution time and success rate of the classifier to change, as can be seen in Table  \ref{fig:Q2B_NN_success}. It can be clearly seen that as the number of eigenvectors increases, the execution time increases, while the success percentage peaks when the number of eigenvectors is 150.
+The number of eigenvectors used to project vectors onto the eigenspace can be varied, causing the execution time and success rate of the classifier to change. This can be seen in Table  \ref{fig:Q2B_NN_success}. It can be clearly seen that as the number of eigenvectors increases, the execution time increases, while the success percentage peaks when the number of eigenvectors is 150.
 
 \begin{table}[H]
 \begin{center}
@@ -339,30 +341,29 @@ The best case shown in the table above, i.e. when using 150 eigenvectors s prese
 
 \section{Multi-Class SVM}
 \subsection{Binary Class SVM}
-The Support Vector Machine in the simple form supports binary classification of data. Hence if we train the classifier with 52 classes we will obtain meaningless results. This section is based on the LibSVM Matlab library provided by \cite{LibSVM}. In order to achieve multiclass SVM classification we can implement one of two algorithms: one-versus-one (OVOSVM) or one-versus-all (OVASVM). These two are both based on the binary version of SVM. There are other extensions of SVM which also allow multiclass recognition.
+This section is based on the LibSVM Matlab library provided by \cite{LibSVM}, which provides a binary SVM, but this is not applicable to 52 classes. In order to achieve multiclass SVM classification we can implement one of two algorithms: one-versus-one (OVOSVM) or one-versus-all (OVASVM). These two are both based on the binary version of SVM.
 \subsection{One-versus-one SVM}
-For $C$ number of classes, one-versus-one SVM technique requires $T = \sfrac{(C-1)}{2}\times C$ trainings and testings as we want to compare each pair of classes and run the test image past the resulting kernels. It can be seen already that this method is computationally expensive. In our case $C=52$ and so $T = 1325$. However each of the kernels is relativley easy to compute as it is made up of 16 training points, due to our data division.
+For $C$ number of classes, one-versus-one SVM technique requires $T = \sfrac{(C-1)}{2}\times C$ trainings and testings, where $C$ is the number of classes. This is required to compare each pair of classes and run the test image past the resulting kernels. It can be seen already that this method is computationally expensive. In our case $C=52$ and so $T = 1325$. However each of the kernels is relativley fast to compute as it is made up of $16$ training points, due to our data division.
 
-The test image is passed through all 1325 kernels. Each kernel will assign the image to class $j$ or $i$, $1<j<C \quad j<i<C+1$. Those are called votes. For instance if we input an image of class 3, we expect (ideally) that all 51 kernels which are based on class 3 will result  in $3$ being assigned to the image. We then expect that all other kernels will 'randomly' assign other classes, thus making class 3 the highest voted class.
+The test image is passed through all $1325$ kernels. Each kernel will assign the image to class $j$ or $i$, $1<j<C \quad j<i<C+1$, casting a 'vote'. For instance if we input an image of class 3, we expect (ideally) that all 51 kernels which are based on class 3 will result  in $3$ being assigned to the image. We then expect that all other kernels will 'randomly' assign other classes, thus making class 3 the highest voted class.
  
 \subsection{One-versus-all SVM}
-Another method of performing the multiclass SVM classification is to employ the one-versus-all SVM method. Instead of creating 1325 kernels, we only require 52. By taking class $j$ as one part of the kernel, the OVASVM algorithm essentially assumes that the remaining $C-1$ classes are just one class. That way we can examine if the image belongs to class $j$ or the rest. Ideally OVASVM should result in +1 being outputted just once. This assumption could allow us to, on average, halve the computation time, as we wouldn't have to check other kernels if we have found the correct class early on. However this time in order to compute the kernel, we employ all 416 training images, which takes considerably longer.
+Another method of performing the multiclass SVM classification is to one-versus-all. Instead of creating 1325 kernels, we only require 52. By taking class $j$ as one part of the kernel, the OVASVM algorithm essentially treats the remaining $C-1$ classes as just one class. That way we can examine if the image belongs to class $j$ or the rest. Ideally OVASVM should only assign 'one', as opposed to 'all', once. This feature could allow us to, on average, halve the computation time, as we wouldn't have to check other kernels if we have found the correct class early on. However, our algorithm employs all 416 training images, which takes considerably longer.
 
 \begin{figure}[H]
 \begin{center}
   
-    \includegraphics[width=0.4\textwidth]{../results/SVM_unbalanced}
+    \includegraphics[width=0.4\textwidth]{../results/svm_unbalanced}
 
-  \caption{Example of unbalanced binary class SVM \cite{SVM_unb}} \label{fig:SVM_un}
+  \caption{Comparison of a balanced and an unbalanced binary class SVM \cite{SVM_unb}} \label{fig:SVM_un}
 \end{center}
 \end{figure}
 
 However, OVASVM's disadvantage is that the classes are no longer balanced. This means that one class contains more data than the other. This affects the way the hyperplane is constructed. Practically, this means that the minority class would be ignored as shown in Figure \ref{fig:SVM_un}. This can be compensated for with changing the way misclassification is penalised - commonly known as class-weighted SVM. Using the LibSVM library we do it by inserting the {\tt\small -wi} flag.
 
-
 \subsection{Discussion}
 
-The two SVM methods were tested for pixel intensity and PCA components. Each classification approach was tested by varying the kernel settings. The results are shown in Tables \ref{tab:rawsvm} and \ref{tab:pcasvm}. Note that 'Acc' means success rate, Time$_{Tot}$ shows total execution time for 104 test images and Time$_{Succ}$ represents time per successful identification.
+The two SVM methods were tested using pixel intensity and PCA components as feature vectors. Each classification approach was tested by varying the kernel settings. The results are shown in Tables \ref{tab:rawsvm} and \ref{tab:pcasvm}. Note that 'Acc' is short for accuracy, Time$_{Tot}$ shows total execution time for 104 test images and Time$_{Succ}$ represents time per successful identification.
 
 \begin{table}[H]
 \begin{center}
@@ -423,15 +424,15 @@ OVA & unweighted & 84.6 & 55.2 & 0.63\\ [0.5ex]
 
 \end{table}
 
-We can examine the various approaches in multiple ways. First of all just by comparing the success rates we see that linear OVOSVM and both linear version of OVASVM produce nearly equally accurate results varying between 96\% and 98\%.
+We can examine the various approaches in multiple ways. First of all just by comparing the success rates we see that linear OVOSVM and both linear version of OVASVM produce nearly equally accurate results, varying between 96\% and 98\%.
 
-However we should also take into account how efficient a given algorithm is. Even though linear kernels in OVOSVM and OVASVM produce the same results, OVA takes significantly longer to execute. This is due to the fact that each time we are training the SVM classifier using all 416 vectors. For 104 testing images we train the SVM a total of 5408 times. This takes much longer than OVO, where SVM is trained 137904 times. However each training process uses only 16 images, thus making it very fast. Therefore the fastest method has been determined to be OVO with a sigmoid kernel for PCA bases.
+However we should also take into account how efficient a given algorithm is. Even though linear kernels in OVOSVM and OVASVM produce the same results, OVA takes significantly longer to execute. This is due to the fact that each time we are training the SVM classifier using all 416 vectors. For 104 testing images we train the SVM a total of 5408 times. For OVO, SVM is trained 137904 times, but each training process uses only 16 images, thus making it significantly faster than OVA. Thus, the fastest method has been determined to be OVO with a sigmoid kernel for PCA bases.
 
-This raises an interesting point. We can use the dimensionally reduced images, i.e. the PCA bases for face recognition. Instead of using 2576 features, the algorithm now only employs top 150 varying features. Thus making the process on average 13.3 times faster.
+This raises an interesting point. We can use the dimensionally reduced images, i.e. the PCA bases, for face recognition. Instead of using 2576 features, the algorithm now only employs top 150 varying features. As a result, the process on average 13.3 times faster.
 
-Finally, we can look at the combined measure of efficiency and accuracy - time per successful identification. This has been calculated by simply dividing the total execution time by the number of successful recognitions. The clear winners are again the linear kernel, since they are the simplest, producing a successful  every 310 ms. 
+Finally, we can look at the combined measure of efficiency and accuracy - time per successful identification. This has been calculated by simply dividing the total execution time by the number of successful recognitions. Clearly, the fastest for both OVA and OVO are again the linear kernels, producing a successful every 310 ms. 
 
-Interestingly, the unweighted linear kernel produces the same results as the weighted counterpart, though the expectation was that it would be highly inaccurate. The unweighted binary classes are possibly internally corrected by the {\tt\small svmtrain} function, despite the fact that {\tt\small -wi} flag is not set.
+Interestingly, the unweighted linear kernel produces the same results as it's weighted counterpart, though it was expected to be highly inaccurate. The unweighted binary classes are possibly internally corrected by the {\tt\small svmtrain} function, despite the fact that {\tt\small -wi} flag is not set.
 
 Table \ref{tab:idvTimes} presents average training and testing times for OVO and OVA with PCA and full images.
 
@@ -461,14 +462,9 @@ OVA & linear & Test & Images & 2.5m\\ [0.5ex]
 \hline
 \end{tabular}
 \end{center}
-
 \end{table}
 
-As expected the table supports the argument that OVO method using PCA bases it quicker. OVO training using PCA is roughly 20 times faster then training using full vectors. Similarly testing is about 14 times faster when using PCA.
-
-Thus, the multiclass SVM classification is best achieved with a linear OVO kernel for PCA bases, as it produces 98.1\% accuracy rate and is relatively fast, performing 104 classifications in just over 30 seconds. This naturally could be optimised by precalculating all of 1326 models and simply iterating though them rather than having to build them every time a new image comes through.
-
-For completeness Figure \ref{fig:confSVM} shows a confusion matrix of a OVOSVM with a quadratic kernel for PCA bases.
+As expected, table \ref{tab:idvTimes} supports the argument that OVO method using PCA bases is quicker than using raw pixel intensities. OVO training using PCA is roughly 20 times faster than training using full vectors. Similarly, testing is about 14 times faster when using PCA. In conclusion, the multiclass SVM classification is best achieved with a linear OVO kernel for PCA bases, as it produces 98.1\% accuracy rate and is relatively fast, performing 104 classifications in just over 30 seconds. This naturally could be optimised by precalculating all of 1326 models and simply iterating though them rather than having to build them every time a new image comes through. For completeness Figure \ref{fig:confSVM} shows a confusion matrix of a OVOSVM with a quadratic kernel for PCA bases.
 
 \begin{figure}[H]
 \begin{center}
@@ -485,7 +481,7 @@ Finally, Figure \ref{fig:failSVM} shows one of four unsuccessful classifications
 \begin{figure}[H]
 \begin{center}
   
-    \includegraphics[width=0.3\textwidth]{../results/svmFail}
+    \includegraphics[width=0.3\textwidth]{../results/SVMfail}
 
   \caption{Unsuccessful Classification. Left: Testing Face, Right: Assigned Class \label{fig:failSVM}}
 
@@ -493,12 +489,10 @@ Finally, Figure \ref{fig:failSVM} shows one of four unsuccessful classifications
 \end{figure}
 
 \subsection{Comparison of NN and SVM classifiers}
-The two most striking differences in terms of performance are the execution time and success rates. Firstly, we see that the best implementation of SVM is by far more accurate than optimal NN method, which peaks at 70.2\%.
-
-On the other hand the total execution time for NN classification for all 104 test images is in the range of a few hundred milliseconds; 250 ms for 150 PCA bases. This results in average time per successful identification of around 3 ms. For comparison, the best time per successful classification for SVM is around 310 ms, i.e. 100 times longer.
+The two most striking differences in terms of performance are the execution time and success rates. Firstly, we see that the best implementation of SVM is by far more accurate than optimal NN method, which peaks at 70.2\%. On the other hand the total execution time for NN classification for all 104 test images is in the range of a few hundred milliseconds; 250 ms for 150 PCA bases. This results in average time per successful identification of around 3 ms. For comparison, the best time per successful classification for SVM is around 310 ms, i.e. 100 times longer. Thus, deciding which is 'best' is dependant on which parameter is more valuable for a given application.
 
 \section{Conclusion}
-This report described Principal Component Analysis, the Nearest Neighbour classifier, and Support Vector Machines and compared versions of each in terms of execution time and classification accuracy. We also found that an SVM can be more accurate than a Nearest Neighbour classifier, but has a much greater execution time.
+This report described Principal Component Analysis, the Nearest Neighbour classifier, and Support Vector Machines, and compared versions of each. We also found that an SVM can be more accurate than an NN classifier, but NN has a much shorter execution time.
 {\small
 \bibliographystyle{ieee}
 \bibliography{egbib}
