@@ -96,6 +96,10 @@ if (exist('showPlots', 'var') && showPlots == true)
     
 end
 
+
+S = whos('testingProjections', 'trainingProjections');
+totalBytes = S(1).bytes + S(2).bytes
+
 %% Plot confusion matrix
 
 numClasses = size(training, 2)/trainingClassSize;
